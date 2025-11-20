@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mind Maker รับจัดงาน Event</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="Logo-mm.png" type="image/png" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Lexend+Deca:wght@400;700&family=Special+Gothic+Expanded+One&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+
+  <style>
+    :root {
+      --primary-blue: #3a53a4;
+      --primary-pink: #e6559e;
+      --primary-yellow: #f9d423;
+      --text-dark: #222;
+      --text-light: #fff;
+      --bg-light: #fff;
+      --bg-dark: #111;
+      --bg-medium: #f9f9f9;
+      --font-special: "Special Gothic Expanded One", sans-serif;
+      --font-body: "Lexend Deca", sans-serif;
+      --font-kanit: "Kanit", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.7;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .section-wrapper {
+      padding: 5rem 0;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      background-color: transparent;
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.4s ease;
+    }
+
+    .navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.5rem 2rem;
+      border-radius: 0;
+      background-color: transparent;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .navbar.navbar-scrolled .navbar-inner {
+      max-width: 900px;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+      margin-top: 0.5rem;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      font-family: var(--font-special);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 1rem;
+      transition: gap 0.4s ease;
+      align-items: center;
+    }
+
+    .nav-center a {
+      font-weight: 500;
+      transition: color 0.3s;
+      padding: 0.5rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-center a:hover {
+      color: var(--primary-pink);
+    }
+
+    .navbar.navbar-scrolled .nav-center {
+      gap: 0.5rem;
+    }
+
+    .portfolio-link a {
+      font-weight: bold;
+      padding: 0.5rem 1.4rem;
+      border: 2px solid var(--text-dark);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .portfolio-link a:hover {
+      background-color: var(--text-dark);
+      color: var(--text-light);
+    }
+
+    .nav-toggle {
+      display: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      font-size: 1.5rem;
+      z-index: 1001;
+    }
+
+    /* Mobile full-screen menu */
+    .mobile-overlay-menu {
+      position: fixed;
+      inset: 0;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .mobile-overlay-menu.active {
+      transform: translateX(0);
+    }
+
+    .mobile-overlay-menu .menu-items {
+      text-align: center;
+    }
+
+    .mobile-overlay-menu .menu-items li {
+      margin: 1.5rem 0;
+    }
+
+    .mobile-overlay-menu .menu-items a {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-family: var(--font-special);
+      transition: color 0.3s ease;
+    }
+
+    .mobile-overlay-menu .menu-items a:hover {
+      color: var(--primary-pink);
+    }
+
+    .nav-toggle.is-active {
+      color: var(--text-light);
+    }
+
+    .nav-toggle.is-active i::before {
+      content: "\f00d";
+    }
+
+    .navbar.mobile-menu-active .logo,
+    .navbar.mobile-menu-active .nav-toggle {
+      color: var(--text-light);
+    }
+
+    /* ================= HERO ================= */
+    .hero-section { 
+        background-color: #ffffff; 
+        background-color: #ffffff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.09'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+     background-repeat: repeat; background-position: center center; background-size: clamp(60px, 8vw, 100px); color: #000; min-height: 100vh; padding: 6rem 1rem 4rem; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
+         background-repeat: repeat; 
+        background-position: center center; 
+        background-size: clamp(60px, 8vw, 100px); 
+        color: #000; 
+        min-height: 100vh; 
+        padding: 6rem 1rem 4rem; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        text-align: center; 
+        position: relative; 
+        overflow: hidden; 
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      width: 100%;
+    }
+
+    .hero-content {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 850px;
+    }
+ 
+    .hero-title {
+      font-family: var(--font-kanit);
+      font-weight: 600;
+      font-size: clamp(2.5rem, 6vw, 3.8rem);
+      line-height: 1.25;
+      position: relative;
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      max-width: 500px;
+      color: #555;
+      font-weight: 400;
+      padding: 0 1rem;
+    }
+
+    .hero-cta {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .label-tape {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--primary-blue);
+      padding: 0.4rem 1.2rem;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3.8vw, 2.6rem);
+      color: #ffffff;
+      position: relative;
+      transform: rotate(-2deg);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      margin: 0 0.3rem;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    .label-tape::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, var(--primary-pink) 50%, #ffffff 50%);
+      clip-path: polygon(0 100%, 100% 100%, 100% 0);
+      box-shadow: -2px -2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    .paper-clip {
+      position: absolute;
+      top: -10px;
+      right: -6px;
+      width: 24px;
+      height: 24px;
+      transform: rotate(15deg);
+      z-index: 3;
+      filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+    }
+
+    .label-tape:hover .paper-clip {
+      transform: rotate(20deg) translateY(-2px);
+    }
+
+    .hero-title .italic {
+      font-style: italic;
+      color: var(--primary-pink);
+      display: inline-block;
+    }
+
+    .hero-title .converge {
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      text-decoration-style: wavy;
+      text-underline-offset: 5px;
+      text-decoration-color: var(--bg-dark);
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2.2rem;
+      border-radius: 999px;
+      border: none;
+      background: #111;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.04em;
+    }
+
+    .cta-button:hover {
+      background: var(--primary-pink);
+      transform: translateY(-2px);
+    }
+
+    /* ================= SERVICES ================= */
+    #services {
+      position: relative;
+      margin-top: -40px;
+      padding-top: 6rem;
+      color: var(--text-dark);
+      background-color: transparent;
+      z-index: 3;
+    }
+
+    .expertise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      gap: 1.5rem;
+    }
+
+    .expertise-header h2 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: 0;
+      text-align: left;
+    }
+
+    .expertise-header p {
+      max-width: 420px;
+      color: #777;
+      text-align: right;
+      font-size: 0.95rem;
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .expertise-card {
+      background-color: #ffffff;
+      border-radius: 24px;
+      padding: 1.5rem;
+      color: var(--text-dark);
+      font-family: var(--font-kanit);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .expertise-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+    }
+
+    .service-gallery-container {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        margin-bottom: 1.5rem;
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .service-gallery {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        height: 100%;
+        width: 100%;
+        scrollbar-width: none;
+    }
+
+    .service-gallery::-webkit-scrollbar {
+        display: none;
+    }
+
+    .service-gallery img {
+        flex: 0 0 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        scroll-snap-align: start;
+    }
+
+    .gallery-dots {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 2;
+        background: rgba(0,0,0,0.2);
+        padding: 4px 8px;
+        border-radius: 10px;
+    }
+    
+    .gallery-dot {
+        width: 6px;
+        height: 6px;
+        background: rgba(255,255,255,0.6);
+        border-radius: 50%;
+        transition: background 0.3s;
+    }
+    
+    .gallery-dot.active {
+        background: #fff;
+        transform: scale(1.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title-group h3 {
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      font-family: var(--font-body);
+      line-height: 1.3;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .card-title-group span {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #999;
+      font-weight: 500;
+    }
+
+    /* --- UPDATED ICON STYLES (Pink, No Hover Effect) --- */
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(230, 85, 158, 0.1); /* Light pink background */
+      color: var(--primary-pink); /* Pink icon */
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      /* Removed transition/hover transform */
+    }
+    
+    /* Remove hover effect for icons */
+    .expertise-card:hover .card-icon {
+        transform: none;
+        background-color: rgba(230, 85, 158, 0.1);
+        color: var(--primary-pink);
+    }
+
+    .expertise-card > p {
+      color: #666;
+      margin-top: 0.5rem;
+      margin-bottom: auto;
+      padding-bottom: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+    }
+
+    .arrow-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid #eee;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: all 0.25s ease;
+      align-self: flex-end;
+      color: #aaa;
+    }
+
+    .arrow-link:hover {
+      background-color: var(--text-dark);
+      border-color: var(--text-dark);
+      color: var(--text-light);
+      transform: translateX(4px);
+    }
+
+    /* ================= ABOUT (UPDATED WITH AUTO-SLIDER) ================= */
+    #about {
+      background-color: var(--bg-light);
+    }
+
+    .about-layout {
+        display: flex;
+        gap: 4rem;
+        align-items: flex-start;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    /* Sticky Image Container with Slider */
+    .about-visual-col {
+        flex: 0 0 40%;
+        max-width: 400px;
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+    }
+
+    .about-image-card {
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        aspect-ratio: 3/4;
+        position: relative;
+    }
+
+    /* Auto-fading slider styles */
+    .about-slider-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .about-slider-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out; /* Smooth crossfade */
+    }
+
+    .about-slider-container img.active {
+        opacity: 1;
+    }
+
+    .about-content-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .about-heading {
+        font-family: var(--font-kanit);
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        margin-bottom: 1rem;
+        position: relative;
+        line-height: 1.2;
+    }
+
+    .about-heading::before {
+        content: "ABOUT US";
+        display: block;
+        font-size: 0.8rem;
+        font-family: var(--font-body);
+        letter-spacing: 2px;
+        color: var(--primary-pink);
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    .about-text {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #444;
+        font-weight: 300;
+    }
+
+    .about-text strong {
+        color: var(--text-dark);
+        font-weight: 600;
+    }
+
+    .about-achievements {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #eee;
+    }
+
+    .about-achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 2rem;
+    }
+
+    .achievement-item .counter {
+        font-family: var(--font-special);
+        font-size: 2rem;
+        color: var(--primary-pink);
+    }
+    
+    .achievement-item p {
+        font-size: 0.85rem;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 0.2rem;
+    }
+
+    /* ================= RECENT CLIENTS SLIDER ================= */
+    .mm-slider-section {
+      padding: 5rem 0 4rem;
+      background-color: #ffffff;
+      text-align: center;
+    }
+
+    .mm-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      padding: 0 0.5rem;
+      gap: 1rem;
+    }
+
+    .mm-slider-heading {
+      font-family: var(--font-kanit);
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      margin: 0;
+      font-weight: 600;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .mm-slider-more {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--text-dark);
+      padding-bottom: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .mm-slider-more:hover {
+      color: var(--primary-pink);
+      border-color: var(--primary-pink);
+    }
+
+    .mm-slider {
+      position: relative;
+    }
+
+    .mm-slider-stage {
+      position: relative;
+      max-width: 1100px;
+      height: 420px;
+      margin: 0 auto;
+    }
+
+    .mm-slide {
+      position: absolute;
+      top: 0;
+      width: 32%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
+      opacity: 0;
+      transform: scale(1);
+      transition: opacity 0.5s ease, transform 0.5s ease, left 0.5s ease;
+    }
+
+    .mm-slide.prev {
+      left: 0;
+      opacity: 1;
+    }
+
+    .mm-slide.active {
+      left: 34%;
+      opacity: 1;
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
+    .mm-slide.next {
+      left: 68%;
+      opacity: 1;
+    }
+
+    .mm-slide-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mm-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      z-index: 3;
+      transition: all 0.2s;
+    }
+
+    .mm-arrow:hover {
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .mm-arrow-prev { left: 0; }
+    .mm-arrow-next { right: 0; }
+
+    .mm-slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+
+    .mm-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background-color: #ddd;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .mm-dot.active {
+      background-color: var(--primary-blue);
+      transform: scale(1.3);
+    }
+
+    /* ================= CLIENTS MARQUEE ================= */
+    #clients {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      overflow: hidden;
+    }
+
+    #clients h2 {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .clients-logos-wrapper {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    .clients-logos {
+      display: flex;
+      gap: 5rem;
+      width: fit-content;
+      animation: scroll-loop 30s linear infinite;
+      padding-left: 50%;
+    }
+
+    .clients-logos:hover {
+      animation-play-state: paused;
+    }
+
+    .clients-logos img {
+      max-width: 140px;
+      height: 50px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .clients-logos img:hover {
+      opacity: 1;
+    }
+
+    @keyframes scroll-loop {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ================= CONTACT ================= */
+    #contact {
+      color: var(--text-light);
+      background-color: var(--primary-pink);
+    }
+
+    #contact .container {
+      max-width: 760px;
+    }
+
+    #contact h2 {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      text-align: left;
+      min-height: 1.2em;
+      margin-bottom: 2rem;
+    }
+
+    #contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .form-group,
+    .form-group-fullwidth {
+      flex: 1;
+    }
+
+    #contact-form label {
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      display: block;
+      opacity: 0.9;
+    }
+
+    #contact-form input,
+    #contact-form textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding: 0.6rem 0;
+      font-size: 1rem;
+      color: var(--text-light);
+      width: 100%;
+      border-radius: 0;
+      transition: border-color 0.3s;
+    }
+    
+    #contact-form input:focus,
+    #contact-form textarea:focus {
+        outline: none;
+        border-bottom-color: #fff;
+    }
+
+    #contact-form ::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    #contact-form textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .interest-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .interest-options input[type="checkbox"] {
+      display: none;
+    }
+
+    .interest-options label {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.6);
+      color: var(--text-light);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .interest-options input:checked + label,
+    .interest-options label:hover {
+      background: var(--text-light);
+      color: var(--primary-pink);
+      border-color: var(--text-light);
+    }
+
+    #contact-form button[type="submit"] {
+      font-family: var(--font-body);
+      background-color: var(--bg-dark);
+      color: var(--primary-pink);
+      padding: 0.9rem 3.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1rem;
+    }
+
+    #contact-form button[type="submit"]:hover {
+      background-color: #fff;
+      color: var(--primary-pink);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    /* ================= FOOTER ================= */
+    .footer {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      padding: 5rem 1.5rem 2rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: 1.5fr 2fr 2fr 1.5fr; /* Adjusted columns */
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .footer-column h3 {
+      font-family: var(--font-special);
+      font-size: clamp(1.8rem, 4vw, 2rem);
+      margin-bottom: 1rem;
+    }
+
+    .footer-column h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      color: #666;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 0.9rem;
+      color: #b0b0b0;
+      transition: color 0.3s;
+      line-height: 1.8;
+    }
+
+    /* Ensure footer links hover pink */
+    .footer-column a:hover {
+      color: var(--primary-pink);
+    }
+    
+    /* Specifically target links inside paragraphs or list-like structures */
+    .footer-contact p a:hover,
+    .footer-address p a:hover,
+    .footer-newsletter p a:hover,
+    .contact-person a:hover {
+        color: var(--primary-pink);
+    }
+
+    /* Specific Contact Styles */
+    .contact-person {
+        margin-bottom: 1.2rem;
+    }
+    .contact-person strong {
+        color: #fff;
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+    .contact-person a {
+        display: block;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    /* Social icons hover pink */
+    .social-icons a:hover {
+        border-color: var(--primary-pink);
+        background: var(--primary-pink);
+        color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #222;
+      padding-top: 2rem;
+      margin-top: 4rem;
+      color: #555;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* =============== RESPONSIVE =============== */
+    @media (max-width: 992px) {
+      .about-layout {
+          flex-direction: column;
+          gap: 2rem;
+      }
+      
+      .about-visual-col {
+          flex: none;
+          max-width: 100%;
+          width: 100%;
+          position: static; /* Remove sticky on tablet/mobile */
+      }
+      
+      .about-image-card {
+          aspect-ratio: 16/9; /* Landscape on mobile */
+      }
+
+      .navbar-inner {
+        padding: 0.5rem 1.5rem;
+      }
+
+      .nav-center,
+      .portfolio-link {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .expertise-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .expertise-header p {
+        text-align: left;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Better Hero Responsiveness */
+      .hero-section {
+        padding: 7rem 0 4rem; /* More top padding for navbar */
+        min-height: auto; /* Remove 100vh constraint to prevent clutter */
+      }
+      
+      .hero-title {
+        font-size: 2.4rem; /* Fixed readable size */
+      }
+      
+      .label-tape {
+          font-size: 1.5rem;
+          padding: 0.3rem 0.8rem;
+          display: inline-block; /* Allow breaking if needed */
+          margin: 0.2rem;
+      }
+      
+      .paper-clip {
+          width: 18px;
+          height: 18px;
+          top: -6px;
+      }
+
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-achievements-grid {
+          grid-template-columns: 1fr 1fr;
+      }
+
+      .mm-slider-stage {
+        height: 280px;
+      }
+
+      .mm-slide {
+        width: 100%;
+      }
+
+      .mm-slide.prev { left: -100%; opacity: 0; }
+      .mm-slide.active { left: 0; transform: scale(1); }
+      .mm-slide.next { left: 100%; opacity: 0; }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      
+      .form-row {
+          flex-direction: column;
+          gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <div class="logo">Mind Maker</div>
+
+      <ul class="nav-center">
+        <li><a href="About.html">About</a></li>
+        <li><a href="Service.html">Services</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="portfolio-link">
+        <a href="work exprerien.html">Portfolio</a>
+      </div>
+
+      <div class="nav-toggle" id="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay-menu" id="mobile-overlay-menu">
+    <ul class="menu-items">
+      <li><a href="About.html">About</a></li>
+      <li><a href="Service.html">Services</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="work exprerien.html">Portfolio</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section id="hero" class="hero-section">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            WHERE
+            <span class="label-tape">
+              INSPIRATION
+              <svg class="paper-clip" viewBox="0 0 24 24">
+                <path d="M6.5 6L15 14.5a3 3 0 0 1-4.24 4.24L5.75 13.75" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" />
+              </svg>
+            </span>
+            <br>AND <span class="italic">PURPOSE</span>
+            <span class="converge">CONVERGE</span>
+          </h1>
+          <p class="hero-subtitle">
+            Mind Maker is an event agency that blends art, technology, and playful experiences
+            to create memorable moments for modern brands and audiences.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#contact" class="cta-button">Get Started <span>➜</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section id="services">
+      <div class="section-wrapper">
+        <div class="container">
+          <div class="expertise-header">
+            <h2>Our Service</h2>
+            <p>
+              Transform ideas into reality by combining creativity, strategy, and expertise.
+            </p>
+          </div>
+
+          <div class="expertise-grid">
+            <!-- Card 1: Event Management -->
+            <div class="expertise-card">
+              <div class="service-gallery-container">
+                  <div class="service-gallery" id="gallery-1">
+                      <img src="https://placehold.co/600x400/eee/333?text=Event+Photo+1" alt="Event 1">
+                      <img src="https://placehold.co/600x400/ddd/333?text=Event+Photo+2" alt="Event 2">
+                      <img src="https://placehold.co/600x400/ccc/333?text=Event+Photo+3" alt="Event 3">
+                  </div>
+                  <div class="gallery-dots">
+                      <div class="gallery-dot active"></div><div class="gallery-dot"></div><div class="gallery-dot"></div>
+                  </div>
+              </div>
+              <div class="card-header">
+                <div class="card-title-group">
+                  <span>Service 01</span>
+                  <h3>Event Management</h3>
+                </div>
+                <div class="card-icon"><i class="fas fa-bolt"></i></div>
+              </div>
+              <p>From concept to on-site operation, we design and run events that keep your audience engaged and inspired.</p>
+              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Card 2: Exhibition & Booth -->
+            <div class="expertise-card">
+              <div class="service-gallery-container">
+                  <div class="service-gallery" id="gallery-2">
+                      <img src="https://placehold.co/600x400/fef3c7/333?text=Booth+Photo+1" alt="Booth 1">
+                      <img src="https://placehold.co/600x400/fde68a/333?text=Booth+Photo+2" alt="Booth 2">
+                  </div>
+                  <div class="gallery-dots">
+                      <div class="gallery-dot active"></div><div class="gallery-dot"></div>
+                  </div>
+              </div>
+              <div class="card-header">
+                <div class="card-title-group">
+                  <span>Service 02</span>
+                  <h3>Exhibition & Booth</h3>
+                </div>
+                <div class="card-icon"><i class="fas fa-cube"></i></div>
+              </div>
+              <p>Exhibition, booth, trade fair, and festival design that turns your space into a memorable brand story.</p>
+              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Card 3: Sampling -->
+            <div class="expertise-card">
+               <div class="service-gallery-container">
+                  <div class="service-gallery" id="gallery-3">
+                      <img src="https://placehold.co/600x400/dcfce7/333?text=Sampling+Photo+1" alt="Sampling 1">
+                      <img src="https://placehold.co/600x400/bbf7d0/333?text=Sampling+Photo+2" alt="Sampling 2">
+                  </div>
+                  <div class="gallery-dots">
+                      <div class="gallery-dot active"></div><div class="gallery-dot"></div>
+                  </div>
+              </div>
+              <div class="card-header">
+                <div class="card-title-group">
+                  <span>Service 03</span>
+                  <h3>Sampling</h3>
+                </div>
+                <div class="card-icon"><i class="fas fa-box-open"></i></div>
+              </div>
+              <p>Get your product into the right hands with curated sampling routes, promoters, and locations.</p>
+              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Card 4: Branding -->
+            <div class="expertise-card">
+              <div class="service-gallery-container">
+                  <div class="service-gallery" id="gallery-4">
+                      <img src="https://placehold.co/600x400/e9d5ff/333?text=Branding+Photo+1" alt="Branding 1">
+                  </div>
+              </div>
+              <div class="card-header">
+                <div class="card-title-group">
+                  <span>Service 04</span>
+                  <h3>Product Branding</h3>
+                </div>
+                <div class="card-icon"><i class="far fa-lightbulb"></i></div>
+              </div>
+              <p>Build a strong, recognizable identity with campaigns, visuals, and experiences that match your brand.</p>
+              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Card 5: Media -->
+            <div class="expertise-card">
+              <div class="service-gallery-container">
+                  <div class="service-gallery" id="gallery-5">
+                      <img src="https://placehold.co/600x400/e0f2fe/333?text=Media+Photo+1" alt="Media 1">
+                  </div>
+              </div>
+              <div class="card-header">
+                <div class="card-title-group">
+                  <span>Service 05</span>
+                  <h3>Media Planning</h3>
+                </div>
+                <div class="card-icon"><i class="far fa-paper-plane"></i></div>
+              </div>
+              <p>We plan how, when, where, and why your brand communicates across media that truly reach your target.</p>
+              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Card 6: Production -->
+            <div class="expertise-card">
+              <div class="service-gallery-container">
+                  <div class="service-gallery" id="gallery-6">
+                      <img src="https://placehold.co/600x400/ffedd5/333?text=Production+Photo+1" alt="Production 1">
+                  </div>
+              </div>
+              <div class="card-header">
+                <div class="card-title-group">
+                  <span>Service 06</span>
+                  <h3>Production House</h3>
+                </div>
+                <div class="card-icon"><i class="far fa-play-circle"></i></div>
+              </div>
+              <p>Video production, show content, and motion graphics crafted for both on-ground and online experiences.</p>
+              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT (UPDATED CONTENT & LAYOUT) ================= -->
+    <section id="about" class="about-carousel-section">
+      <div class="container">
+        <div class="about-layout">
+            <!-- Sticky Image Column with Story Slider -->
+            <div class="about-visual-col">
+                <div class="about-image-card">
+                     <div class="about-slider-container" id="about-story-slider">
+                         <!-- Multiple images for storytelling effect -->
+                         <img src="insight mm.jpg" class="active" alt="Team Collaboration">
+                         <img src="https://placehold.co/600x800/ddd/333?text=Event+Production" alt="Event Production">
+                         <img src="https://placehold.co/600x800/ccc/333?text=On-Site+Energy" alt="On-Site Energy">
+                         <img src="https://placehold.co/600x800/bbb/333?text=Success+Moment" alt="Success Moment">
+                     </div>
+                </div>
+            </div>
+
+            <!-- Text Content Column -->
+            <div class="about-content-col">
+                <h2 class="about-heading">Get to Know Mind Maker</h2>
+                
+                <div class="about-text">
+                    <p style="margin-bottom: 1.5rem;">
+                        We are a passionate team dedicated to crafting events that leave lasting impressions — memorable, captivating, and full of meaningful stories. Every project we create is designed with care and attention to detail, ensuring that every element aligns with our clients’ vision from every angle. Our work reflects lifestyle, brand identity, and human connection seamlessly across both real and digital worlds. We deliver end-to-end experiences that connect people through both on-ground and online engagements.
+                    </p>
+                    <p style="margin-bottom: 1.5rem;">
+                        With over 8 years of experience as a full-service event marketing agency, we’ve developed a distinctive approach to bringing brand stories to life — whether through digital events that integrate technology with scale, format, and interaction, or live events that allow audiences to truly see, feel, taste, and experience a brand firsthand. From intimate C-suite gatherings and VIP customer experiences to large-scale conferences, keynotes, and public events, we deliver with flexibility, creativity, personalization, and seamless connectivity.
+                    </p>
+                    <p>
+                        Wherever your event takes place, it will leave a lasting impact — inspiring, engaging, and uniting people through shared experiences and a sense of belonging.
+                    </p>
+                </div>
+
+                <!-- Achievements moved to bottom of text block -->
+                <div class="about-achievements">
+                    <div class="about-achievements-grid">
+                    <div class="achievement-item">
+                        <div class="counter" data-target="489">0</div><span class="suffix">+</span>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="counter" data-target="98.5">0</div><span class="suffix">%</span>
+                        <p>Happy Clients</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="counter" data-target="8">0</div><span class="suffix">+</span>
+                        <p>Years of Experience</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="counter" data-target="999">0</div><span class="suffix">+</span>
+                        <p>Cups of Coffee</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RECENT CLIENTS SLIDER ================= -->
+    <section id="recent-clients" class="mm-slider-section">
+      <div class="container">
+        <div class="mm-slider-header">
+          <h2 class="mm-slider-heading">Latest Our Work</h2>
+          <a href="work exprerien.html" class="mm-slider-more">
+            See More <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="mm-slider">
+          <div class="mm-slider-stage">
+            <div class="mm-slide mm-slide-1 active">
+              <img src="https://placehold.co/800x400/333/FFF?text=Project+1" alt="Client project 1" class="mm-slide-image" />
+            </div>
+            <div class="mm-slide mm-slide-2 next">
+              <img src="https://placehold.co/800x400/444/FFF?text=Project+2" alt="Client project 2" class="mm-slide-image" />
+            </div>
+            <div class="mm-slide mm-slide-3 prev">
+              <img src="https://placehold.co/800x400/555/FFF?text=Project+3" alt="Client project 3" class="mm-slide-image" />
+            </div>
+
+            <button class="mm-arrow mm-arrow-prev" type="button" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+            <button class="mm-arrow mm-arrow-next" type="button" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+          </div>
+
+          <div class="mm-slider-dots">
+            <button class="mm-dot active" data-mm-slide="0"></button>
+            <button class="mm-dot" data-mm-slide="1"></button>
+            <button class="mm-dot" data-mm-slide="2"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CLIENTS MARQUEE ================= -->
+    <section id="clients">
+      <div class="section-wrapper">
+        <div class="container">
+          <h2>Trusted by Industry Leaders</h2>
+          <div class="clients-logos-wrapper">
+            <div class="clients-logos" id="clients-logos-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="contact">
+      <div class="section-wrapper">
+        <div class="container">
+          <h2 id="contact-heading"></h2>
+          <form id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name*</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email*</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone*</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" />
+              </div>
+            </div>
+
+            <div class="form-group-fullwidth">
+              <label>Interested in...</label>
+              <div class="interest-options">
+                <div class="interest-option-item">
+                  <input type="checkbox" id="interest_event" name="interest[]" value="Event" />
+                  <label for="interest_event">Event</label>
+                </div>
+                <div class="interest-option-item">
+                  <input type="checkbox" id="interest_exhibition" name="interest[]" value="Exhibition" />
+                  <label for="interest_exhibition">Exhibition</label>
+                </div>
+                <div class="interest-option-item">
+                  <input type="checkbox" id="interest_sampling" name="interest[]" value="Sampling" />
+                  <label for="interest_sampling">Sampling</label>
+                </div>
+                <div class="interest-option-item">
+                  <input type="checkbox" id="interest_branding" name="interest[]" value="Branding" />
+                  <label for="interest_branding">Product Branding</label>
+                </div>
+                <div class="interest-option-item">
+                  <input type="checkbox" id="interest_media" name="interest[]" value="Media" />
+                  <label for="interest_media">Media Planning</label>
+                </div>
+                <div class="interest-option-item">
+                  <input type="checkbox" id="interest_other" name="interest[]" value="Other" />
+                  <label for="interest_other">Other</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-fullwidth">
+              <label>Budget Estimate</label>
+              <div class="form-row">
+                <div class="form-group">
+                  <input type="text" name="budget_from" placeholder="From" />
+                </div>
+                <div class="form-group">
+                  <input type="text" name="budget_to" placeholder="To" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-fullwidth">
+              <label for="message">Message*</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem">
+              <button type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column footer-brand">
+        <h3>MIND MAKER</h3>
+        <p>
+          Innovative Event Organizer<br />
+          in Thailand
+        </p>
+        <div class="social-icons">
+          <a href="https://facebook.com/mindmakerproduction" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/mindmaker.official" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://tiktok.com/@mindmaker.official" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://line.me/ti/p/@mindmaker" target="_blank" title="Line" style="font-size: 1.35rem;"><i class="fab fa-line"></i></a>
+        </div>
+      </div>
+
+      <!-- Updated Contact Info Column -->
+      <div class="footer-column footer-contact">
+        <h4>CONTACT PERSON</h4>
+        
+        <div class="contact-person">
+            <strong>Kie</strong>
+            <a href="tel:0985479142">098-547-9142</a>
+            <a href="mailto:somprasong.s@mindmakermedia.com" style="font-size:0.85rem;">somprasong.s@mindmakermedia.com</a>
+        </div>
+        
+        <div class="contact-person">
+            <strong>Tully</strong>
+            <a href="tel:0624426642">062-442-6642</a>
+            <a href="mailto:ramitawan.p@mindmakermedia.com" style="font-size:0.85rem;">ramitawan.p@mindmakermedia.com</a>
+        </div>
+      </div>
+
+      <div class="footer-column footer-address">
+        <h4>OFFICE</h4>
+        <p>Nice 2 Bldg., Ratchadaphisek Rd., Huai Khwang, Bangkok 10310</p>
+        <p style="margin-top:1rem;">
+          <a href="https://maps.google.com" target="_blank">SEE ON MAP <i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+      
+      <div class="footer-column footer-newsletter">
+          <h4>STAY UPDATED</h4>
+          <p><a href="#contact">SIGN UP FOR NEWSLETTER <i class="fas fa-arrow-right"></i></a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="currentYear">2025</span> Mind Maker. All rights reserved.
+    </div>
+  </footer>
+
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    /* =============== ABOUT STORY SLIDER =============== */
+    const aboutImages = document.querySelectorAll('#about-story-slider img');
+    if (aboutImages.length > 1) {
+        let currentAboutIndex = 0;
+        setInterval(() => {
+            // Remove active class from current
+            aboutImages[currentAboutIndex].classList.remove('active');
+            // Move to next index
+            currentAboutIndex = (currentAboutIndex + 1) % aboutImages.length;
+            // Add active class to new index
+            aboutImages[currentAboutIndex].classList.add('active');
+        }, 3500); // Change image every 3.5 seconds
+    }
+
+    /* =============== SERVICE GALLERY SCROLL LISTENER =============== */
+    const serviceGalleries = document.querySelectorAll('.service-gallery-container');
+    serviceGalleries.forEach(container => {
+        const gallery = container.querySelector('.service-gallery');
+        const dots = container.querySelectorAll('.gallery-dot');
+        if (gallery && dots.length) {
+            gallery.addEventListener('scroll', () => {
+                const scrollLeft = gallery.scrollLeft;
+                const width = gallery.offsetWidth;
+                const index = Math.round(scrollLeft / width);
+                dots.forEach(d => d.classList.remove('active'));
+                if (dots[index]) dots[index].classList.add('active');
+            });
+        }
+    });
+
+    /* =============== CLIENT LOGOS & YEAR =============== */
+    const clientsData = [
+      { alt: "Client 1", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+A" },
+      { alt: "Client 2", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+B" },
+      { alt: "Client 3", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+C" },
+      { alt: "Client 4", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+D" },
+      { alt: "Client 5", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+E" },
+    ];
+    const clientsContainer = document.getElementById("clients-logos-container");
+    if (clientsContainer) {
+      const clientLogosHTML = clientsData.map((client) => `<img src="${client.src}" alt="${client.alt}" />`).join("");
+      clientsContainer.innerHTML = clientLogosHTML + clientLogosHTML;
+    }
+    const yearSpan = document.getElementById("currentYear");
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+    /* =============== NAVBAR SCROLL =============== */
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      if (!navbar.classList.contains("mobile-menu-active")) {
+        navbar.classList.toggle("navbar-scrolled", window.scrollY > 50);
+      }
+    });
+
+    /* =============== MOBILE MENU =============== */
+    const navToggle = document.getElementById("nav-toggle");
+    const mobileMenu = document.getElementById("mobile-overlay-menu");
+    function toggleMenu(show) {
+      if (!navToggle || !mobileMenu) return;
+      const isActive = typeof show === "boolean" ? show : !mobileMenu.classList.contains("active");
+      mobileMenu.classList.toggle("active", isActive);
+      navToggle.classList.toggle("is-active", isActive);
+      navbar.classList.toggle("mobile-menu-active", isActive);
+      document.body.style.overflow = isActive ? "hidden" : "";
+      if (isActive) navbar.classList.remove("navbar-scrolled");
+      else if (window.scrollY > 50) navbar.classList.add("navbar-scrolled");
+    }
+    if (navToggle && mobileMenu) {
+      navToggle.addEventListener("click", () => toggleMenu());
+      mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => toggleMenu(false)));
+    }
+
+    /* =============== ABOUT ACHIEVEMENTS COUNTER =============== */
+    const achievementItems = document.querySelectorAll(".achievement-item");
+    function animateCounter(counter) {
+      const target = Number(counter.getAttribute("data-target"));
+      const duration = 2000;
+      let startTimestamp = null;
+      function step(timestamp) {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        counter.textContent = Math.floor(progress * target);
+        if (progress < 1) window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
+    }
+    if (achievementItems.length) {
+      const achievementsObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              const counter = entry.target.querySelector(".counter");
+              if (counter && !counter.classList.contains("animated")) {
+                animateCounter(counter);
+                counter.classList.add("animated");
+              }
+            }
+          });
+        }, { threshold: 0.2 });
+      achievementItems.forEach((item) => achievementsObserver.observe(item));
+    }
+
+    /* =============== CONTACT HEADING TYPING =============== */
+    const contactHeading = document.getElementById("contact-heading");
+    if (contactHeading) {
+      const originalText = "Let's talk about creating your idea.";
+      contactHeading.innerHTML = '<span class="typing-text"></span><span class="typing-cursor">_</span>';
+      const textSpan = contactHeading.querySelector(".typing-text");
+      let charIndex = 0;
+      let isDeleting = false;
+      const typeLoop = () => {
+        const currentText = isDeleting ? originalText.substring(0, charIndex - 1) : originalText.substring(0, charIndex + 1);
+        if (textSpan) textSpan.textContent = currentText;
+        charIndex = currentText.length;
+        let timeout = isDeleting ? 50 : 100;
+        if (!isDeleting && charIndex === originalText.length) {
+          isDeleting = true;
+          timeout = 2000;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          timeout = 500;
+        }
+        setTimeout(typeLoop, timeout);
+      };
+      typeLoop();
+    }
+
+    /* =============== RECENT CLIENTS SLIDER =============== */
+    const slides = Array.from(document.querySelectorAll(".mm-slide"));
+    const dots = Array.from(document.querySelectorAll(".mm-dot"));
+    const prevBtn = document.querySelector(".mm-arrow-prev");
+    const nextBtn = document.querySelector(".mm-arrow-next");
+    if (slides.length) {
+      let current = 0;
+      function updateSlides() {
+        const prevIndex = (current - 1 + slides.length) % slides.length;
+        const nextIndex = (current + 1) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.remove("active", "prev", "next");
+          if (i === current) slide.classList.add("active");
+          else if (i === prevIndex) slide.classList.add("prev");
+          else if (i === nextIndex) slide.classList.add("next");
+        });
+        dots.forEach((dot, i) => dot.classList.toggle("active", i === current));
+      }
+      function goToSlide(index) {
+        current = (index + slides.length) % slides.length;
+        updateSlides();
+      }
+      prevBtn && prevBtn.addEventListener("click", () => goToSlide(current - 1));
+      nextBtn && nextBtn.addEventListener("click", () => goToSlide(current + 1));
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const index = Number(dot.dataset.mmSlide);
+          if (!Number.isNaN(index)) goToSlide(index);
+        });
+      });
+      updateSlides();
+      setInterval(() => goToSlide(current + 1), 4000);
+    }
+  });
+</script>
+</body>
+</html>

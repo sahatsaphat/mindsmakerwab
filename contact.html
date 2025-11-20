@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Mind Maker</title>
+  <link rel="icon" href="https://placehold.co/32x32/3A53A4/FFFFFF?text=MM" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Lexend+Deca:wght@400;700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* --- Base Variables & Styles --- */
+    :root {
+      --primary-blue: #3A53A4;
+      --primary-pink: #E6559E;
+      --primary-yellow: #F9D423;
+      --text-dark: #222;
+      --text-light: #fff;
+      --bg-light: #fff;
+      --bg-dark: #111;
+      --bg-medium: #f4f4f4;
+      --font-special: "Special Gothic Expanded One", sans-serif;
+      --font-body: "Lexend Deca", sans-serif;
+      --font-kanit: "Kanit", sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 700; }
+    h1 { font-family: var(--font-special); }
+    h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 2rem; text-align: center; }
+
+    /* --- Navbar --- */
+    .navbar {
+      background-color: transparent;
+      padding: 1rem 0;
+      position: sticky; top: 0; z-index: 1000;
+      transition: all 0.4s ease;
+    }
+    .navbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.5rem 2rem;
+        border-radius: 0;
+        background-color: transparent;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .navbar.navbar-scrolled .navbar-inner {
+        max-width: 900px;
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 999px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        border: 1px solid #eee;
+        margin-top: 0.5rem;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: var(--font-special);
+      transition: all 0.3s ease;
+    }
+    .nav-center { display: flex; gap: 1rem; transition: gap 0.4s ease; }
+    .nav-center a { font-weight: 500; transition: color 0.3s; padding: 0.5rem 1rem; position: relative;}
+    .nav-center a:hover { color: var(--primary-pink); }
+    
+    .nav-center a.active {
+        color: var(--primary-pink);
+        font-weight: 700;
+    }
+
+    .navbar.navbar-scrolled .nav-center { gap: 0.5rem; }
+    .portfolio-link a {
+      font-weight: bold; padding: 0.6rem 1.5rem;
+      border: 2px solid var(--text-dark); border-radius: 999px;
+      transition: all 0.3s;
+    }
+    .portfolio-link a:hover { background-color: var(--text-dark); color: var(--text-light); }
+    .nav-toggle { display: none; }
+    
+    /* --- Main Contact Page Header (Marquee) --- */
+    .contact-page-header {
+        padding: 0;
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        overflow: hidden;
+    }
+    .marquee-wrapper {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        padding: 1.5rem 0; 
+    }
+    .marquee-content {
+        display: inline-block;
+        animation: marquee 25s linear infinite;
+    }
+    .marquee-content h1 {
+        font-size: clamp(1.5rem, 3.75vw, 1.875rem);
+        display: inline-block;
+        margin: 0 1.5rem;
+        color: var(--text-light);
+        font-family: var(--font-special);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* Main Contact Section */
+    .contact-main-section {
+        padding: 6rem 0;
+    }
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 5rem;
+        align-items: flex-start;
+    }
+
+    /* --- Contact Form Styles --- */
+    .contact-form-wrapper {
+        background-color: var(--primary-pink);
+        color: var(--text-light);
+        padding: 3rem;
+        border-radius: 20px;
+    }
+    .contact-form-wrapper h2 {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        text-align: left;
+        margin-bottom: 2rem;
+        min-height: 1.2em;
+    }
+    .contact-form-wrapper h2 .typing-cursor {
+        animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+        from, to { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    #contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+    #contact-form .form-row { display: flex; gap: 1.5rem; }
+    #contact-form .form-group { flex: 1; }
+    #contact-form label { font-size: 0.85rem; margin-bottom: 0.4rem; display: block; }
+    
+    /* EDITED: Minimal input style */
+    #contact-form input, #contact-form textarea {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(255,255,255,0.5);
+        padding: 0.5rem 0.1rem;
+        font-size: 0.95rem;
+        color: var(--text-light);
+        width: 100%;
+        border-radius: 0;
+        transition: border-color 0.3s;
+    }
+    #contact-form input:focus, #contact-form textarea:focus {
+        outline: none; /* Removed outline */
+        border-bottom-color: var(--text-light); /* Highlight with border instead */
+    }
+
+    #contact-form ::placeholder { color: rgba(255,255,255,0.7); }
+    #contact-form textarea { min-height: 80px; resize: vertical;}
+    .interest-options { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .interest-options input[type="checkbox"] { display: none; }
+    .interest-options label {
+        background: transparent; border: 1px solid var(--text-light); color: var(--text-light);
+        padding: 0.5rem 1.1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem;
+        transition: all 0.3s;
+    }
+    .interest-options input:checked + label, .interest-options label:hover {
+        background: var(--text-light);
+        color: var(--primary-pink);
+        border-color: var(--text-light);
+    }
+    
+    /* EDITED: Send Message Button with animation */
+    #contact-form button[type="submit"] {
+        font-family: var(--font-body);
+        font-weight: bold;
+        padding: 0.6rem 1.5rem;
+        border: 2px solid var(--text-light);
+        border-radius: 999px;
+        transition: all 0.3s ease-in-out;
+        background-color: transparent;
+        color: var(--text-light);
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        align-self: center;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+    #contact-form button[type="submit"] i {
+        transition: transform 0.3s ease;
+    }
+    #contact-form button[type="submit"]:hover:not(.sent) {
+        background-color: var(--text-light);
+        color: var(--primary-pink);
+        transform: translateY(-2px);
+    }
+     #contact-form button[type="submit"]:hover:not(.sent) i {
+        transform: translateX(4px);
+    }
+     #contact-form button[type="submit"].sent {
+        background-color: var(--bg-dark); /* Black background for "Sent!" state */
+        border-color: var(--bg-dark);
+        color: var(--text-light);
+        cursor: not-allowed;
+     }
+
+
+    /* --- Contact Info Column Styles --- */
+    .contact-info-wrapper h3 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        font-family: var(--font-body);
+    }
+    .contact-info-item {
+        margin-bottom: 2.5rem;
+        display: flex;
+        align-items: flex-start;
+    }
+    .contact-info-item .icon {
+        font-size: 1.5rem;
+        color: var(--primary-pink);
+        margin-right: 1.5rem;
+        margin-top: 0.2rem;
+        width: 30px;
+        text-align: center;
+    }
+    .contact-info-item h4 {
+        margin-bottom: 0.3rem;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #888;
+    }
+    .contact-info-item p, .contact-info-item a {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+     .contact-info-item a:hover {
+        color: var(--primary-pink);
+     }
+    .map-container {
+        border-radius: 15px;
+        overflow: hidden;
+        margin-top: 2rem;
+        border: 1px solid #ddd;
+    }
+     .map-container iframe {
+        width: 100%;
+        height: 250px;
+        border: 0;
+     }
+    .social-icons-main {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+    }
+    .social-icons-main a {
+        font-size: 1.7rem;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+    }
+    .social-icons-main a:hover {
+        color: var(--primary-pink);
+    }
+
+
+    /* --- Footer --- */
+    .footer { background-color: var(--bg-dark); color: var(--text-light); padding: 4rem 2rem 2rem; }
+    .footer-container { display: grid; grid-template-columns: 2fr 2fr 2.5fr 1.5fr; gap: 2rem; max-width: 1200px; margin: 0 auto; text-align: left; }
+    .footer-column h3 { font-family: var(--font-special); font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 0.5rem; }
+    .footer-column h4 { font-size: 0.85rem; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .footer-column p, .footer-column a { font-size: 0.85rem; color: #a0a0a0; transition: color 0.3s; }
+    .footer-column a:hover { color: var(--primary-pink); }
+    .social-icons { display: flex; gap: 1.2rem; margin-top: 1rem; }
+    .social-icons a { font-size: 1.3rem; }
+    .footer-bottom { border-top: 1px solid #333; padding-top: 2rem; margin-top: 3rem; color: #777; font-size: 0.9rem; text-align: center; }
+
+    /* --- Responsive & Mobile Menu --- */
+    @media (max-width: 992px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+        .contact-info-wrapper {
+            text-align: center;
+        }
+        .contact-info-item {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .contact-info-item .icon {
+            margin: 0 0 1rem 0;
+        }
+        .social-icons-main {
+            justify-content: center;
+        }
+    }
+    @media (max-width: 768px) {
+      .navbar-inner { padding: 0.5rem 1rem; }
+      .nav-center, .portfolio-link { display: none; }
+      .nav-toggle { display: flex; cursor: pointer; padding: 0.5rem; font-size: 1.5rem; z-index: 1001;}
+      #contact-form .form-row { flex-direction: column; gap: 1.5rem; }
+      .footer-container { grid-template-columns: 1fr; text-align: center; }
+      .footer-column { margin-bottom: 2rem; }
+      .social-icons { justify-content: center;}
+    }
+    .mobile-overlay-menu {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: var(--bg-dark); color: var(--text-light);
+      z-index: 999; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .mobile-overlay-menu.active { transform: translateX(0); }
+    .mobile-overlay-menu .menu-items { text-align: center; }
+    .mobile-overlay-menu .menu-items li { margin: 1.5rem 0; }
+    .mobile-overlay-menu .menu-items a { 
+        font-size: clamp(1.5rem, 5vw, 2rem); 
+        font-family: var(--font-special); 
+        transition: color 0.3s ease;
+    }
+    .mobile-overlay-menu .menu-items a:hover { color: var(--primary-pink); }
+    .nav-toggle.is-active { color: var(--text-light); }
+    .nav-toggle.is-active i::before { content: '\f00d'; }
+
+    .navbar.mobile-menu-active .logo,
+    .navbar.mobile-menu-active .nav-toggle {
+        color: var(--text-light);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <div class="logo"><a href="index.html">Mind Maker</a></div>
+      <ul class="nav-center">
+        <li><a href="About.html">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#clients">Clients</a></li>
+        <li><a href="Contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="portfolio-link"><a href="#portfolio">Portfolio</a></div>
+      <div class="nav-toggle" id="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-overlay-menu" id="mobile-overlay-menu">
+      <ul class="menu-items">
+          <li><a href="About.html">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#clients">Clients</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+      </ul>
+  </div>
+
+  <main>
+    <!-- Page Header as a Marquee -->
+    <header class="contact-page-header">
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <h1>LET'S CREATE・LET'S CONNECT・</h1>
+                <h1>LET'S CREATE・LET'S CONNECT・</h1>
+                <h1>LET'S CREATE・LET'S CONNECT・</h1>
+                <h1>LET'S CREATE・LET'S CONNECT・</h1>
+                <h1>LET'S CREATE・LET'S CONNECT・</h1>
+                <h1>LET'S CREATE・LET'S CONNECT・</h1>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Contact Section -->
+    <section class="contact-main-section">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Left Column: Contact Form -->
+                <div class="contact-form-wrapper">
+                    <h2 id="form-heading"></h2>
+                    <form id="contact-form" action="#" method="POST">
+                        <div class="form-row">
+                          <div class="form-group"><label for="name">Name*</label><input type="text" id="name" name="name" required></div>
+                          <div class="form-group"><label for="email">Email*</label><input type="email" id="email" name="email" required></div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group"><label for="phone">Phone*</label><input type="tel" id="phone" name="phone" required></div>
+                          <div class="form-group"><label for="company">Company</label><input type="text" id="company" name="company"></div>
+                        </div>
+                        <div class="form-group-fullwidth">
+                          <label>Interested in...</label>
+                          <div class="interest-options">
+                            <div class="interest-option-item"><input type="checkbox" id="interest_event" name="interest[]" value="Event"><label for="interest_event" class="interest-btn">Event</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_exhibition" name="interest[]" value="Exhibition"><label for="interest_exhibition" class="interest-btn">Exhibition</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_sampling" name="interest[]" value="Sampling"><label for="interest_sampling" class="interest-btn">Sampling</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_branding" name="interest[]" value="Branding"><label for="interest_branding" class="interest-btn">Branding</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_media" name="interest[]" value="Media"><label for="interest_media" class="interest-btn">Media Planning</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_other" name="interest[]" value="Other"><label for="interest_other" class="interest-btn">Other</label></div>
+                          </div>
+                        </div>
+                        <div class="form-group-fullwidth">
+                            <label>Budget Estimate (Optional)</label>
+                            <div class="form-row">
+                                <div class="form-group"><input type="text" name="budget_from" placeholder="From"></div>
+                                <div class="form-group"><input type="text" name="budget_to" placeholder="To"></div>
+                            </div>
+                        </div>
+                        <div class="form-group-fullwidth"><label for="message">Message*</label><textarea id="message" name="message" required placeholder="Tell us about your project..."></textarea></div>
+                        <button type="submit">
+                            <span>Send Message</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Contact Info & Map -->
+                <div class="contact-info-wrapper">
+                    <h3>Contact Details</h3>
+                    <div class="contact-info-item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="text">
+                            <h4>Our Office</h4>
+                            <p>18 ซอย ประชาราษฎร์บำเพ็ญ 26 แยก 12<br>สามเสนนอก, ห้วยขวาง, กรุงเทพมหานคร 10310</p>
+                        </div>
+                    </div>
+                     <div class="contact-info-item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="text">
+                            <h4>Email Us</h4>
+                            <p><a href="mailto:contact@mindmakerevent.com">contact@mindmakerevent.com</a></p>
+                        </div>
+                    </div>
+                     <div class="contact-info-item">
+                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="text">
+                            <h4>Call Us</h4>
+                            <p><a href="tel:+6621234567">+66 2 123 4567</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <div class="text">
+                            <h4>Follow Us</h4>
+                            <div class="social-icons-main">
+                                <a href="https://facebook.com/mindmakerproduction" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://instagram.com/mindmaker.official" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://tiktok.com/@mindmaker.official" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on TikTok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.965416556114!2d100.5723731153445!3d13.79362210046556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29d9544b042db%3A0x94995c9f9a7f5b49!2sMind%20Maker%20Co.%2C%20Ltd.%20%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97%20%E0%B8%A1%E0%B8%B2%E0%B8%A2%E0%B8%94%E0%B9%8C%20%E0%B9%80%E0%B8%A1%E0%B8%84%E0%B9%80%E0%B8%81%E0%B8%AD%E0%B8%A3%E0%B9%8C%20%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94!5e0!3m2!1sen!2sth!4v1683802956789!5m2!1sen!2sth" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column footer-brand"><h3>MIND MAKER</h3><p>Innovative Event Organizer<br>in Thailand</p></div>
+      <div class="footer-column footer-contact"><h4>BANGKOK</h4><p><a href="mailto:contact@mindmakerevent.com">contact@mindmakerevent.com</a></p><p><a href="tel:+6621234567">+66 2 123 4567</a></p><p>18 ซอย ประชาราษฎร์บำเพ็ญ 26 แยก 12, สามเสนนอก, ห้วยขวาง, กรุงเทพมหานคร 10310</p><p><a href="https://www.google.com/maps/place/Mind+Maker+Co.,+Ltd.+%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%A1%E0%B8%B2%E0%B8%A2%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%A1%E0%B8%84%E0%B9%80%E0%B8%81%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94/@13.793617,100.574948,17z" target="_blank" rel="noopener noreferrer" class="map-link">SEE ON MAP <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p></div>
+      <div class="footer-column footer-newsletter"><h4>WANT TO BE THE SMARTEST<br>IN YOUR OFFICE?</h4><p><a href="#" class="newsletter-link">SIGN UP FOR OUR NEWSLETTER <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p></div>
+      <div class="footer-column footer-social"><h4>FOLLOW US</h4><div class="social-icons"><a href="https://facebook.com/mindmakerproduction" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com/mindmaker.official" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on Instagram" title="Instagram"><i class="fab fa-instagram"></i></a><a href="https://tiktok.com/@mindmaker.official" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on TikTok" title="TikTok"><i class="fab fa-tiktok"></i></a></div></div>
+    </div>
+    <div class="footer-bottom">© <span id="currentYear"></span> Mind Maker. All rights reserved.</div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Set current year in footer ---
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Navbar Scroll Logic ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (!navbar.classList.contains('mobile-menu-active')) {
+                navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
+            }
+        });
+        
+        // --- Mobile Menu Logic ---
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileMenu = document.getElementById('mobile-overlay-menu');
+        if (navToggle && mobileMenu) {
+            function toggleMenu(show) {
+                const isActive = typeof show === 'boolean' ? show : !mobileMenu.classList.contains('active');
+                mobileMenu.classList.toggle('active', isActive);
+                navToggle.classList.toggle('is-active', isActive);
+                navbar.classList.toggle('mobile-menu-active', isActive); 
+                document.body.style.overflow = isActive ? 'hidden' : '';
+                
+                if (isActive) {
+                    navbar.classList.remove('navbar-scrolled');
+                } else {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('navbar-scrolled');
+                    }
+                }
+            }
+
+            navToggle.addEventListener('click', () => toggleMenu());
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => toggleMenu(false));
+            });
+        }
+
+        // --- Form Heading Typing Animation ---
+        const formHeading = document.getElementById('form-heading');
+        if (formHeading) {
+            const textToType = "Send Us a Message.";
+            formHeading.innerHTML = '<span class="typing-text"></span><span class="typing-cursor">_</span>';
+            const textSpan = formHeading.querySelector('.typing-text');
+            const typingSpeed = 100, erasingSpeed = 50, delayBetween = 3000;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function formTypeLoop() {
+                const currentText = isDeleting ? textToType.substring(0, charIndex - 1) : textToType.substring(0, charIndex + 1);
+                textSpan.textContent = currentText;
+                charIndex = currentText.length;
+                let timeout = isDeleting ? erasingSpeed : typingSpeed;
+
+                if (!isDeleting && charIndex === textToType.length) {
+                    isDeleting = true;
+                    timeout = delayBetween; // Wait before erasing
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    timeout = 500; // Wait before re-typing
+                }
+                setTimeout(formTypeLoop, timeout);
+            }
+            formTypeLoop();
+        }
+
+        // --- EDITED: Contact Form Submission Logic ---
+        const contactForm = document.getElementById('contact-form');
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent actual form submission
+                
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalButtonHTML = submitButton.innerHTML;
+
+                // Change button to "Sent" state
+                submitButton.innerHTML = `<span>Sent!</span><i class="fas fa-check"></i>`;
+                submitButton.classList.add('sent');
+                submitButton.disabled = true;
+
+                // After 3 seconds, reset the form and button
+                setTimeout(() => {
+                    contactForm.reset(); // Clear form fields
+                    submitButton.innerHTML = originalButtonHTML;
+                    submitButton.classList.remove('sent');
+                    submitButton.disabled = false;
+                }, 3000);
+            });
+        }
+    });
+  </script>
+</body>
+</html>

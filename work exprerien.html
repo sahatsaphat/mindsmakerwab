@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mind Maker รับจัดงาน Event - Portfolio</title>
+    <link rel="icon" href="https://placehold.co/32x32/3A53A4/FFFFFF?text=MM" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Lexend+Deca:wght@400;700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #3A53A4;
+            --primary-pink: #E6559E;
+            --primary-yellow: #F9D423;
+            --text-dark: #222;
+            --text-light: #fff;
+            --bg-light: #fff;
+            --bg-dark: #111;
+            --bg-medium: #f8f9fa;
+            --font-special: "Special Gothic Expanded One", sans-serif;
+            --font-body: "Lexend Deca", sans-serif;
+            --font-kanit: "Kanit", sans-serif;
+            
+            /* Brand Colors */
+            --color-krungsri: #fec400;
+            --color-mea: #00a1e4;
+            --color-apple: #a1a1a6;
+            --color-coke: #f40009;
+            --color-central: #e52421;
+            --color-scg: #004a99;
+            --color-ptt: #0077c8;
+            --color-mitrphol: #009a44;
+            --color-kingpower: #0033a0;
+            --color-thaibev: #008a4e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        h1, h2, h3, h4, h5, h6 { font-weight: 700; }
+        
+        /* --- Navbar --- */
+        .navbar {
+            background-color: transparent; padding: 1rem 0;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            transition: all 0.4s ease;
+        }
+        .navbar-inner {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1200px; margin: 0 auto; padding: 0.5rem 2rem;
+            border-radius: 0; background-color: transparent;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .navbar.navbar-scrolled .navbar-inner {
+            max-width: 900px; background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px); border-radius: 999px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1); border: 1px solid #eee;
+            margin-top: 0.5rem;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; font-family: var(--font-special); transition: all 0.3s ease; }
+        .nav-center { display: flex; gap: 1rem; transition: gap 0.4s ease; }
+        .nav-center a { font-weight: 500; transition: color 0.3s; padding: 0.5rem 1rem;}
+        .nav-center a:hover { color: var(--primary-pink); }
+        .navbar.navbar-scrolled .nav-center { gap: 0.5rem; }
+        .portfolio-link a {
+            font-weight: bold; padding: 0.6rem 1.5rem;
+            border: 2px solid var(--text-dark); border-radius: 999px;
+            transition: all 0.3s;
+        }
+        .portfolio-link a:hover { background-color: var(--text-dark); color: var(--text-light); }
+        .nav-toggle { display: none; }
+
+        /* --- New Portfolio Section Layout --- */
+        #portfolio {
+            padding: 8rem 0 4rem;
+            background-color: var(--bg-light);
+        }
+        .work-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 1.5rem;
+        }
+        .work-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--text-dark);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            aspect-ratio: 4 / 3;
+        }
+        .work-card a {
+            display: block;
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+        }
+        .work-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .work-card:hover .work-card-image {
+            transform: scale(1.05);
+        }
+        .work-card-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--text-light);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease; /* Added background-color transition */
+            text-align: center;
+        }
+        .work-card:hover .work-card-content {
+            opacity: 1;
+        }
+        
+        /* --- Brand Color Overlays --- */
+        .work-card.krungsri:hover .work-card-content { background-color:#FDD600; }
+        .work-card.mea:hover .work-card-content { background-color: #fe5000; }
+        .work-card.apple:hover .work-card-content { background-color: #11155f; }
+        .work-card.coke:hover .work-card-content { background-color: #E36C28; }
+        .work-card.central:hover .work-card-content { background-color: #FFF100; }
+        .work-card.scg:hover .work-card-content { background-color: rgba(0, 74, 153, 0.9); }
+        .work-card.ptt:hover .work-card-content { background-color: rgba(0, 119, 200, 0.9); }
+        .work-card.mitrphol:hover .work-card-content { background-color: rgba(0, 154, 68, 0.9); }
+        .work-card.kingpower:hover .work-card-content { background-color: rgba(0, 51, 160, 0.9); }
+        .work-card.thaibev:hover .work-card-content { background-color: rgba(0, 138, 78, 0.9); }
+
+        /* Text color adjustment for light backgrounds */
+        .work-card.krungsri:hover .work-card-content { color: var(--text-dark); }
+        
+        .work-card-content h3, .work-card-content p {
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .work-card:hover .work-card-content h3 {
+            transition-delay: 0.1s;
+            transform: translateY(0);
+        }
+        .work-card:hover .work-card-content p {
+            transition-delay: 0.15s;
+            transform: translateY(0);
+        }
+        .work-card-content h3 {
+            font-family: var(--font-body);
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .work-card-content p {
+            font-family: var(--font-kanit);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+         .work-card.krungsri:hover .work-card-content p { color: #444; }
+
+
+        /* --- Footer --- */
+        .footer { background-color: var(--bg-dark); color: var(--text-light); padding: 4rem 2rem 2rem; }
+        .footer-container { display: grid; grid-template-columns: 2fr 2fr 2.5fr 1.5fr; gap: 2rem; max-width: 1200px; margin: 0 auto; text-align: left; }
+        .footer-column h3 { font-family: var(--font-special); font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 0.5rem; }
+        .footer-column h4 { font-size: 0.85rem; text-transform: uppercase; margin-bottom: 1.2rem; }
+        .footer-column p, .footer-column a { font-size: 0.85rem; color: #a0a0a0; transition: color 0.3s; }
+        .footer-column a:hover { color: var(--primary-pink); }
+        .social-icons { display: flex; gap: 1.2rem; margin-top: 1rem; }
+        .social-icons a { font-size: 1.3rem; }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 2rem; margin-top: 3rem; color: #777; font-size: 0.9rem; text-align: center; }
+
+        /* --- Responsive & Mobile Menu --- */
+        @media (min-width: 768px) {
+            .work-grid {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-inner { padding: 0.5rem 1rem; }
+            .nav-center, .portfolio-link { display: none; }
+            .nav-toggle { display: flex; cursor: pointer; padding: 0.5rem; font-size: 1.5rem; z-index: 1001;}
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-column { margin-bottom: 2rem; }
+            .social-icons { justify-content: center;}
+            .navbar.navbar-scrolled .navbar-inner {
+                max-width: calc(100% - 3rem); padding: 0.5rem 1rem; margin-top: 0.5rem;
+            }
+        }
+        .mobile-overlay-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-dark); color: var(--text-light);
+            z-index: 999; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .mobile-overlay-menu.active { transform: translateX(0); }
+        .mobile-overlay-menu .menu-items { text-align: center; }
+        .mobile-overlay-menu .menu-items li { margin: 1.5rem 0; }
+        .mobile-overlay-menu .menu-items a {
+            font-size: clamp(1.5rem, 5vw, 2rem); font-family: var(--font-special);
+            transition: color 0.3s ease;
+        }
+        .mobile-overlay-menu .menu-items a:hover { color: var(--primary-pink); }
+        .nav-toggle.is-active { color: var(--text-light); }
+        .nav-toggle.is-active i::before { content: '\f00d'; }
+        .navbar.mobile-menu-active .logo,
+        .navbar.mobile-menu-active .nav-toggle { color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-inner">
+            <div class="logo">Mind Maker</div>
+            <ul class="nav-center">
+                <li><a href="#">About</a></li> 
+                <li><a href="#">Services</a></li> 
+                <li><a href="#">Clients</a></li> 
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="portfolio-link"><a href="#portfolio">Portfolio</a></div>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay-menu" id="mobile-overlay-menu">
+        <ul class="menu-items">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section id="portfolio">
+            <div class="container">
+                <div class="work-grid">
+                    <!-- Work Card 1 -->
+                    <div class="work-card krungsri">
+                        <a href="#">
+                            <img class="work-card-image" src="KS3.jpg">
+                            <div class="work-card-content">
+                                <h3>KrungSri</h3>
+                                <p>DesignDigital, WebContent</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 2 -->
+                    <div class="work-card mea">
+                        <a href="#">
+                            <img class="work-card-image" src="Mea1.jpg">
+                            <div class="work-card-content">
+                                <h3>Mea Spark</h3>
+                                <p>Brand Strategy, VoiceBranding</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 3 -->
+                    <div class="work-card apple">
+                        <a href="#">
+                             <img class="work-card-image" src="Comfort1.jpg">
+                            <div class="work-card-content">
+                                <h3>Comfort</h3>
+                                <p>Campaigns Events & Activations</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 4 -->
+                    <div class="work-card coke">
+                        <a href="#">
+                            <img class="work-card-image" src="Sulwhasoo1.jpg">
+                             <div class="work-card-content">
+                                <h3>Sulwhasoo</h3>
+                                <p>Brand Strategy, Content & Campaigns</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 5 -->
+                    <div class="work-card central">
+                        <a href="#">
+                            <img class="work-card-image" src="Lemon8 1.jpg">
+                            <div class="work-card-content">
+                                <h3>Lemon8</h3>
+                                <p>Retail Experience Design</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 6 -->
+                    <div class="work-card scg">
+                        <a href="#">
+                            <img class="work-card-image" src="https://images.unsplash.com/photo-1617814109323-bf3503f0559a?q=80&w=1887&auto=format&fit=crop" alt="SCG building materials" onerror="this.onerror=null;this.src='https://placehold.co/600x450/333/fff?text=Project';">
+                            <div class="work-card-content">
+                                <h3>SCG</h3>
+                                <p>Corporate Branding</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 7 -->
+                    <div class="work-card ptt">
+                        <a href="#">
+                            <img class="work-card-image" src="https://images.unsplash.com/photo-1633519579029-4b6a80443423?q=80&w=1887&auto=format&fit=crop" alt="PTT gas station" onerror="this.onerror=null;this.src='https://placehold.co/600x450/333/fff?text=Project';">
+                            <div class="work-card-content">
+                                <h3>PTT</h3>
+                                <p>Nationwide Campaign</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 8 -->
+                    <div class="work-card mitrphol">
+                        <a href="#">
+                            <img class="work-card-image" src="https://images.unsplash.com/photo-1598232938218-35602a80479b?q=80&w=1887&auto=format&fit=crop" alt="Mitr Phol sugar cane field" onerror="this.onerror=null;this.src='https://placehold.co/600x450/333/fff?text=Project';">
+                            <div class="work-card-content">
+                                <h3>Mitr Phol</h3>
+                                <p>Sustainability Report Design</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 9 -->
+                    <div class="work-card kingpower">
+                        <a href="#">
+                            <img class="work-card-image" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop" alt="King Power shopping bags" onerror="this.onerror=null;this.src='https://placehold.co/600x450/333/fff?text=Project';">
+                            <div class="work-card-content">
+                                <h3>King Power</h3>
+                                <p>Digital Activation</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Work Card 10 -->
+                    <div class="work-card thaibev">
+                        <a href="#">
+                            <img class="work-card-image" src="https://images.unsplash.com/photo-1627814441233-31d7e27e7a3a?q=80&w=1887&auto=format&fit=crop" alt="ThaiBev beverage products" onerror="this.onerror=null;this.src='https://placehold.co/600x450/333/fff?text=Project';">
+                            <div class="work-card-content">
+                                <h3>ThaiBev</h3>
+                                <p>Event & Product Launch</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column footer-brand"><h3>MIND MAKER</h3><p>Innovative Event Organizer<br>in Thailand</p></div>
+            <div class="footer-column footer-contact"><h4>BANGKOK</h4><p><a href="mailto:contact@mindmakerevent.com">contact@mindmakerevent.com</a></p><p><a href="tel:+6621234567">+66 2 123 4567</a></p><p>Nice 2 Bldg., Ratchadaphisek Rd., Huai Khwang, Bangkok 10310</p><p><a href="https://www.google.com/maps/search/?api=1&query=Nice+2+Building%2C+Ratchadaphisek+Road%2C+Huai+Khwang%2C+Bangkok+10310" target="_blank" rel="noopener noreferrer" class="map-link">SEE ON MAP <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p></div>
+            <div class="footer-column footer-newsletter"><h4>WANT TO BE THE SMARTEST<br>IN YOUR OFFICE?</h4><p><a href="#contact" class="newsletter-link">SIGN UP FOR OUR NEWSLETTER <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p></div>
+            <div class="footer-column footer-social"><h4>FOLLOW US</h4><div class="social-icons"><a href="https://facebook.com/mindmakerproduction" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com/mindmaker.official" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on Instagram" title="Instagram"><i class="fab fa-instagram"></i></a><a href="https://tiktok.com/@mindmaker.official" target="_blank" rel="noopener noreferrer" aria-label="Mind Maker on TikTok" title="TikTok"><i class="fab fa-tiktok"></i></a></div></div>
+        </div>
+        <div class="footer-bottom">© <span id="currentYear"></span> Mind Maker. All rights reserved.</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (!navbar.classList.contains('mobile-menu-active')) {
+                    navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
+                }
+            });
+
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileMenu = document.getElementById('mobile-overlay-menu');
+            if (navToggle && mobileMenu) {
+                function toggleMenu(show) {
+                    const isActive = typeof show === 'boolean' ? show : !mobileMenu.classList.contains('active');
+                    mobileMenu.classList.toggle('active', isActive);
+                    navToggle.classList.toggle('is-active', isActive);
+                    navbar.classList.toggle('mobile-menu-active', isActive);
+                    document.body.style.overflow = isActive ? 'hidden' : '';
+
+                    if (isActive) {
+                        navbar.classList.remove('navbar-scrolled');
+                    } else {
+                        if (window.scrollY > 50) {
+                            navbar.classList.add('navbar-scrolled');
+                        }
+                    }
+                }
+                navToggle.addEventListener('click', () => toggleMenu());
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => toggleMenu(false));
+                });
+            }
+        });
+    </script>
+</body>
+</html>
