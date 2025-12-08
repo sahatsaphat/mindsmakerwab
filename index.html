@@ -86,6 +86,34 @@
     .section-wrapper {
       padding: 5rem 0;
     }
+    .lang-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+}
+
+.lang-btn.active {
+  color: var(--primary-pink); /* ใช้สีหลักของแบรนด์ */
+  text-decoration: underline;
+}
+
 
     /* ================= NAVBAR ================= */
     .navbar {
@@ -368,6 +396,42 @@
       background: var(--primary-pink);
       transform: translateY(-2px);
     }
+    .floating-social {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.floating-social a {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: #333;
+  font-size: 24px; /* ปรับตามขนาด */
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.floating-social a:hover {
+  transform: scale(1.12);
+}
+
+.floating-social a.line-oa {
+  background-color: #06C755;
+  color: white;
+  box-shadow: 0 0 12px #06C755aa;
+  border: 2px solid white;
+}
+
+
 
     /* ================= SERVICES ================= */
     #services {
@@ -672,6 +736,31 @@
         letter-spacing: 0.5px;
         margin-top: 0.2rem;
     }
+    .about-achievements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.achievement-item h3 {
+  font-size: 2rem;
+  color: var(--primary-pink);
+}
+
+.achievement-item span {
+  font-size: 1.5rem;
+  color: var(--primary-pink);
+}
+
+.achievement-item p {
+  color: #666;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
 
     /* ================= RECENT CLIENTS SLIDER ================= */
     .mm-slider-section {
@@ -1188,7 +1277,8 @@
   <!-- ================= NAVBAR ================= -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <div class="logo">Mind Maker</div>
+      <div class="logo"><a href="#hero" class="logo">Mind Maker</a>
+</div>
 
       <ul class="nav-center">
         <li><a href="About.html">About</a></li>
@@ -1206,6 +1296,15 @@
       </div>
     </div>
   </nav>
+  <div class="lang-toggle-container">
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLanguage('th', this)">TH</button>
+    <span>|</span>
+    <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
+  </div>
+</div>
+
+
 
   <div class="mobile-overlay-menu" id="mobile-overlay-menu">
     <ul class="menu-items">
@@ -1244,6 +1343,14 @@
         </div>
       </div>
     </section>
+    <!-- Floating Social Icons -->
+<div class="floating-social">
+  <a href="https://line.me/ti/p/~yourlineid" target="_blank" aria-label="Line"><i class="fab fa-line"></i></a>
+  <a href="https://facebook.com/mindmakerproduction" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://instagram.com/mindmaker.official" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://tiktok.com/@mindmaker.official" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+</div>
+
 
     <!-- ================= SERVICES ================= -->
     <section id="services">
@@ -1256,127 +1363,159 @@
             </p>
           </div>
 
-          <div class="expertise-grid">
-            <!-- Card 1: Event Management -->
-            <div class="expertise-card">
-              <div class="service-gallery-container">
-                  <div class="service-gallery" id="gallery-1">
-                      <img src="https://placehold.co/600x400/eee/333?text=Event+Photo+1" alt="Event 1">
-                      <img src="https://placehold.co/600x400/ddd/333?text=Event+Photo+2" alt="Event 2">
-                      <img src="https://placehold.co/600x400/ccc/333?text=Event+Photo+3" alt="Event 3">
-                  </div>
-                  <div class="gallery-dots">
-                      <div class="gallery-dot active"></div><div class="gallery-dot"></div><div class="gallery-dot"></div>
-                  </div>
-              </div>
-              <div class="card-header">
-                <div class="card-title-group">
-                  <span>Service 01</span>
-                  <h3>Event Management</h3>
-                </div>
-                <div class="card-icon"><i class="fas fa-bolt"></i></div>
-              </div>
-              <p>From concept to on-site operation, we design and run events that keep your audience engaged and inspired.</p>
-              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
-            </div>
+          <div class="expertise-grid"> 
+  <!-- Card 1: Event Management -->
+  <div class="expertise-card">
+    <div class="service-gallery-container">
+      <div class="service-gallery" id="gallery-1">
+        <img src="https://placehold.co/600x400/eee/333?text=Event+Photo+1" alt="Event 1">
+        <img src="https://placehold.co/600x400/ddd/333?text=Event+Photo+2" alt="Event 2">
+        <img src="https://placehold.co/600x400/ccc/333?text=Event+Photo+3" alt="Event 3">
+      </div>
+      <div class="gallery-dots">
+        <div class="gallery-dot active"></div><div class="gallery-dot"></div><div class="gallery-dot"></div>
+      </div>
+    </div>
+    <div class="card-header">
+      <div class="card-title-group">
+        <span>Service 01</span>
+        <h3>Event Management</h3>
+      </div>
+      <div class="card-icon"><i class="fas fa-bolt"></i></div>
+    </div>
+    <p>
+      <span data-lang-show="en" style="display:none">From concept to on-site operation, we design and run events that keep your audience engaged and inspired.</span>
+      <span data-lang-show="th" >
+        ตั้งแต่คิดไอเดียไปจนถึงควบคุมหน้างาน — เราออกแบบและดูแลอีเวนต์ที่ทำให้คนรู้สึกมีส่วนร่วมและอินไปกับประสบการณ์
+      </span>
+    </p>
+    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+  </div>
 
-            <!-- Card 2: Exhibition & Booth -->
-            <div class="expertise-card">
-              <div class="service-gallery-container">
-                  <div class="service-gallery" id="gallery-2">
-                      <img src="https://placehold.co/600x400/fef3c7/333?text=Booth+Photo+1" alt="Booth 1">
-                      <img src="https://placehold.co/600x400/fde68a/333?text=Booth+Photo+2" alt="Booth 2">
-                  </div>
-                  <div class="gallery-dots">
-                      <div class="gallery-dot active"></div><div class="gallery-dot"></div>
-                  </div>
-              </div>
-              <div class="card-header">
-                <div class="card-title-group">
-                  <span>Service 02</span>
-                  <h3>Exhibition & Booth</h3>
-                </div>
-                <div class="card-icon"><i class="fas fa-cube"></i></div>
-              </div>
-              <p>Exhibition, booth, trade fair, and festival design that turns your space into a memorable brand story.</p>
-              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
-            </div>
+  <!-- Card 2: Exhibition & Booth -->
+  <div class="expertise-card">
+    <div class="service-gallery-container">
+      <div class="service-gallery" id="gallery-2">
+        <img src="https://placehold.co/600x400/fef3c7/333?text=Booth+Photo+1" alt="Booth 1">
+        <img src="https://placehold.co/600x400/fde68a/333?text=Booth+Photo+2" alt="Booth 2">
+      </div>
+      <div class="gallery-dots">
+        <div class="gallery-dot active"></div><div class="gallery-dot"></div>
+      </div>
+    </div>
+    <div class="card-header">
+      <div class="card-title-group">
+        <span>Service 02</span>
+        <h3>Exhibition & Booth</h3>
+      </div>
+      <div class="card-icon"><i class="fas fa-cube"></i></div>
+    </div>
+    <p>
+      <span data-lang-show="en" style="display:none">Exhibition, booth, trade fair, and festival design that turns your space into a memorable brand story.</span>
+      <span data-lang-show="th">
+        ไม่ว่าจะเป็นงานแสดงสินค้า เทรดแฟร์ หรือเฟสติวัล — เราออกแบบพื้นที่ให้เล่าเรื่องราวแบรนด์ได้อย่างโดดเด่นและน่าจดจำ
+      </span>
+    </p>
+    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+  </div>
 
-            <!-- Card 3: Sampling -->
-            <div class="expertise-card">
-               <div class="service-gallery-container">
-                  <div class="service-gallery" id="gallery-3">
-                      <img src="https://placehold.co/600x400/dcfce7/333?text=Sampling+Photo+1" alt="Sampling 1">
-                      <img src="https://placehold.co/600x400/bbf7d0/333?text=Sampling+Photo+2" alt="Sampling 2">
-                  </div>
-                  <div class="gallery-dots">
-                      <div class="gallery-dot active"></div><div class="gallery-dot"></div>
-                  </div>
-              </div>
-              <div class="card-header">
-                <div class="card-title-group">
-                  <span>Service 03</span>
-                  <h3>Sampling</h3>
-                </div>
-                <div class="card-icon"><i class="fas fa-box-open"></i></div>
-              </div>
-              <p>Get your product into the right hands with curated sampling routes, promoters, and locations.</p>
-              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
-            </div>
+  <!-- Card 3: Sampling -->
+  <div class="expertise-card">
+    <div class="service-gallery-container">
+      <div class="service-gallery" id="gallery-3">
+        <img src="https://placehold.co/600x400/dcfce7/333?text=Sampling+Photo+1" alt="Sampling 1">
+        <img src="https://placehold.co/600x400/bbf7d0/333?text=Sampling+Photo+2" alt="Sampling 2">
+      </div>
+      <div class="gallery-dots">
+        <div class="gallery-dot active"></div><div class="gallery-dot"></div>
+      </div>
+    </div>
+    <div class="card-header">
+      <div class="card-title-group">
+        <span>Service 03</span>
+        <h3>Sampling</h3>
+      </div>
+      <div class="card-icon"><i class="fas fa-box-open"></i></div>
+    </div>
+    <p>
+      <span data-lang-show="en" style="display:none">Get your product into the right hands with curated sampling routes, promoters, and locations.</span>
+      <span data-lang-show="th">
+        ส่งต่อผลิตภัณฑ์ของคุณถึงมือลูกค้าเป้าหมาย ด้วยการวางแผนเส้นทาง โปรโมเตอร์ และจุดแจกที่ใช่
+      </span>
+    </p>
+    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+  </div>
 
-            <!-- Card 4: Branding -->
-            <div class="expertise-card">
-              <div class="service-gallery-container">
-                  <div class="service-gallery" id="gallery-4">
-                      <img src="https://placehold.co/600x400/e9d5ff/333?text=Branding+Photo+1" alt="Branding 1">
-                  </div>
-              </div>
-              <div class="card-header">
-                <div class="card-title-group">
-                  <span>Service 04</span>
-                  <h3>Product Branding</h3>
-                </div>
-                <div class="card-icon"><i class="far fa-lightbulb"></i></div>
-              </div>
-              <p>Build a strong, recognizable identity with campaigns, visuals, and experiences that match your brand.</p>
-              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
-            </div>
+  <!-- Card 4: Branding -->
+  <div class="expertise-card">
+    <div class="service-gallery-container">
+      <div class="service-gallery" id="gallery-4">
+        <img src="https://placehold.co/600x400/e9d5ff/333?text=Branding+Photo+1" alt="Branding 1">
+      </div>
+    </div>
+    <div class="card-header">
+      <div class="card-title-group">
+        <span>Service 04</span>
+        <h3>Product Branding</h3>
+      </div>
+      <div class="card-icon"><i class="far fa-lightbulb"></i></div>
+    </div>
+    <p>
+      <span data-lang-show="en" style="display:none">Build a strong, recognizable identity with campaigns, visuals, and experiences that match your brand.</span>
+      <span data-lang-show="th">
+        สร้างตัวตนของแบรนด์ให้ชัดเจน ผ่านแคมเปญ ดีไซน์ และประสบการณ์ที่พูดภาษาของแบรนด์คุณได้อย่างแม่นยำ
+      </span>
+    </p>
+    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+  </div>
 
-            <!-- Card 5: Media -->
-            <div class="expertise-card">
-              <div class="service-gallery-container">
-                  <div class="service-gallery" id="gallery-5">
-                      <img src="https://placehold.co/600x400/e0f2fe/333?text=Media+Photo+1" alt="Media 1">
-                  </div>
-              </div>
-              <div class="card-header">
-                <div class="card-title-group">
-                  <span>Service 05</span>
-                  <h3>Media Planning</h3>
-                </div>
-                <div class="card-icon"><i class="far fa-paper-plane"></i></div>
-              </div>
-              <p>We plan how, when, where, and why your brand communicates across media that truly reach your target.</p>
-              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
-            </div>
+  <!-- Card 5: Media -->
+  <div class="expertise-card">
+    <div class="service-gallery-container">
+      <div class="service-gallery" id="gallery-5">
+        <img src="https://placehold.co/600x400/e0f2fe/333?text=Media+Photo+1" alt="Media 1">
+      </div>
+    </div>
+    <div class="card-header">
+      <div class="card-title-group">
+        <span>Service 05</span>
+        <h3>Media Planning</h3>
+      </div>
+      <div class="card-icon"><i class="far fa-paper-plane"></i></div>
+    </div>
+    <p>
+      <span data-lang-show="en" style="display:none">We plan how, when, where, and why your brand communicates across media that truly reach your target.</span>
+      <span data-lang-show="th" >
+        เราวางแผนให้ครบทั้ง “ที่ไหน เมื่อไร อย่างไร และทำไม” เพื่อให้แบรนด์ของคุณสื่อสารได้ตรงจุดและเข้าถึงกลุ่มเป้าหมายจริง ๆ
+      </span>
+    </p>
+    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+  </div>
 
-            <!-- Card 6: Production -->
-            <div class="expertise-card">
-              <div class="service-gallery-container">
-                  <div class="service-gallery" id="gallery-6">
-                      <img src="https://placehold.co/600x400/ffedd5/333?text=Production+Photo+1" alt="Production 1">
-                  </div>
-              </div>
-              <div class="card-header">
-                <div class="card-title-group">
-                  <span>Service 06</span>
-                  <h3>Production House</h3>
-                </div>
-                <div class="card-icon"><i class="far fa-play-circle"></i></div>
-              </div>
-              <p>Video production, show content, and motion graphics crafted for both on-ground and online experiences.</p>
-              <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
-            </div>
+  <!-- Card 6: Production -->
+  <div class="expertise-card">
+    <div class="service-gallery-container">
+      <div class="service-gallery" id="gallery-6">
+        <img src="https://placehold.co/600x400/ffedd5/333?text=Production+Photo+1" alt="Production 1">
+      </div>
+    </div>
+    <div class="card-header">
+      <div class="card-title-group">
+        <span>Service 06</span>
+        <h3>Production House</h3>
+      </div>
+      <div class="card-icon"><i class="far fa-play-circle"></i></div>
+    </div>
+    <p>
+      <span data-lang-show="en" style="display:none">Video production, show content, and motion graphics crafted for both on-ground and online experiences.</span>
+      <span data-lang-show="th" >
+        ไม่ว่าจะเป็นวิดีโอ, คอนเทนต์โชว์, หรือโมชั่นกราฟิก — เราผลิตงานคุณภาพที่ใช้ได้ทั้งออนไลน์และหน้างาน
+      </span>
+    </p>
+    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+  </div>
+</div>
+</div>
           </div>
         </div>
       </div>
@@ -1400,21 +1539,43 @@
             </div>
 
             <!-- Text Content Column -->
-            <div class="about-content-col">
-                <h2 class="about-heading">Get to Know Mind Maker</h2>
-                
-                <div class="about-text">
-                    <p style="margin-bottom: 1.5rem;">
-                        We are a passionate team dedicated to crafting events that leave lasting impressions — memorable, captivating, and full of meaningful stories. Every project we create is designed with care and attention to detail, ensuring that every element aligns with our clients’ vision from every angle. Our work reflects lifestyle, brand identity, and human connection seamlessly across both real and digital worlds. We deliver end-to-end experiences that connect people through both on-ground and online engagements.
-                    </p>
-                    <p style="margin-bottom: 1.5rem;">
-                        With over 8 years of experience as a full-service event marketing agency, we’ve developed a distinctive approach to bringing brand stories to life — whether through digital events that integrate technology with scale, format, and interaction, or live events that allow audiences to truly see, feel, taste, and experience a brand firsthand. From intimate C-suite gatherings and VIP customer experiences to large-scale conferences, keynotes, and public events, we deliver with flexibility, creativity, personalization, and seamless connectivity.
-                    </p>
-                    <p>
-                        Wherever your event takes place, it will leave a lasting impact — inspiring, engaging, and uniting people through shared experiences and a sense of belonging.
-                    </p>
-                </div>
+            <div class="about-content-col">  
+  <h2 class="about-heading">Get to Know Mind Maker</h2>
 
+  <div class="about-text">
+
+    <!-- Paragraph 1 -->
+    <p style="margin-bottom: 1.5rem;">
+      <span data-lang-show="en" style="display:none">
+        We are a passionate team dedicated to crafting events that leave lasting impressions — memorable, captivating, and full of meaningful stories. Every project we create is designed with care and attention to detail, ensuring that every element aligns with our clients’ vision from every angle. Our work reflects lifestyle, brand identity, and human connection seamlessly across both real and digital worlds. We deliver end-to-end experiences that connect people through both on-ground and online engagements.</span>
+      <span data-lang-show="th" >
+        เราคือทีมงานที่มีความมุ่งมั่นและหลงใหลในการสร้างสรรค์อีเวนต์ที่เปี่ยมด้วยความหมาย — น่าจดจำ ดึงดูดใจ และสร้างความประทับใจอย่างยั่งยืน เราใส่ใจในทุกรายละเอียด เพื่อให้ทุกองค์ประกอบของงานสอดคล้องกับวิสัยทัศน์ของลูกค้าอย่างรอบด้าน งานของเราสะท้อนตัวตน ไลฟ์สไตล์ และอัตลักษณ์ของแบรนด์ พร้อมทั้งสร้างการเชื่อมโยงระหว่างผู้คนอย่างไร้รอยต่อ ทั้งในโลกจริงและดิจิทัล </span>
+    </p>
+
+    <!-- Paragraph 2 -->
+    <p style="margin-bottom: 1.5rem;">
+      <span data-lang-show="en" style="display:none">
+       With over 8 years of experience as a full-service event marketing agency, we’ve developed a distinctive approach to bringing brand stories to life — whether through digital events that integrate technology with scale, format, and interaction, or live events that allow audiences to truly see, feel, taste, and experience a brand firsthand. From intimate C-suite gatherings and VIP customer experiences to large-scale conferences, keynotes, and public events, we deliver with flexibility, creativity, personalization, and seamless connectivity.</span>
+      <span data-lang-show="th" >
+       ด้วยประสบการณ์มากกว่า 8 ปีในฐานะเอเจนซี่อีเวนต์แบบครบวงจร เราได้พัฒนาแนวทางเฉพาะในการถ่ายทอดเรื่องราวของแบรนด์ผ่านประสบการณ์ที่เข้าถึงได้จริง ทั้งในรูปแบบอีเวนต์ดิจิทัลที่ผสานเทคโนโลยีเข้ากับสเกล อินเทอร์แอคชัน และรูปแบบอันทันสมัย ไปจนถึงอีเวนต์จริงที่เปิดโอกาสให้ผู้เข้าร่วมได้สัมผัสแบรนด์ผ่านประสาทสัมผัสทั้งหมด ทั้งการมองเห็น รู้สึก ลิ้มรส และมีส่วนร่วมอย่างแท้จริง
+      </span>
+    </p>
+
+    <!-- Paragraph 3 -->
+    <p>
+      <span data-lang-show="en" style="display:none">
+       Wherever your event takes place, it will leave a lasting impact — inspiring, engaging, and uniting people through shared experiences and a sense of belonging.</span>
+      <span data-lang-show="th">
+       ไม่ว่าจะเป็นงานพบปะผู้บริหารระดับสูง งานสำหรับลูกค้าคนสำคัญ งานสัมมนา ไปจนถึงอีเวนต์ขนาดใหญ่หรือกิจกรรมสาธารณะ เราส่งมอบด้วยความยืดหยุ่น ความคิดสร้างสรรค์ และการวางแผนที่ราบรื่น เพื่อให้งานทุกชิ้นสร้างผลกระทบที่ยั่งยืน — เป็นประสบการณ์ที่สร้างแรงบันดาลใจ สร้างการมีส่วนร่วม และทำให้ผู้คนรู้สึกถึงการเป็นส่วนหนึ่งของสิ่งที่มีความหมาย
+    </p>
+
+  </div>
+</div>
+
+
+                
+                    </div>
+                
                 <!-- Achievements moved to bottom of text block -->
                 <div class="about-achievements">
                     <div class="about-achievements-grid">
@@ -1433,9 +1594,7 @@
                     <div class="achievement-item">
                         <div class="counter" data-target="999">0</div><span class="suffix">+</span>
                         <p>Cups of Coffee</p>
-                    </div>
-                    </div>
-                </div>
+                    </div>  </div>
             </div>
         </div>
       </div>
@@ -1626,6 +1785,19 @@
   </footer>
 
  <script>
+  function setLanguage(lang, btn) {
+  // toggle language content
+  document.querySelectorAll('[data-lang-show]').forEach(el => {
+    el.style.display = el.getAttribute('data-lang-show') === lang ? '' : 'none';
+  });
+
+  // update active class
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+window.addEventListener('DOMContentLoaded', () => setLanguage('th', document.querySelector('.lang-btn.active')));
+
+
   document.addEventListener("DOMContentLoaded", function () {
     /* =============== ABOUT STORY SLIDER =============== */
     const aboutImages = document.querySelectorAll('#about-story-slider img');
