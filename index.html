@@ -1271,6 +1271,45 @@
           gap: 1rem;
       }
     }
+    /* --- Language Toggle Responsiveness --- */
+
+/* 1. ซ่อนตัวเปลี่ยนภาษาแบบ Desktop เมื่อหน้าจอเล็กกว่า 992px */
+@media (max-width: 992px) {
+  .lang-toggle-container.desktop-only {
+    display: none !important;
+  }
+}
+
+/* 2. ตั้งค่าตัวเปลี่ยนภาษาใน Mobile Menu */
+.mobile-lang {
+  display: none; /* ซ่อนไว้ก่อนในหน้าจอใหญ่ */
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mobile-lang .lang-btn {
+  color: rgba(255, 255, 255, 0.6); /* สีตัวอักษรจางๆ บนพื้นดำ */
+  font-size: 1.2rem; /* ปรับให้กดง่ายขึ้น */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-kanit);
+}
+
+.mobile-lang .lang-btn.active {
+  color: var(--primary-pink); /* สีชมพูเมื่อถูกเลือก */
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* 3. แสดงตัวเปลี่ยนภาษาใน Mobile Menu เมื่อหน้าจอเล็ก */
+@media (max-width: 992px) {
+  .mobile-lang {
+    display: flex; /* แสดงผล */
+  }
+}
   </style>
 </head>
 <body>
@@ -1296,17 +1335,18 @@
       </div>
     </div>
   </nav>
-  <div class="lang-toggle-container">
+  <div class="lang-toggle-container desktop-only">
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLanguage('th', this)">TH</button>
     <span>|</span>
     <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
   </div>
+
 </div>
 
 
 
-  <div class="mobile-overlay-menu" id="mobile-overlay-menu">
+ <div class="mobile-overlay-menu" id="mobile-overlay-menu">
     <ul class="menu-items">
       <li><a href="About.html">About</a></li>
       <li><a href="Service.html">Services</a></li>
@@ -1314,7 +1354,13 @@
       <li><a href="contact.html">Contact</a></li>
       <li><a href="work exprerien.html">Portfolio</a></li>
     </ul>
-  </div>
+
+    <div class="lang-toggle mobile-lang">
+        <button class="lang-btn active" onclick="setLanguage('th', this)">TH</button>
+        <span style="color: white;">|</span>
+        <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
+    </div>
+    </div>
 
   <main>
     <!-- ================= HERO ================= -->
@@ -1785,18 +1831,36 @@
   </footer>
 
  <script>
-  function setLanguage(lang, btn) {
-  // toggle language content
-  document.querySelectorAll('[data-lang-show]').forEach(el => {
-    el.style.display = el.getAttribute('data-lang-show') === lang ? '' : 'none';
+  /* =============== LANGUAGE TOGGLE & SYNC =============== */
+  // ฟังก์ชันเปลี่ยนภาษาและซิงค์ปุ่มทุกจุดให้ตรงกัน
+  function setLanguage(lang) {
+    // 1. เปลี่ยนเนื้อหา (Show/Hide Content)
+    document.querySelectorAll('[data-lang-show]').forEach(el => {
+      el.style.display = el.getAttribute('data-lang-show') === lang ? '' : 'none';
+    });
+
+    // 2. ซิงค์สถานะปุ่ม (Update Active Class) ทั้งบน Desktop และ Mobile
+    // แปลงภาษาที่เลือกเป็นตัวใหญ่ (เช่น 'th' -> 'TH') เพื่อเอาไปเทียบกับตัวหนังสือบนปุ่ม
+    const targetText = lang.toUpperCase(); 
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      // ลบสถานะ active ออกจากปุ่มทั้งหมดก่อน
+      btn.classList.remove('active');
+      
+      // ถ้าตัวหนังสือบนปุ่ม (เช่น "TH") ตรงกับภาษาที่เลือก ให้ใส่สี active
+      if (btn.textContent.trim().toUpperCase() === targetText) {
+        btn.classList.add('active');
+      }
+    });
+  }
+
+  /* =============== INITIALIZATION =============== */
+  // 3. เมื่อโหลดหน้าเว็บเสร็จ ให้บังคับเป็นภาษาไทยทันที
+  // คำสั่งนี้จะทำให้ปุ่ม TH ทั้ง 2 เวอร์ชั่น (Desktop/Mobile) ขึ้นสี Active อัตโนมัติ
+  window.addEventListener('DOMContentLoaded', () => {
+     setLanguage('th'); 
   });
-
-  // update active class
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-window.addEventListener('DOMContentLoaded', () => setLanguage('th', document.querySelector('.lang-btn.active')));
-
+  
 
   document.addEventListener("DOMContentLoaded", function () {
     /* =============== ABOUT STORY SLIDER =============== */
