@@ -396,39 +396,212 @@
       background: var(--primary-pink);
       transform: translateY(-2px);
     }
-    .floating-social {
+    /* --- Floating Social General --- */
+/* --- Floating Social (Left Bottom & Premium Animation) --- */
+
+/* ================= SOCIAL CONTACT STYLES ================= */
+
+/* --- 1. MOBILE LINE BUTTON (ปุ่มเดียวเน้นๆ) --- */
+.mobile-line-fab {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.floating-social a {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
+  background-color: #00c300; /* สีเขียวของ LINE */
+  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  color: #333;
-  font-size: 24px; /* ปรับตามขนาด */
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
   text-decoration: none;
 }
 
-.floating-social a:hover {
-  transform: scale(1.12);
+@media screen and (min-width: 769px) {
+  .mobile-line-fab {
+    display: none;
+  }
 }
 
-.floating-social a.line-oa {
-  background-color: #06C755;
-  color: white;
-  box-shadow: 0 0 12px #06C755aa;
-  border: 2px solid white;
+
+/* วงแหวนเต้นๆ รอบปุ่ม */
+.line-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #06C755;
+  opacity: 0;
+  animation: ring-pulse 2s infinite;
+}
+
+/* Keyframes สำหรับ Mobile */
+@keyframes float-pulse {
+  0% { transform: translateY(0) scale(1); box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4); }
+  50% { transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 25px rgba(6, 199, 85, 0.6); }
+  100% { transform: translateY(0) scale(1); box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4); }
+}
+
+@keyframes ring-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ซ่อนปุ่ม Mobile เมื่ออยู่บนจอคอม */
+@media (min-width: 993px) {
+  .mobile-line-fab { display: none; }
+}
+
+
+/* --- 2. DESKTOP FLOATING MENU (แบบเดิมแต่เน้น Line) --- */
+.desktop-floating-social {
+  display: none; /* ซ่อนก่อนในมือถือ */
+}
+
+/* แสดงเฉพาะจอคอม */
+@media (min-width: 993px) {
+  .desktop-floating-social {
+    display: flex;
+    position: fixed;
+    bottom: 30px;
+    right: 30px; /* Desktop ย้ายกลับมาขวา (หรือถ้าอยากได้ซ้ายเปลี่ยนเป็น left: 30px;) */
+    z-index: 9999;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* ปุ่มกด Trigger */
+  .social-trigger {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--text-dark);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .social-trigger:hover { transform: scale(1.1); }
+
+  /* เมนูไอคอน */
+  .social-menu {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding-bottom: 10px;
+    align-items: center;
+  }
+
+  /* สถานะเปิดเมนู */
+  .desktop-floating-social .social-menu {
+  bottom: 70px; /* ปรับตามระยะห่างที่ต้องการ */
+  flex-direction: column-reverse; /* ทำให้เรียงจากล่างขึ้นบน */
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+  
+  .desktop-floating-social.active .social-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+  .social-trigger .close-icon { display: none; }
+  .desktop-floating-social.active .social-trigger .main-icon { display: none; }
+  .desktop-floating-social.active .social-trigger .close-icon { display: block; }
+
+  /* --- สไตล์ไอคอนในเมนู --- */
+  .social-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+    background: #333;
+  }
+  
+  .social-item:hover { transform: scale(1.1); }
+
+  /* สีเฉพาะ */
+  .social-item.line-oa { background: #06C755; }
+  .social-item.fb { background: #1877F2; }
+  .social-item.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+  .social-item.tt { background: #000; }
+
+  /* --- LINE HIGHLIGHT (ทำให้ Line เด่นสุดใน Desktop) --- */
+  .social-item.highlight {
+    width: 65px; /* ใหญ่กว่าเพื่อน */
+    height: 65px;
+    font-size: 30px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 15px rgba(6, 199, 85, 0.6);
+    animation: wiggle 3s infinite;
+    position: relative;
+  }
+  
+  /* Tooltip "Chat Now" */
+  .social-item.highlight .tooltip {
+    position: absolute;
+    right: 75px; /* แสดงด้านซ้ายของปุ่ม */
+    background: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 1;
+    font-weight: bold;
+  }
+  
+  .social-item.highlight .tooltip::after {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left: 4px solid #333;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(-10deg); }
+    20% { transform: rotate(10deg); }
+    30% { transform: rotate(-10deg); }
+    40% { transform: rotate(0deg); }
+  }
+}
+
+/* Desktop: ถ้าอยากให้ Desktop เป็นแถวปกติเหมือนเดิม ให้เพิ่ม Media Query นี้ */
+@media (min-width: 993px) {
+    /* ถ้าต้องการให้ Desktop เป็นปุ่มแบบนี้เหมือนกัน ก็ไม่ต้องใส่ส่วนนี้ */
+    /* แต่ถ้า Desktop อยากให้เรียงยาวๆ ขวาล่างเหมือนเดิม บอกผมได้นะครับ */
 }
 
 
@@ -699,11 +872,14 @@
         font-weight: 700;
     }
 
+ 
     .about-text {
         font-size: 1rem;
         line-height: 1.8;
         color: #444;
         font-weight: 300;
+        /* เพิ่มบรรทัดนี้: ใช้ Kanit เพื่อให้รองรับภาษาไทยสวยงามเหมือน Service */
+        font-family: var(--font-kanit);
     }
 
     .about-text strong {
@@ -1310,6 +1486,61 @@
     display: flex; /* แสดงผล */
   }
 }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,0.8);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 960px;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.modal-gallery img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.close-btn {
+  color: #888;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
   </style>
 </head>
 <body>
@@ -1390,13 +1621,28 @@
       </div>
     </section>
     <!-- Floating Social Icons -->
-<div class="floating-social">
-  <a href="https://line.me/ti/p/~yourlineid" target="_blank" aria-label="Line"><i class="fab fa-line"></i></a>
-  <a href="https://facebook.com/mindmakerproduction" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://instagram.com/mindmaker.official" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-  <a href="https://tiktok.com/@mindmaker.official" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-</div>
+<a href="https://line.me/ti/p/~yourlineid" target="_blank" class="mobile-line-fab" aria-label="Contact via Line">
+  <i class="fab fa-line"></i>
+</a>
 
+
+<div class="desktop-floating-social">
+  <div class="social-menu">
+    <a href="https://line.me/ti/p/~yourlineid" target="_blank" class="social-item line-oa highlight">
+        <i class="fab fa-line"></i>
+        <span class="tooltip">Chat Now!</span>
+    </a>
+    <a href="https://facebook.com/mindmakerproduction" target="_blank" class="social-item fb"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com/mindmaker.official" target="_blank" class="social-item ig"><i class="fab fa-instagram"></i></a>
+    <a href="https://tiktok.com/@mindmaker.official" target="_blank" class="social-item tt"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <button class="social-trigger" onclick="toggleDesktopSocial()">
+    <i class="fas fa-comment-dots main-icon"></i>
+    <i class="fas fa-times close-icon"></i>
+  </button>
+</div>
+ 
 
     <!-- ================= SERVICES ================= -->
     <section id="services">
@@ -1410,8 +1656,10 @@
           </div>
 
           <div class="expertise-grid"> 
-  <!-- Card 1: Event Management -->
-  <div class="expertise-card">
+  <!-- Card 1: Corporate Event -->
+ <div class="expertise-card" onclick="openModal('event-management')">
+
+
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-1">
         <img src="https://placehold.co/600x400/eee/333?text=Event+Photo+1" alt="Event 1">
@@ -1425,20 +1673,22 @@
     <div class="card-header">
       <div class="card-title-group">
         <span>Service 01</span>
-        <h3>Event Management</h3>
+        <h3>Corporate Event</h3>
       </div>
       <div class="card-icon"><i class="fas fa-bolt"></i></div>
     </div>
     <p>
-      <span data-lang-show="en" style="display:none">From concept to on-site operation, we design and run events that keep your audience engaged and inspired.</span>
+      <span data-lang-show="en" style="display:none">With over seven years of experience, we design thoughtful, meaningful events that genuinely reflect your brand and support your organization’s goals in every detail.</span>
       <span data-lang-show="th" >
-        ตั้งแต่คิดไอเดียไปจนถึงควบคุมหน้างาน — เราออกแบบและดูแลอีเวนต์ที่ทำให้คนรู้สึกมีส่วนร่วมและอินไปกับประสบการณ์
+       ด้วยประสบการณ์มากกว่า 7 ปี 
+เรามั่นใจว่าจะสามารถดีไซน์อีเว้นท์ที่สมบูรณ์แบบ 
+เพื่อตอบสนองความต้องการของลูกค้าองค์กรได้ในทุกมิติ
       </span>
     </p>
     <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Card 2: Exhibition & Booth -->
+  <!-- Card 2: Staff Party Event -->
   <div class="expertise-card">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-2">
@@ -1452,20 +1702,21 @@
     <div class="card-header">
       <div class="card-title-group">
         <span>Service 02</span>
-        <h3>Exhibition & Booth</h3>
+        <h3>Staff Party Event</h3>
       </div>
       <div class="card-icon"><i class="fas fa-cube"></i></div>
     </div>
     <p>
-      <span data-lang-show="en" style="display:none">Exhibition, booth, trade fair, and festival design that turns your space into a memorable brand story.</span>
+      <span data-lang-show="en" style="display:none">No matter the size of your organization, we're here to support you from start to finish—creating staff events that feel joyful, warm, and truly memorable.
+</span>
       <span data-lang-show="th">
-        ไม่ว่าจะเป็นงานแสดงสินค้า เทรดแฟร์ หรือเฟสติวัล — เราออกแบบพื้นที่ให้เล่าเรื่องราวแบรนด์ได้อย่างโดดเด่นและน่าจดจำ
+       ไม่ว่าองค์กรคุณจะอยู่ในสเกลไหน เราก็พร้อมช่วยเตรียมงานให้ตั้งแต่ต้นจนจบ เพื่อให้งานเลี้ยงพนักงานของคุณ สนุก อบอุ่น และน่าประทับใจที่สุด
       </span>
     </p>
     <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Card 3: Sampling -->
+  <!-- Card 3: Grand Opening Event -->
   <div class="expertise-card">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-3">
@@ -1479,14 +1730,17 @@
     <div class="card-header">
       <div class="card-title-group">
         <span>Service 03</span>
-        <h3>Sampling</h3>
+        <h3>Grand Opening Event</h3>
       </div>
       <div class="card-icon"><i class="fas fa-box-open"></i></div>
     </div>
     <p>
-      <span data-lang-show="en" style="display:none">Get your product into the right hands with curated sampling routes, promoters, and locations.</span>
+      <span data-lang-show="en" style="display:none">A launch event is far more than a gathering—it’s the moment your brand defines its presence. We refine every detail with intention to ensure your brand’s identity is revealed with clarity, elegance, and lasting impact.</span>
       <span data-lang-show="th">
-        ส่งต่อผลิตภัณฑ์ของคุณถึงมือลูกค้าเป้าหมาย ด้วยการวางแผนเส้นทาง โปรโมเตอร์ และจุดแจกที่ใช่
+        เพราะงานเปิดตัว ไม่ใช่แค่งานอีเว้นท์ทั่วไป 
+แต่มันคือการสร้างภาพจำให้กับผู้ที่มาร่วมงาน 
+เราจึงใส่ใจในทุก ๆ รายละเอียด เพื่อให้มั่นใจว่า 
+เราสามารถดึงอัตลักษณ์ของแบรนด์ออกมาได้จริง ๆ
       </span>
     </p>
     <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
@@ -1502,20 +1756,20 @@
     <div class="card-header">
       <div class="card-title-group">
         <span>Service 04</span>
-        <h3>Product Branding</h3>
+        <h3>Soft Opening & Mini Event</h3>
       </div>
       <div class="card-icon"><i class="far fa-lightbulb"></i></div>
     </div>
     <p>
-      <span data-lang-show="en" style="display:none">Build a strong, recognizable identity with campaigns, visuals, and experiences that match your brand.</span>
+      <span data-lang-show="en" style="display:none">Minimal, warm, and inviting events are becoming increasingly popular. Let us help you design an experience that feels meaningful, captivating, and perfectly aligned with what you envision.</span>
       <span data-lang-show="th">
-        สร้างตัวตนของแบรนด์ให้ชัดเจน ผ่านแคมเปญ ดีไซน์ และประสบการณ์ที่พูดภาษาของแบรนด์คุณได้อย่างแม่นยำ
+       งานอีเว้นท์สไตล์มินิมอล อบอุ่น เป็นกันเอง กำลังได้รับความนิยมมากขึ้นเรื่อย ๆ  ให้เราช่วยคุณออกแบบงาน ให้น่าสนใจ และเหมาะกับความต้องของคุณมากที่สุด
       </span>
     </p>
     <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Card 5: Media -->
+  <!-- Card 5:Activation Booth -->
   <div class="expertise-card">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-5">
@@ -1525,20 +1779,23 @@
     <div class="card-header">
       <div class="card-title-group">
         <span>Service 05</span>
-        <h3>Media Planning</h3>
+        <h3>Activation Booth</h3>
       </div>
       <div class="card-icon"><i class="far fa-paper-plane"></i></div>
     </div>
     <p>
-      <span data-lang-show="en" style="display:none">We plan how, when, where, and why your brand communicates across media that truly reach your target.</span>
+      <span data-lang-show="en" style="display:none">Turn your brand into an experience they can step into.
+Where interaction meets impact.
+Designed to spark engagement, connection, and lasting impressions.
+</span>
       <span data-lang-show="th" >
-        เราวางแผนให้ครบทั้ง “ที่ไหน เมื่อไร อย่างไร และทำไม” เพื่อให้แบรนด์ของคุณสื่อสารได้ตรงจุดและเข้าถึงกลุ่มเป้าหมายจริง ๆ
+       เราไม่ได้แค่จัดบูธกิจกรรม แต่เราจะทำให้แบรนด์ของคุณกลายเป็นพื้นที่ที่ผู้คนสามารถมีส่วนร่วมได้จริง เพื่อต่อยอดให้แบรนด์เป็นที่รู้จักมากขึ้น สร้างความคุ้นเคย ไปจนถึงช่วยสร้างยอดขายได้ด้วย
       </span>
     </p>
     <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Card 6: Production -->
+  <!-- Card 6: Digital Margeting -->
   <div class="expertise-card">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-6">
@@ -1548,14 +1805,18 @@
     <div class="card-header">
       <div class="card-title-group">
         <span>Service 06</span>
-        <h3>Production House</h3>
+        <h3>Digital Margeting</h3>
       </div>
       <div class="card-icon"><i class="far fa-play-circle"></i></div>
     </div>
     <p>
-      <span data-lang-show="en" style="display:none">Video production, show content, and motion graphics crafted for both on-ground and online experiences.</span>
+      <span data-lang-show="en" style="display:none">Your brand deserves digital marketing that truly works—not noise, not guesswork.
+We build strategy-backed content and thoughtful KOL planning that drive real engagement and meaningful results.</span>
       <span data-lang-show="th" >
-        ไม่ว่าจะเป็นวิดีโอ, คอนเทนต์โชว์, หรือโมชั่นกราฟิก — เราผลิตงานคุณภาพที่ใช้ได้ทั้งออนไลน์และหน้างาน
+        แบรนด์ของคุณควรได้รับการทำการตลาดออนไลน์ที่ได้ผลจริง
+เราออกแบบคอนเทนต์และวางกลยุทธ์การใช้ KOL อย่างมีระบบ
+เพื่อให้คนอยากมีส่วนร่วม และสร้างผลลัพธ์ที่จับต้องได้จริง
+
       </span>
     </p>
     <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
@@ -1829,6 +2090,17 @@
       © <span id="currentYear">2025</span> Mind Maker. All rights reserved.
     </div>
   </footer>
+  <!-- Modal Template -->
+<div id="portfolio-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3 class="modal-title" id="modalTitle">Service Name</h3>
+    <div class="modal-gallery" id="modalGallery">
+      <!-- Dynamic Images will be injected here -->
+    </div>
+  </div>
+</div>
+
 
  <script>
   /* =============== LANGUAGE TOGGLE & SYNC =============== */
@@ -1860,7 +2132,34 @@
   window.addEventListener('DOMContentLoaded', () => {
      setLanguage('th'); 
   });
+  /* =============== FLOATING SOCIAL TOGGLE =============== */
+/* =============== DESKTOP SOCIAL TOGGLE =============== */
+function toggleDesktopSocial() {
+  const container = document.querySelector('.desktop-floating-social');
+  if(container) {
+      container.classList.toggle('active');
+  }
+}
+
+// คลิกข้างนอกเพื่อปิด (Desktop Only)
+document.addEventListener('click', function(event) {
+  const container = document.querySelector('.desktop-floating-social');
+  if (container && container.classList.contains('active')) {
+    // เช็คว่าคลิกข้างนอก container หรือไม่
+    if (!container.contains(event.target)) {
+      container.classList.remove('active');
+    }
+  }
+});
+// คลิกข้างนอกเพื่อปิด
+document.addEventListener('click', function(event) {
+  const container = document.getElementById('floating-social');
+  const isClickInside = container.contains(event.target);
   
+  if (!isClickInside && container.classList.contains('active')) {
+    container.classList.remove('active');
+  }
+});
 
   document.addEventListener("DOMContentLoaded", function () {
     /* =============== ABOUT STORY SLIDER =============== */
@@ -2023,7 +2322,53 @@
       updateSlides();
       setInterval(() => goToSlide(current + 1), 4000);
     }
+    
   });
+  
+  const serviceData = {
+    "event-management": {
+      title: "Event Management",
+      images: [
+        "assets/event1.jpg",
+        "assets/event2.jpg",
+        "assets/event3.jpg"
+      ]
+    },
+    "branding": {
+      title: "Product Branding",
+      images: [
+        "assets/branding1.jpg",
+        "assets/branding2.jpg"
+      ]
+    }
+    // เพิ่ม service อื่น ๆ ตามต้องการ
+  };
+
+  function openModal(serviceKey) {
+    const modal = document.getElementById("portfolio-modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalGallery = document.getElementById("modalGallery");
+
+    const data = serviceData[serviceKey];
+    modalTitle.textContent = data.title;
+    modalGallery.innerHTML = data.images.map(src => `<img src="${src}" alt="${data.title}">`).join("");
+    
+    modal.style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("portfolio-modal").style.display = "none";
+  }
+
+  // Optional: close when clicking outside modal
+  window.onclick = function(event) {
+    const modal = document.getElementById("portfolio-modal");
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+
+
 </script>
 </body>
 </html>
