@@ -785,6 +785,7 @@
       transition: all 0.25s ease;
       align-self: flex-end;
       color: #aaa;
+      cursor: pointer;
     }
 
     .arrow-link:hover {
@@ -1486,6 +1487,8 @@
     display: flex; /* แสดงผล */
   }
 }
+
+/* ================= MODAL STYLES (NEW) ================= */
 .modal {
   display: none;
   position: fixed;
@@ -1495,50 +1498,107 @@
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  background-color: rgba(0,0,0,0.8);
-  padding-top: 60px;
+  background-color: rgba(0,0,0,0.9);
+  padding: 40px 20px;
+  backdrop-filter: blur(5px);
 }
 
 .modal-content {
   background-color: #fff;
-  margin: auto;
-  padding: 1rem;
-  border-radius: 12px;
-  max-width: 960px;
+  margin: 20px auto;
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 1000px;
   position: relative;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.4s ease-in-out;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modal-title {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  font-family: var(--font-kanit);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
 }
 
+/* --- UPDATE: Change .modal-gallery to be a wrapper --- */
 .modal-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  display: block; /* Changed from grid to block to stack sections */
 }
 
-.modal-gallery img {
+/* --- NEW: Inner Grid for Images --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 2.5rem; /* Space after each project grid */
+}
+
+.gallery-grid img {
   width: 100%;
+  height: 250px; /* Fixed height for consistency */
   border-radius: 8px;
   object-fit: cover;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  background: #f0f0f0;
 }
+
+.gallery-grid img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* --- NEW: Project Subtitle Style --- */
+.project-subtitle {
+  font-family: var(--font-kanit);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #333;
+  border-left: 5px solid var(--primary-pink);
+  padding-left: 10px;
+  line-height: 1.2;
+}
+
 
 .close-btn {
   color: #888;
-  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f5f5f5;
+  font-size: 24px;
   font-weight: bold;
   position: absolute;
   right: 20px;
-  top: 10px;
+  top: 20px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.close-btn:hover {
+  background: var(--primary-pink);
+  color: #fff;
+  transform: rotate(90deg);
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 768px) {
+  .modal { padding: 10px; }
+  .modal-content { padding: 1.5rem 1rem; margin: 10px auto; }
+  .modal-title { font-size: 1.4rem; }
+  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .gallery-grid img { height: 150px; }
 }
 
   </style>
@@ -1558,7 +1618,7 @@
       </ul>
 
       <div class="portfolio-link">
-        <a href="work exprerien.html">Portfolio</a>
+        <a href="portfolio.html">Portfolio</a>
       </div>
 
       <div class="nav-toggle" id="nav-toggle">
@@ -1583,7 +1643,7 @@
       <li><a href="Service.html">Services</a></li>
       <li><a href="#clients">Clients</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="work exprerien.html">Portfolio</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
     </ul>
 
     <div class="lang-toggle mobile-lang">
@@ -1657,9 +1717,7 @@
 
           <div class="expertise-grid"> 
   <!-- Card 1: Corporate Event -->
- <div class="expertise-card" onclick="openModal('event-management')">
-
-
+  <div class="expertise-card">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-1">
         <img src="https://placehold.co/600x400/eee/333?text=Event+Photo+1" alt="Event 1">
@@ -1675,7 +1733,8 @@
         <span>Service 01</span>
         <h3>Corporate Event</h3>
       </div>
-      <div class="card-icon"><i class="fas fa-bolt"></i></div>
+      <!-- Changed to 'layer-group' or 'store-alt' for full-scale event structure -->
+      <div class="card-icon"><i class="fas fa-layer-group"></i></div>
     </div>
     <p>
       <span data-lang-show="en" style="display:none">With over seven years of experience, we design thoughtful, meaningful events that genuinely reflect your brand and support your organization’s goals in every detail.</span>
@@ -1685,7 +1744,8 @@
 เพื่อตอบสนองความต้องการของลูกค้าองค์กรได้ในทุกมิติ
       </span>
     </p>
-    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+    <!-- Updated Link to Trigger Modal -->
+    <a href="portfolio.html?cat=service-01" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
   <!-- Card 2: Staff Party Event -->
@@ -1704,7 +1764,7 @@
         <span>Service 02</span>
         <h3>Staff Party Event</h3>
       </div>
-      <div class="card-icon"><i class="fas fa-cube"></i></div>
+      <div class="card-icon"><i class="fas fa-glass-cheers"></i></div>
     </div>
     <p>
       <span data-lang-show="en" style="display:none">No matter the size of your organization, we're here to support you from start to finish—creating staff events that feel joyful, warm, and truly memorable.
@@ -1713,7 +1773,8 @@
        ไม่ว่าองค์กรคุณจะอยู่ในสเกลไหน เราก็พร้อมช่วยเตรียมงานให้ตั้งแต่ต้นจนจบ เพื่อให้งานเลี้ยงพนักงานของคุณ สนุก อบอุ่น และน่าประทับใจที่สุด
       </span>
     </p>
-    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+    <!-- Updated Link to Trigger Modal -->
+    <a href="portfolio.html?cat=service-02" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
   <!-- Card 3: Grand Opening Event -->
@@ -1732,7 +1793,8 @@
         <span>Service 03</span>
         <h3>Grand Opening Event</h3>
       </div>
-      <div class="card-icon"><i class="fas fa-box-open"></i></div>
+      <!-- Changed to 'cut' for ribbon cutting ceremony -->
+      <div class="card-icon"><i class="fas fa-cut"></i></div>
     </div>
     <p>
       <span data-lang-show="en" style="display:none">A launch event is far more than a gathering—it’s the moment your brand defines its presence. We refine every detail with intention to ensure your brand’s identity is revealed with clarity, elegance, and lasting impact.</span>
@@ -1743,10 +1805,11 @@
 เราสามารถดึงอัตลักษณ์ของแบรนด์ออกมาได้จริง ๆ
       </span>
     </p>
-    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+    <!-- Updated Link to Trigger Modal -->
+    <a href="portfolio.html?cat=service-03" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Card 4: Branding -->
+  <!-- Card 4: Soft Opening -->
   <div class="expertise-card">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-4">
@@ -1758,7 +1821,8 @@
         <span>Service 04</span>
         <h3>Soft Opening & Mini Event</h3>
       </div>
-      <div class="card-icon"><i class="far fa-lightbulb"></i></div>
+      <!-- Changed to 'hand-holding-heart' for warm/inviting feeling -->
+      <div class="card-icon"><i class="fas fa-hand-holding-heart"></i></div>
     </div>
     <p>
       <span data-lang-show="en" style="display:none">Minimal, warm, and inviting events are becoming increasingly popular. Let us help you design an experience that feels meaningful, captivating, and perfectly aligned with what you envision.</span>
@@ -1766,7 +1830,8 @@
        งานอีเว้นท์สไตล์มินิมอล อบอุ่น เป็นกันเอง กำลังได้รับความนิยมมากขึ้นเรื่อย ๆ  ให้เราช่วยคุณออกแบบงาน ให้น่าสนใจ และเหมาะกับความต้องของคุณมากที่สุด
       </span>
     </p>
-    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+    <!-- Updated Link to Trigger Modal -->
+    <a href="portfolio.html?cat=service-04" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
   <!-- Card 5:Activation Booth -->
@@ -1781,7 +1846,7 @@
         <span>Service 05</span>
         <h3>Activation Booth</h3>
       </div>
-      <div class="card-icon"><i class="far fa-paper-plane"></i></div>
+      <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
     </div>
     <p>
       <span data-lang-show="en" style="display:none">Turn your brand into an experience they can step into.
@@ -1792,7 +1857,8 @@ Designed to spark engagement, connection, and lasting impressions.
        เราไม่ได้แค่จัดบูธกิจกรรม แต่เราจะทำให้แบรนด์ของคุณกลายเป็นพื้นที่ที่ผู้คนสามารถมีส่วนร่วมได้จริง เพื่อต่อยอดให้แบรนด์เป็นที่รู้จักมากขึ้น สร้างความคุ้นเคย ไปจนถึงช่วยสร้างยอดขายได้ด้วย
       </span>
     </p>
-    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+    <!-- Updated Link to Trigger Modal -->
+    <a href="portfolio.html?cat=service-05" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
   <!-- Card 6: Digital Margeting -->
@@ -1805,9 +1871,9 @@ Designed to spark engagement, connection, and lasting impressions.
     <div class="card-header">
       <div class="card-title-group">
         <span>Service 06</span>
-        <h3>Digital Margeting</h3>
+        <h3>Digital Marketing</h3>
       </div>
-      <div class="card-icon"><i class="far fa-play-circle"></i></div>
+      <div class="card-icon"><i class="fas fa-chart-line"></i></div>
     </div>
     <p>
       <span data-lang-show="en" style="display:none">Your brand deserves digital marketing that truly works—not noise, not guesswork.
@@ -1819,7 +1885,8 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
 
       </span>
     </p>
-    <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+    <!-- Updated Link to Trigger Modal -->
+    <a href="portfolio.html?cat=service-06" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 </div>
 </div>
@@ -2090,16 +2157,17 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
       © <span id="currentYear">2025</span> Mind Maker. All rights reserved.
     </div>
   </footer>
-  <!-- Modal Template -->
-<div id="portfolio-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h3 class="modal-title" id="modalTitle">Service Name</h3>
-    <div class="modal-gallery" id="modalGallery">
-      <!-- Dynamic Images will be injected here -->
+
+  <!-- ================= MODAL TEMPLATE (Added) ================= -->
+  <div id="portfolio-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h3 class="modal-title" id="modalTitle">Service Name</h3>
+      <div class="modal-gallery" id="modalGallery">
+        <!-- Dynamic Images will be injected here via Javascript -->
+      </div>
     </div>
   </div>
-</div>
 
 
  <script>
@@ -2154,10 +2222,12 @@ document.addEventListener('click', function(event) {
 // คลิกข้างนอกเพื่อปิด
 document.addEventListener('click', function(event) {
   const container = document.getElementById('floating-social');
-  const isClickInside = container.contains(event.target);
-  
-  if (!isClickInside && container.classList.contains('active')) {
-    container.classList.remove('active');
+  // Check if floating-social exists before checking contains
+  if (container && container.classList.contains('active')) {
+      const isClickInside = container.contains(event.target);
+      if (!isClickInside) {
+        container.classList.remove('active');
+      }
   }
 });
 
@@ -2322,53 +2392,149 @@ document.addEventListener('click', function(event) {
       updateSlides();
       setInterval(() => goToSlide(current + 1), 4000);
     }
-    
   });
-  
-  const serviceData = {
-    "event-management": {
-      title: "Event Management",
-      images: [
-        "assets/event1.jpg",
-        "assets/event2.jpg",
-        "assets/event3.jpg"
+
+  /* =============== MODAL LOGIC (PORTFOLIO POPUP) =============== */
+  // นี่คือส่วนที่คุณสามารถแก้ไขชื่อโปรเจกต์และรายการรูปภาพได้
+  const portfolioData = {
+    // UPDATED: Service 01 now supports multiple projects (array)
+    "service-01": {
+      title: "Corporate Event ", // Main Title for the popup
+      projects: [
+        {
+           name: "Krungsri Internal Event", // Subtitle for this album
+           folder: "images/Krungsri Internal Event/",
+           images: [
+             "488885603_1094722636005658_6432616218012125179_n.jpg",
+             "488887617_1094721626005759_3046995443702991742_n.jpg",
+             "489526556_1094722692672319_6844139036143977581_n.jpg"
+           ]
+        },
+        // --- วิธีการเพิ่มโปรเจกต์ใหม่: ก็อปปี้ส่วนนี้ไปวางต่อท้าย ---
+        {
+           name: "Exim Bank - CG DAY", // เปลี่ยนชื่องาน
+           folder: "images/Exim Bank - CG DAY/", // เปลี่ยนโฟลเดอร์
+           images: [
+             "DSC04042.jpg",
+             "DSC04375.jpg"
+           ]
+        }
+        // --- จบส่วนที่ต้องก็อปปี้ ---
       ]
     },
-    "branding": {
-      title: "Product Branding",
+    // Old format services (Single project) still work
+    "service-02": {
+      title: "Staff Party Event",
+      folder: "images/projects/staff-party/",
       images: [
-        "assets/branding1.jpg",
-        "assets/branding2.jpg"
+         "https://placehold.co/600x400?text=Staff+Party+1",
+         "https://placehold.co/600x400?text=Staff+Party+2"
       ]
+    },
+    "service-03": {
+      title: "Grand Opening Event",
+      folder: "images/projects/grand-opening/",
+      images: [
+         "https://placehold.co/600x400?text=Grand+Opening+1",
+         "https://placehold.co/600x400?text=Grand+Opening+2"
+      ]
+    },
+    "service-04": {
+      title: "Soft Opening & Mini Event",
+      folder: "images/projects/soft-opening/",
+      images: ["https://placehold.co/600x400?text=Soft+Opening"]
+    },
+    "service-05": {
+      title: "Activation Booth",
+      folder: "images/projects/booth/",
+      images: ["https://placehold.co/600x400?text=Activation+Booth"]
+    },
+    "service-06": {
+      title: "Digital Marketing",
+      folder: "images/projects/digital/",
+      images: ["https://placehold.co/600x400?text=Digital+Marketing"]
     }
-    // เพิ่ม service อื่น ๆ ตามต้องการ
   };
 
-  function openModal(serviceKey) {
-    const modal = document.getElementById("portfolio-modal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalGallery = document.getElementById("modalGallery");
-
-    const data = serviceData[serviceKey];
-    modalTitle.textContent = data.title;
-    modalGallery.innerHTML = data.images.map(src => `<img src="${src}" alt="${data.title}">`).join("");
+  function openModal(serviceId) {
+    const modal = document.getElementById('portfolio-modal');
+    const title = document.getElementById('modalTitle');
+    const gallery = document.getElementById('modalGallery');
     
+    // Get Data
+    const data = portfolioData[serviceId];
+    if (!data) return; // Exit if no data found
+
+    // Update Content
+    title.innerText = data.title;
+    gallery.innerHTML = ''; // Clear old images
+
+    // Check if data has multiple projects (New Format)
+    if (data.projects) {
+        data.projects.forEach(project => {
+            // 1. Create Project Title (Subtitle)
+            const projectTitle = document.createElement('h4');
+            projectTitle.className = 'project-subtitle';
+            projectTitle.innerText = project.name;
+            gallery.appendChild(projectTitle);
+
+            // 2. Create Grid Container for this project
+            const grid = document.createElement('div');
+            grid.className = 'gallery-grid';
+            
+            // 3. Add images to this specific grid
+            project.images.forEach(imgName => {
+                const img = document.createElement('img');
+                if (imgName.startsWith('http')) {
+                    img.src = imgName;
+                } else {
+                    img.src = project.folder + imgName;
+                }
+                img.alt = project.name;
+                img.loading = "lazy";
+                grid.appendChild(img);
+            });
+
+            gallery.appendChild(grid);
+        });
+    } else {
+        // Fallback for Old Format (Single Project without subtitle)
+        const grid = document.createElement('div');
+        grid.className = 'gallery-grid';
+
+        data.images.forEach(imgName => {
+          const img = document.createElement('img');
+          if (imgName.startsWith('http')) {
+              img.src = imgName;
+          } else {
+              img.src = data.folder + imgName;
+          }
+          img.alt = data.title;
+          img.loading = "lazy";
+          grid.appendChild(img);
+        });
+        
+        gallery.appendChild(grid);
+    }
+
+    // Show Modal
     modal.style.display = "block";
+    document.body.style.overflow = "hidden"; // Prevent scrolling background
   }
 
   function closeModal() {
-    document.getElementById("portfolio-modal").style.display = "none";
+    const modal = document.getElementById('portfolio-modal');
+    modal.style.display = "none";
+    document.body.style.overflow = ""; // Restore scrolling
   }
 
-  // Optional: close when clicking outside modal
-  window.onclick = function(event) {
-    const modal = document.getElementById("portfolio-modal");
-    if (event.target === modal) {
+  // Close modal when clicking outside content
+  window.addEventListener('click', function(e) {
+    const modal = document.getElementById('portfolio-modal');
+    if (e.target === modal) {
       closeModal();
     }
-  }
-
-
+  });
 </script>
 </body>
 </html>
