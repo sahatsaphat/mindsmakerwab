@@ -255,7 +255,7 @@
     .hero-section { 
         background-color: #ffffff; 
         background-color: #ffffff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.09'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat; background-position: center center; background-size: clamp(60px, 8vw, 100px); color: #000; min-height: 100vh; padding: 6rem 1rem 4rem; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
+ background-repeat: repeat; background-position: center center; background-size: clamp(60px, 8vw, 100px); color: #000; min-height: 100vh; padding: 6rem 1rem 4rem; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
          background-repeat: repeat; 
         background-position: center center; 
         background-size: clamp(60px, 8vw, 100px); 
@@ -655,11 +655,20 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.04);
       border: 1px solid rgba(0,0,0,0.03);
       transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
 
     .expertise-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+    }
+    
+    /* When card is hovered, target the arrow link inside it */
+    .expertise-card:hover .arrow-link {
+      background-color: var(--text-dark);
+      border-color: var(--text-dark);
+      color: var(--text-light);
+      transform: translateX(4px);
     }
 
     .service-gallery-container {
@@ -690,32 +699,6 @@
         height: 100%;
         object-fit: cover;
         scroll-snap-align: start;
-    }
-
-    .gallery-dots {
-        position: absolute;
-        bottom: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 8px;
-        z-index: 2;
-        background: rgba(0,0,0,0.2);
-        padding: 4px 8px;
-        border-radius: 10px;
-    }
-    
-    .gallery-dot {
-        width: 6px;
-        height: 6px;
-        background: rgba(255,255,255,0.6);
-        border-radius: 50%;
-        transition: background 0.3s;
-    }
-    
-    .gallery-dot.active {
-        background: #fff;
-        transform: scale(1.2);
     }
 
     .card-header {
@@ -786,14 +769,11 @@
       align-self: flex-end;
       color: #aaa;
       cursor: pointer;
+      /* Remove pointer-events: none if it was there, to keep it clickable if needed, 
+         but since the whole card is clickable via JS, this is fine */
     }
 
-    .arrow-link:hover {
-      background-color: var(--text-dark);
-      border-color: var(--text-dark);
-      color: var(--text-light);
-      transform: translateX(4px);
-    }
+    /* Removed standalone .arrow-link:hover as it is handled by card hover now */
 
     /* ================= ABOUT (UPDATED WITH AUTO-SLIDER) ================= */
     #about {
@@ -1720,11 +1700,8 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-01'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-1">
-        <img src="01.jpg" alt="รายละเอียดรูปภาพ">
+        <img src="images/service/01.jpg" alt="รายละเอียดรูปภาพ">
        
-      </div>
-      <div class="gallery-dots">
-        <div class="gallery-dot active"></div><div class="gallery-dot"></div><div class="gallery-dot"></div>
       </div>
     </div>
     <div class="card-header">
@@ -1751,10 +1728,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-02'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-2">
-        <img src="02.jpg" alt="รายละเอียดรูปภาพ">
-      </div>
-      <div class="gallery-dots">
-        <div class="gallery-dot active"></div><div class="gallery-dot"></div>
+        <img src="images/service/02.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1779,10 +1753,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-03'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-3">
-       <img src="03.jpg" alt="รายละเอียดรูปภาพ">
-      </div>
-      <div class="gallery-dots">
-        <div class="gallery-dot active"></div><div class="gallery-dot"></div>
+       <img src="images/service/03.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1810,7 +1781,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-04'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-4">
-       <img src="04.jpg" alt="รายละเอียดรูปภาพ">
+       <img src="images/service/04.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1835,7 +1806,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-05'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-5">
-       <img src="05.jpg" alt="รายละเอียดรูปภาพ">
+       <img src="images/service/05.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1862,7 +1833,7 @@ Designed to spark engagement, connection, and lasting impressions.
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-06'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-6">
-        <img src="06.jpg" alt="รายละเอียดรูปภาพ">
+        <img src="images/service/06.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1976,7 +1947,7 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
       <div class="container">
         <div class="mm-slider-header">
           <h2 class="mm-slider-heading">Latest Our Work</h2>
-          <a href="work exprerien.html" class="mm-slider-more">
+          <a href="portfolio.html" class="mm-slider-more">
             See More <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -2050,24 +2021,28 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
               <label>Interested in...</label>
               <div class="interest-options">
                 <div class="interest-option-item">
-                  <input type="checkbox" id="interest_event" name="interest[]" value="Event" />
-                  <label for="interest_event">Event</label>
+                  <input type="checkbox" id="interest_corporate" name="interest[]" value="Corporate Event" />
+                  <label for="interest_corporate">Corporate Event</label>
                 </div>
                 <div class="interest-option-item">
-                  <input type="checkbox" id="interest_exhibition" name="interest[]" value="Exhibition" />
-                  <label for="interest_exhibition">Exhibition</label>
+                  <input type="checkbox" id="interest_staff" name="interest[]" value="Staff Party Event" />
+                  <label for="interest_staff">Staff Party Event</label>
                 </div>
                 <div class="interest-option-item">
-                  <input type="checkbox" id="interest_sampling" name="interest[]" value="Sampling" />
-                  <label for="interest_sampling">Sampling</label>
+                  <input type="checkbox" id="interest_grand" name="interest[]" value="Grand Opening" />
+                  <label for="interest_grand">Grand Opening</label>
                 </div>
                 <div class="interest-option-item">
-                  <input type="checkbox" id="interest_branding" name="interest[]" value="Branding" />
-                  <label for="interest_branding">Product Branding</label>
+                  <input type="checkbox" id="interest_soft" name="interest[]" value="Soft Opening" />
+                  <label for="interest_soft">Soft Opening</label>
                 </div>
                 <div class="interest-option-item">
-                  <input type="checkbox" id="interest_media" name="interest[]" value="Media" />
-                  <label for="interest_media">Media Planning</label>
+                  <input type="checkbox" id="interest_activation" name="interest[]" value="Activation Booth" />
+                  <label for="interest_activation">Activation Booth</label>
+                </div>
+                <div class="interest-option-item">
+                  <input type="checkbox" id="interest_digital" name="interest[]" value="Digital Marketing" />
+                  <label for="interest_digital">Digital Marketing</label>
                 </div>
                 <div class="interest-option-item">
                   <input type="checkbox" id="interest_other" name="interest[]" value="Other" />
@@ -2244,20 +2219,7 @@ document.addEventListener('click', function(event) {
     }
 
     /* =============== SERVICE GALLERY SCROLL LISTENER =============== */
-    const serviceGalleries = document.querySelectorAll('.service-gallery-container');
-    serviceGalleries.forEach(container => {
-        const gallery = container.querySelector('.service-gallery');
-        const dots = container.querySelectorAll('.gallery-dot');
-        if (gallery && dots.length) {
-            gallery.addEventListener('scroll', () => {
-                const scrollLeft = gallery.scrollLeft;
-                const width = gallery.offsetWidth;
-                const index = Math.round(scrollLeft / width);
-                dots.forEach(d => d.classList.remove('active'));
-                if (dots[index]) dots[index].classList.add('active');
-            });
-        }
-    });
+    /* REMOVED DOTS NAVIGATION LISTENER */
 
     /* =============== CLIENT LOGOS & YEAR =============== */
     const clientsData = [
@@ -2535,5 +2497,3 @@ document.addEventListener('click', function(event) {
 </script>
 </body>
 </html>
-
-
