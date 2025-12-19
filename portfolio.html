@@ -333,7 +333,7 @@
         animation: fadeIn 0.5s ease;
     }
     .list-header h1 {
-        font-family: var(--font-special); font-size: clamp(1rem, 3vw, 2rem);
+        font-family: var(--font-special); font-size: clamp(1.5rem, 3vw, 2rem);
         color: #888; letter-spacing: 2px; text-transform: uppercase;
         margin-bottom: 1rem;
     }
@@ -361,12 +361,21 @@
     }
     .back-btn {
         display: inline-flex; align-items: center; gap: 0.5rem;
-        font-size: 1rem; color: #666; cursor: pointer;
-        margin-bottom: 1.5rem; font-weight: 500;
-        transition: color 0.3s; border: 1px solid #ddd;
-        padding: 0.5rem 1rem; border-radius: 50px;
+        font-size: 1.5rem; /* Increased size for icon only */
+        color: #666; cursor: pointer;
+        margin-bottom: 1.5rem; 
+        transition: color 0.3s;
+        border: 2px solid #ddd; /* Circle border */
+        width: 45px; height: 45px;
+        border-radius: 50%;
+        justify-content: center;
+        padding: 0;
     }
-    .back-btn:hover { border-color: var(--primary-pink); color: var(--primary-pink); }
+    .back-btn:hover { 
+        border-color: var(--primary-pink); 
+        color: var(--primary-pink); 
+        background: #fff;
+    }
     
     .detail-title {
         font-family: var(--font-kanit); font-size: clamp(2rem, 5vw, 3.5rem);
@@ -706,8 +715,8 @@
   <!-- ================= VIEW 2: CATEGORY DETAIL (Project List) ================= -->
   <section id="view-category-detail">
     <div class="container">
-      <div class="back-btn" onclick="switchView('list')">
-          <i class="fas fa-chevron-left"></i> All Categories
+      <div class="back-btn" onclick="handleBackBtn()">
+          <i class="fas fa-arrow-left"></i>
       </div>
       <h1 class="detail-title" id="cat-title">Service Name</h1>
       <div class="detail-desc" id="cat-desc">Description goes here...</div>
@@ -722,7 +731,7 @@
   <section id="view-project-detail">
     <div class="container">
        <div class="back-btn" onclick="switchView('category')">
-          <i class="fas fa-chevron-left"></i> Back to Category
+          <i class="fas fa-arrow-left"></i>
       </div>
       
       <div class="project-deep-header">
@@ -824,38 +833,38 @@
         projects: [
             { 
                 id: "c1", 
-                name: "Project Corporate 01", 
-                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Project+Corporate+01", 
-                fullDesc: "รายละเอียดงาน Project Corporate 01...", 
-                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02"] 
+                name: "Exim Bank - CG DAY", 
+                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Exim+Bank+-+CG+DAY", 
+                fullDesc: "รายละเอียดงาน Exim Bank - CG DAY...", 
+                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             },
             { 
                 id: "c2", 
-                name: "Project Corporate 02", 
-                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Project+Corporate+02", 
-                fullDesc: "รายละเอียดงาน Project Corporate 02...", 
-                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02"] 
+                name: "Krungsri Internal Event", 
+                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Krungsri+Internal+Event", 
+                fullDesc: "รายละเอียดงาน Krungsri Internal Event...", 
+                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             },
             { 
                 id: "c3", 
-                name: "Project Corporate 03", 
-                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Project+Corporate+03", 
-                fullDesc: "รายละเอียดงาน Project Corporate 03...", 
-                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01"] 
+                name: "MEA Internal Event", 
+                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=MEA+Internal+Event", 
+                fullDesc: "รายละเอียดงาน MEA Internal Event...", 
+                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             },
              { 
                 id: "c4", 
-                name: "Project Corporate 04", 
-                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Project+Corporate+04", 
-                fullDesc: "รายละเอียดงาน Project Corporate 04...", 
-                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01"] 
+                name: "Nivea Distributor Seminar", 
+                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Nivea+Distributor+Seminar", 
+                fullDesc: "รายละเอียดงาน Nivea Distributor Seminar...", 
+                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             },
              { 
                 id: "c5", 
-                name: "Project Corporate 05", 
-                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Project+Corporate+05", 
-                fullDesc: "รายละเอียดงาน Project Corporate 05...", 
-                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01"] 
+                name: "Thailand Privilege - GSSA Award", 
+                thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Thailand+Privilege+-+GSSA+Award", 
+                fullDesc: "รายละเอียดงาน Thailand Privilege - GSSA Award...", 
+                images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             }
         ]
       },
@@ -863,46 +872,49 @@
         title: "Staff Party Event",
         desc: "Creating staff events that feel joyful, warm, and truly memorable.",
         projects: [
-            { id: "s1", name: "Project Staff Party 01", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Project+Staff+Party+01", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01"] },
-            { id: "s2", name: "Project Staff Party 02", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Project+Staff+Party+02", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01"] },
-            { id: "s3", name: "Project Staff Party 03", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Project+Staff+Party+03", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01"] }
+            { id: "s1", name: "Amore Pacific New Year Staff Party", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Amore+Pacific+New+Year+Staff+Party", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] },
+            { id: "s2", name: "Magnum Awayday", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Magnum+Awayday", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] },
+            { id: "s3", name: "STIC Staff Party", thumb: "https://placehold.co/600x450/e6559e/FFF?text=STIC+Staff+Party", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] }
         ]
       },
       "service-03": {
           title: "Grand Opening",
           desc: "Refining every detail to ensure your brand's identity is revealed with impact.",
           projects: [
-              { id: "g1", name: "Project Grand Opening 01", thumb: "https://placehold.co/600x450/f9d423/333?text=Project+GO+01", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/f9d423/333?text=Image+01"] },
-              { id: "g2", name: "Project Grand Opening 02", thumb: "https://placehold.co/600x450/f9d423/333?text=Project+GO+02", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/f9d423/333?text=Image+01"] }
+              { id: "g1", name: "\"Beyond The Screen\" Insight Entertainment", thumb: "https://placehold.co/600x450/f9d423/333?text=\"Beyond+The+Screen\"+Insight+Entertainment", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/f9d423/333?text=Image+01", "https://placehold.co/600x450/f9d423/333?text=Image+02", "https://placehold.co/600x450/f9d423/333?text=Image+03", "https://placehold.co/600x450/f9d423/333?text=Image+04"] },
+              { id: "g2", name: "DSK Grand Opening", thumb: "https://placehold.co/600x450/f9d423/333?text=DSK+Grand+Opening", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/f9d423/333?text=Image+01", "https://placehold.co/600x450/f9d423/333?text=Image+02", "https://placehold.co/600x450/f9d423/333?text=Image+03", "https://placehold.co/600x450/f9d423/333?text=Image+04"] }
           ]
       },
       "service-04": {
           title: "Soft Opening",
           desc: "Minimal, warm, and inviting events.",
           projects: [
-              { id: "so1", name: "Project Soft Opening 01", thumb: "https://placehold.co/600x450/111/FFF?text=Project+SO+01", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/111/FFF?text=Image+01"] },
-              { id: "so2", name: "Project Soft Opening 02", thumb: "https://placehold.co/600x450/111/FFF?text=Project+SO+02", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/111/FFF?text=Image+01"] }
+              { id: "so1", name: "Lemon8 - Thank you Creator", thumb: "https://placehold.co/600x450/111/FFF?text=Lemon8+-+Thank+you+Creator", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] },
+              { id: "so2", name: "DV8 - Aroi Tour Long", thumb: "https://placehold.co/600x450/111/FFF?text=DV8+-+Aroi+Tour+Long", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] },
+              { id: "so3", name: "Sulwhasoo Activating Serum Soft Launch", thumb: "https://placehold.co/600x450/111/FFF?text=Sulwhasoo+Activating+Serum+Soft+Launch", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] }
           ]
       },
       "service-05": {
           title: "Activation Booth",
           desc: "Designed to spark engagement, connection, and lasting impressions.",
           projects: [
-              { id: "ab1", name: "Project Booth 01", thumb: "https://placehold.co/600x450/444/FFF?text=Project+Booth+01", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/444/FFF?text=Image+01"] },
-              { id: "ab2", name: "Project Booth 02", thumb: "https://placehold.co/600x450/444/FFF?text=Project+Booth+02", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/444/FFF?text=Image+01"] }
+              { id: "ab1", name: "Comfort Activation Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Comfort+Activation+Booth", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] },
+              { id: "ab2", name: "Jmee Shop Pop up Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Jmee+Shop+Pop+up+Booth", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] },
+              { id: "ab3", name: "Peptein Plus Activation Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Peptein+Plus+Activation+Booth", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] }
           ]
       },
       "service-06": {
           title: "Digital Marketing",
           desc: "Strategy-backed content and thoughtful KOL planning.",
           projects: [
-              { id: "dm1", name: "Project Digital 01", thumb: "https://placehold.co/600x450/ccc/333?text=Project+Digital+01", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/ccc/333?text=Image+01"] },
-              { id: "dm2", name: "Project Digital 02", thumb: "https://placehold.co/600x450/ccc/333?text=Project+Digital+02", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/ccc/333?text=Image+01"] }
+              { id: "dm1", name: "Project Digital 01", thumb: "https://placehold.co/600x450/ccc/333?text=Project+Digital+01", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/ccc/333?text=Image+01", "https://placehold.co/600x450/ccc/333?text=Image+02", "https://placehold.co/600x450/ccc/333?text=Image+03", "https://placehold.co/600x450/ccc/333?text=Image+04"] },
+              { id: "dm2", name: "Project Digital 02", thumb: "https://placehold.co/600x450/ccc/333?text=Project+Digital+02", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/ccc/333?text=Image+01", "https://placehold.co/600x450/ccc/333?text=Image+02", "https://placehold.co/600x450/ccc/333?text=Image+03", "https://placehold.co/600x450/ccc/333?text=Image+04"] }
           ]
       }
     };
 
     let currentCategory = null;
+    let isFromDeepLink = false;
 
     /* ================= NAVIGATION LOGIC ================= */
     const views = {
@@ -974,6 +986,17 @@
         });
 
         switchView('project');
+    }
+
+    /* NEW FUNCTION: HANDLE BACK NAVIGATION */
+    function handleBackBtn() {
+      if (isFromDeepLink) {
+        // If user came from Index (Deep Link), go back to Index
+        window.location.href = 'index.html#services';
+      } else {
+        // Otherwise, go back to category list normally
+        switchView('list');
+      }
     }
 
     /* ================= NAVBAR SCROLL & MENU ================= */
@@ -1052,12 +1075,14 @@
         const categoryId = urlParams.get('cat'); // Use 'cat' as parameter name
         
         if (categoryId && portfolioDB[categoryId]) {
-            // Open specific category immediately
+            // Found category ID in URL -> Set flag & open category
+            isFromDeepLink = true;
             openCategory(categoryId);
+        } else {
+            isFromDeepLink = false;
         }
     });
 
   </script>
 </body>
 </html>
-
