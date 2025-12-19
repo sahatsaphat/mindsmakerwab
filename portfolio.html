@@ -11,8 +11,9 @@
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Import weights 300, 400, 500, 600, 700 for boldness -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Lexend+Deca:wght@400;700&family=Special+Gothic+Expanded+One&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Lexend+Deca:wght@300;400;500;600;700&family=Special+Gothic+Expanded+One&display=swap"
     rel="stylesheet"
   />
   <link
@@ -26,7 +27,7 @@
       --primary-blue: #3a53a4;
       --primary-pink: #e6559e;
       --primary-yellow: #f9d423;
-      --text-dark: #222;
+      --text-dark: #222; /* Darker black for better contrast */
       --text-light: #fff;
       --bg-light: #fff;
       --bg-dark: #111;
@@ -217,7 +218,7 @@
     .mobile-lang .lang-btn { color: rgba(255,255,255,0.6); font-size: 1.2rem; }
     .mobile-lang .lang-btn.active { color: var(--primary-pink); opacity: 1; }
 
-    /* ================= FLOATING SOCIAL (CHAT NOW - From Index) ================= */
+    /* ================= FLOATING SOCIAL (CHAT NOW) ================= */
     .mobile-line-fab {
       position: fixed;
       bottom: 20px;
@@ -287,7 +288,6 @@
       .social-item.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
       .social-item.tt { background: #000; }
 
-      /* Highlight & Wiggle & Tooltip for Line */
       .social-item.highlight {
         width: 65px; height: 65px; font-size: 30px;
         border: 3px solid #fff;
@@ -332,26 +332,39 @@
         min-height: 80vh; display: block;
         animation: fadeIn 0.5s ease;
     }
+    
     .list-header h1 {
-        font-family: var(--font-special); font-size: clamp(1.5rem, 3vw, 2rem);
-        color: #888; letter-spacing: 2px; text-transform: uppercase;
-        margin-bottom: 1rem;
+        /* BOLDER UPDATE */
+        font-family: var(--font-body);
+        font-size: clamp(1.2rem, 3vw, 1.5rem); 
+        font-weight: 700; /* Bold */
+        color: #555; 
+        letter-spacing: 1px; 
+        text-transform: uppercase;
+        margin-bottom: 2rem;
     }
+    
     .category-list { display: flex; flex-direction: column; }
     .category-item {
         display: flex; justify-content: space-between; align-items: center;
-        padding: 2rem 0; border-bottom: 2px solid #e0e0e0;
+        padding: 2rem 0; 
+        border-bottom: 2px solid #e0e0e0; /* Thicker line */
         cursor: pointer; transition: all 0.3s ease;
     }
     .category-item:first-child { border-top: 2px solid #e0e0e0; }
+    
     .cat-name {
-        font-family: var(--font-kanit); font-size: clamp(1.8rem, 5vw, 3rem);
-        font-weight: 400; color: var(--text-dark);
+        /* BOLDER UPDATE */
+        font-family: var(--font-body);
+        font-size: clamp(1.5rem, 4vw, 2.2rem); 
+        font-weight: 500; /* Medium-Bold */
+        color: var(--text-dark);
         transition: padding-left 0.3s ease, color 0.3s ease;
     }
-    .cat-arrow { font-size: 2rem; color: #ccc; transition: all 0.3s ease; }
-    .category-item:hover .cat-name { color: var(--primary-pink); padding-left: 20px; }
-    .category-item:hover .cat-arrow { color: var(--primary-pink); transform: translateX(10px); }
+    
+    .cat-arrow { font-size: 1.8rem; color: #ccc; transition: all 0.3s ease; }
+    .category-item:hover .cat-name { color: var(--primary-pink); padding-left: 15px; font-weight: 600; }
+    .category-item:hover .cat-arrow { color: var(--primary-pink); transform: translateX(5px); }
 
     /* ================= VIEW 2: CATEGORY DETAIL (Project List) ================= */
     #view-category-detail {
@@ -361,12 +374,12 @@
     }
     .back-btn {
         display: inline-flex; align-items: center; gap: 0.5rem;
-        font-size: 1.5rem; /* Increased size for icon only */
+        font-size: 1.2rem;
         color: #666; cursor: pointer;
         margin-bottom: 1.5rem; 
-        transition: color 0.3s;
-        border: 2px solid #ddd; /* Circle border */
-        width: 45px; height: 45px;
+        transition: all 0.3s;
+        border: 2px solid #ddd; /* Thicker border */
+        width: 40px; height: 40px; 
         border-radius: 50%;
         justify-content: center;
         padding: 0;
@@ -378,22 +391,32 @@
     }
     
     .detail-title {
-        font-family: var(--font-kanit); font-size: clamp(2rem, 5vw, 3.5rem);
-        color: var(--text-dark); line-height: 1.2; margin-bottom: 1rem;
+        /* BOLDER UPDATE */
+        font-family: var(--font-body);
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700; /* Bold */
+        color: var(--text-dark); 
+        line-height: 1.2; 
+        margin-bottom: 1rem;
     }
     .detail-desc {
-        font-family: var(--font-kanit); font-size: 1.1rem;
-        color: #555; line-height: 1.6;
-        border-left: 5px solid var(--primary-pink); padding-left: 1.5rem;
-        max-width: 900px; margin-bottom: 3rem;
+        /* READABLE UPDATE */
+        font-family: var(--font-body); 
+        font-size: 1.05rem; 
+        color: #555; 
+        line-height: 1.7;
+        border-left: 4px solid var(--primary-pink); /* Thicker highlight */
+        padding-left: 1rem;
+        max-width: 800px; 
+        margin-bottom: 3rem;
+        font-weight: 400; /* Regular weight for readability */
     }
 
     /* === CLEAN UNIFORM GRID SYSTEM === */
     .project-grid {
         display: grid;
-        /* Desktop: 3 Equal Columns */
         grid-template-columns: repeat(3, 1fr); 
-        gap: 24px;
+        gap: 24px; 
         align-items: start;
     }
     
@@ -402,7 +425,7 @@
         position: relative;
         overflow: hidden; 
         background: #f0f0f0;
-        aspect-ratio: 4/3; /* Force consistency */
+        aspect-ratio: 4/3; 
     }
     
     .project-card img {
@@ -410,40 +433,41 @@
         height: 100%; 
         object-fit: cover;
         display: block; 
+        transition: transform 0.5s ease;
     }
     
-    /* === PREMIUM HOVER EFFECT === */
+    .project-card:hover img {
+        transform: scale(1.05); 
+    }
+    
+    /* === BOLDER OVERLAY TEXT === */
     .project-card-overlay {
         position: absolute;
-        inset: 0; /* Cover full card */
-        background-color: rgba(230, 85, 158, 0.9); /* Premium Pink with transparency */
+        inset: 0; 
+        background-color: rgba(230, 85, 158, 0.9); /* Return to pink overlay */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
         padding: 1.5rem;
-        
-        /* Smooth Fade In Transition */
         opacity: 0;
-        transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(2px); /* Glassy feel */
+        transition: opacity 0.3s ease;
     }
     
     .project-card:hover .project-card-overlay {
-        opacity: 1; /* Fade in on hover */
+        opacity: 1; 
     }
     
     .project-card-title {
-        font-family: var(--font-kanit);
+        /* BOLDER UPDATE */
+        font-family: var(--font-body);
         font-size: 1.3rem;
-        font-weight: 600;
+        font-weight: 600; /* Semi-Bold */
         color: #fff;
         margin-bottom: 0.5rem;
-        
-        /* Slight slide up effect */
-        transform: translateY(15px);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(10px);
+        transition: transform 0.3s ease;
     }
     
     .project-card:hover .project-card-title {
@@ -451,18 +475,18 @@
     }
     
     .project-card-cta {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         color: #fff;
-        opacity: 0;
-        font-weight: 300;
+        font-weight: 500; /* Medium */
         text-transform: uppercase;
         letter-spacing: 1px;
         transform: translateY(10px);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s; /* Delay slightly */
+        transition: all 0.3s ease 0.1s;
+        opacity: 0;
     }
 
     .project-card:hover .project-card-cta {
-        opacity: 0.9;
+        opacity: 1;
         transform: translateY(0);
     }
 
@@ -473,13 +497,24 @@
         background: #fff; animation: fadeIn 0.4s ease;
     }
     .project-deep-header { margin-bottom: 3rem; }
+    
     .deep-title {
-        font-family: var(--font-kanit); font-size: 2.5rem;
-        color: var(--primary-blue); margin-bottom: 1rem;
+        /* BOLDER UPDATE */
+        font-family: var(--font-body); 
+        font-size: 2.2rem;
+        font-weight: 700; /* Bold */
+        color: var(--primary-blue); 
+        margin-bottom: 1rem;
     }
     .deep-desc {
-        font-family: var(--font-kanit); font-size: 1rem; color: #444;
-        background: #f9f9f9; padding: 1.5rem; border-left: 4px solid var(--text-dark);
+        /* READABLE UPDATE */
+        font-family: var(--font-body); 
+        font-size: 1rem; 
+        color: #444;
+        background: #f9f9f9; 
+        padding: 1.5rem; 
+        border-left: 4px solid #333;
+        font-weight: 400; /* Regular */
     }
     .deep-gallery {
         display: grid; 
@@ -489,7 +524,6 @@
     }
     .deep-gallery img {
         width: 100%; height: auto; object-fit: cover;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     /* ================= FOOTER (From Index) ================= */
@@ -715,7 +749,7 @@
   <!-- ================= VIEW 2: CATEGORY DETAIL (Project List) ================= -->
   <section id="view-category-detail">
     <div class="container">
-      <div class="back-btn" onclick="handleBackBtn()">
+      <div class="back-btn" onclick="handleCategoryBackBtn()">
           <i class="fas fa-arrow-left"></i>
       </div>
       <h1 class="detail-title" id="cat-title">Service Name</h1>
@@ -730,7 +764,7 @@
   <!-- ================= VIEW 3: PROJECT DEEP DIVE (Specific Project) ================= -->
   <section id="view-project-detail">
     <div class="container">
-       <div class="back-btn" onclick="switchView('category')">
+       <div class="back-btn" onclick="handleProjectBackBtn()">
           <i class="fas fa-arrow-left"></i>
       </div>
       
@@ -829,86 +863,86 @@
     const portfolioDB = {
       "service-01": {
         title: "Corporate Event",
-        desc: "Professional event management for corporate clients. We handle everything from lighting, sound, to stage rundown.",
+        desc: "Professional event management handling everything from concept to execution.",
         projects: [
             { 
                 id: "c1", 
                 name: "Exim Bank - CG DAY", 
                 thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Exim+Bank+-+CG+DAY", 
-                fullDesc: "รายละเอียดงาน Exim Bank - CG DAY...", 
+                fullDesc: "Exim Bank CG Day activities emphasizing participation and knowledge.", 
                 images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             },
             { 
                 id: "c2", 
                 name: "Krungsri Internal Event", 
                 thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Krungsri+Internal+Event", 
-                fullDesc: "รายละเอียดงาน Krungsri Internal Event...", 
+                fullDesc: "Internal seminar for Krungsri, focusing on elegance and formality.", 
                 images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             },
             { 
                 id: "c3", 
                 name: "MEA Internal Event", 
                 thumb: "https://placehold.co/600x450/3a53a4/FFF?text=MEA+Internal+Event", 
-                fullDesc: "รายละเอียดงาน MEA Internal Event...", 
+                fullDesc: "Internal event organization for MEA.", 
                 images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             },
              { 
                 id: "c4", 
                 name: "Nivea Distributor Seminar", 
                 thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Nivea+Distributor+Seminar", 
-                fullDesc: "รายละเอียดงาน Nivea Distributor Seminar...", 
+                fullDesc: "Seminar for Nivea distributors with full production support.", 
                 images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             },
              { 
                 id: "c5", 
                 name: "Thailand Privilege - GSSA Award", 
                 thumb: "https://placehold.co/600x450/3a53a4/FFF?text=Thailand+Privilege+-+GSSA+Award", 
-                fullDesc: "รายละเอียดงาน Thailand Privilege - GSSA Award...", 
+                fullDesc: "Award ceremony for Thailand Privilege GSSA.", 
                 images: ["https://placehold.co/800x600/3a53a4/FFF?text=Image+01", "https://placehold.co/800x600/3a53a4/FFF?text=Image+02", "https://placehold.co/800x600/3a53a4/FFF?text=Image+03", "https://placehold.co/800x600/3a53a4/FFF?text=Image+04"] 
             }
         ]
       },
       "service-02": {
         title: "Staff Party Event",
-        desc: "Creating staff events that feel joyful, warm, and truly memorable.",
+        desc: "Joyful and memorable staff parties.",
         projects: [
-            { id: "s1", name: "Amore Pacific New Year Staff Party", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Amore+Pacific+New+Year+Staff+Party", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] },
-            { id: "s2", name: "Magnum Awayday", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Magnum+Awayday", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] },
-            { id: "s3", name: "STIC Staff Party", thumb: "https://placehold.co/600x450/e6559e/FFF?text=STIC+Staff+Party", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] }
+            { id: "s1", name: "Amore Pacific New Year Staff Party", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Amore+Pacific+New+Year+Staff+Party", fullDesc: "New Year celebration for Amore Pacific staff.", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] },
+            { id: "s2", name: "Magnum Awayday", thumb: "https://placehold.co/600x450/e6559e/FFF?text=Magnum+Awayday", fullDesc: "Awayday event for Magnum team.", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] },
+            { id: "s3", name: "STIC Staff Party", thumb: "https://placehold.co/600x450/e6559e/FFF?text=STIC+Staff+Party", fullDesc: "Staff party for STIC.", images: ["https://placehold.co/600x450/e6559e/FFF?text=Image+01", "https://placehold.co/600x450/e6559e/FFF?text=Image+02", "https://placehold.co/600x450/e6559e/FFF?text=Image+03", "https://placehold.co/600x450/e6559e/FFF?text=Image+04"] }
         ]
       },
       "service-03": {
           title: "Grand Opening",
-          desc: "Refining every detail to ensure your brand's identity is revealed with impact.",
+          desc: "Impactful brand launch events.",
           projects: [
-              { id: "g1", name: "\"Beyond The Screen\" Insight Entertainment", thumb: "https://placehold.co/600x450/f9d423/333?text=\"Beyond+The+Screen\"+Insight+Entertainment", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/f9d423/333?text=Image+01", "https://placehold.co/600x450/f9d423/333?text=Image+02", "https://placehold.co/600x450/f9d423/333?text=Image+03", "https://placehold.co/600x450/f9d423/333?text=Image+04"] },
-              { id: "g2", name: "DSK Grand Opening", thumb: "https://placehold.co/600x450/f9d423/333?text=DSK+Grand+Opening", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/f9d423/333?text=Image+01", "https://placehold.co/600x450/f9d423/333?text=Image+02", "https://placehold.co/600x450/f9d423/333?text=Image+03", "https://placehold.co/600x450/f9d423/333?text=Image+04"] }
+              { id: "g1", name: "\"Beyond The Screen\" Insight Entertainment", thumb: "https://placehold.co/600x450/f9d423/333?text=\"Beyond+The+Screen\"+Insight+Entertainment", fullDesc: "Grand opening event for Insight Entertainment.", images: ["https://placehold.co/600x450/f9d423/333?text=Image+01", "https://placehold.co/600x450/f9d423/333?text=Image+02", "https://placehold.co/600x450/f9d423/333?text=Image+03", "https://placehold.co/600x450/f9d423/333?text=Image+04"] },
+              { id: "g2", name: "DSK Grand Opening", thumb: "https://placehold.co/600x450/f9d423/333?text=DSK+Grand+Opening", fullDesc: "Grand opening ceremony for DSK.", images: ["https://placehold.co/600x450/f9d423/333?text=Image+01", "https://placehold.co/600x450/f9d423/333?text=Image+02", "https://placehold.co/600x450/f9d423/333?text=Image+03", "https://placehold.co/600x450/f9d423/333?text=Image+04"] }
           ]
       },
       "service-04": {
           title: "Soft Opening",
-          desc: "Minimal, warm, and inviting events.",
+          desc: "Warm and inviting minimal events.",
           projects: [
-              { id: "so1", name: "Lemon8 - Thank you Creator", thumb: "https://placehold.co/600x450/111/FFF?text=Lemon8+-+Thank+you+Creator", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] },
-              { id: "so2", name: "DV8 - Aroi Tour Long", thumb: "https://placehold.co/600x450/111/FFF?text=DV8+-+Aroi+Tour+Long", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] },
-              { id: "so3", name: "Sulwhasoo Activating Serum Soft Launch", thumb: "https://placehold.co/600x450/111/FFF?text=Sulwhasoo+Activating+Serum+Soft+Launch", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] }
+              { id: "so1", name: "Lemon8 - Thank you Creator", thumb: "https://placehold.co/600x450/111/FFF?text=Lemon8+-+Thank+you+Creator", fullDesc: "Exclusive event for Lemon8 creators.", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] },
+              { id: "so2", name: "DV8 - Aroi Tour Long", thumb: "https://placehold.co/600x450/111/FFF?text=DV8+-+Aroi+Tour+Long", fullDesc: "Food tour event for DV8.", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] },
+              { id: "so3", name: "Sulwhasoo Activating Serum Soft Launch", thumb: "https://placehold.co/600x450/111/FFF?text=Sulwhasoo+Activating+Serum+Soft+Launch", fullDesc: "Soft launch event for Sulwhasoo product.", images: ["https://placehold.co/600x450/111/FFF?text=Image+01", "https://placehold.co/600x450/111/FFF?text=Image+02", "https://placehold.co/600x450/111/FFF?text=Image+03", "https://placehold.co/600x450/111/FFF?text=Image+04"] }
           ]
       },
       "service-05": {
           title: "Activation Booth",
-          desc: "Designed to spark engagement, connection, and lasting impressions.",
+          desc: "Engaging brand activation booths.",
           projects: [
-              { id: "ab1", name: "Comfort Activation Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Comfort+Activation+Booth", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] },
-              { id: "ab2", name: "Jmee Shop Pop up Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Jmee+Shop+Pop+up+Booth", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] },
-              { id: "ab3", name: "Peptein Plus Activation Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Peptein+Plus+Activation+Booth", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] }
+              { id: "ab1", name: "Comfort Activation Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Comfort+Activation+Booth", fullDesc: "Activation booth for Comfort brand.", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] },
+              { id: "ab2", name: "Jmee Shop Pop up Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Jmee+Shop+Pop+up+Booth", fullDesc: "Pop up booth for Jmee Shop.", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] },
+              { id: "ab3", name: "Peptein Plus Activation Booth", thumb: "https://placehold.co/600x450/444/FFF?text=Peptein+Plus+Activation+Booth", fullDesc: "Activation booth for Peptein Plus.", images: ["https://placehold.co/600x450/444/FFF?text=Image+01", "https://placehold.co/600x450/444/FFF?text=Image+02", "https://placehold.co/600x450/444/FFF?text=Image+03", "https://placehold.co/600x450/444/FFF?text=Image+04"] }
           ]
       },
       "service-06": {
           title: "Digital Marketing",
-          desc: "Strategy-backed content and thoughtful KOL planning.",
+          desc: "Strategic content and KOL planning.",
           projects: [
-              { id: "dm1", name: "Project Digital 01", thumb: "https://placehold.co/600x450/ccc/333?text=Project+Digital+01", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/ccc/333?text=Image+01", "https://placehold.co/600x450/ccc/333?text=Image+02", "https://placehold.co/600x450/ccc/333?text=Image+03", "https://placehold.co/600x450/ccc/333?text=Image+04"] },
-              { id: "dm2", name: "Project Digital 02", thumb: "https://placehold.co/600x450/ccc/333?text=Project+Digital+02", fullDesc: "รายละเอียดงาน...", images: ["https://placehold.co/600x450/ccc/333?text=Image+01", "https://placehold.co/600x450/ccc/333?text=Image+02", "https://placehold.co/600x450/ccc/333?text=Image+03", "https://placehold.co/600x450/ccc/333?text=Image+04"] }
+              { id: "dm1", name: "Project Digital 01", thumb: "https://placehold.co/600x450/ccc/333?text=Project+Digital+01", fullDesc: "Digital marketing campaign.", images: ["https://placehold.co/600x450/ccc/333?text=Image+01", "https://placehold.co/600x450/ccc/333?text=Image+02", "https://placehold.co/600x450/ccc/333?text=Image+03", "https://placehold.co/600x450/ccc/333?text=Image+04"] },
+              { id: "dm2", name: "Project Digital 02", thumb: "https://placehold.co/600x450/ccc/333?text=Project+Digital+02", fullDesc: "Social media strategy.", images: ["https://placehold.co/600x450/ccc/333?text=Image+01", "https://placehold.co/600x450/ccc/333?text=Image+02", "https://placehold.co/600x450/ccc/333?text=Image+03", "https://placehold.co/600x450/ccc/333?text=Image+04"] }
           ]
       }
     };
@@ -925,9 +959,21 @@
 
     function switchView(viewName) {
         // Hide all
-        Object.values(views).forEach(el => el.style.display = 'none');
-        // Show target
-        views[viewName].style.display = 'block';
+        Object.values(views).forEach(el => {
+            el.style.opacity = 0;
+            setTimeout(() => {
+                el.style.display = 'none';
+            }, 300); // Wait for transition
+        });
+        
+        // Show target with transition
+        setTimeout(() => {
+            views[viewName].style.display = 'block';
+            setTimeout(() => {
+                views[viewName].style.opacity = 1;
+            }, 50);
+        }, 300);
+        
         window.scrollTo(0, 0);
     }
 
@@ -988,15 +1034,21 @@
         switchView('project');
     }
 
-    /* NEW FUNCTION: HANDLE BACK NAVIGATION */
-    function handleBackBtn() {
+    /* HANDLE CATEGORY DETAIL BACK BUTTON */
+    function handleCategoryBackBtn() {
       if (isFromDeepLink) {
-        // If user came from Index (Deep Link), go back to Index
+        // If came from Index (Deep Link), go back to Index
         window.location.href = 'index.html#services';
       } else {
         // Otherwise, go back to category list normally
         switchView('list');
       }
+    }
+
+    /* HANDLE PROJECT DETAIL BACK BUTTON */
+    function handleProjectBackBtn() {
+      // Always go back to Category Detail (Level 2)
+      switchView('category');
     }
 
     /* ================= NAVBAR SCROLL & MENU ================= */
