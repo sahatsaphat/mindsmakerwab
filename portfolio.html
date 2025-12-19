@@ -330,7 +330,7 @@
     #view-category-list {
         padding-top: 150px; padding-bottom: 5rem;
         min-height: 80vh; display: block;
-        animation: fadeIn 0.5s ease;
+        animation: none; /* Removed fade animation */
     }
     
     .list-header h1 {
@@ -370,7 +370,7 @@
     #view-category-detail {
         padding-top: 130px; padding-bottom: 5rem;
         min-height: 80vh; display: none;
-        background: #fff; animation: slideUp 0.5s ease;
+        background: #fff; animation: none; /* Removed slide animation */
     }
     .back-btn {
         display: inline-flex; align-items: center; gap: 0.5rem;
@@ -433,7 +433,7 @@
         height: 100%; 
         object-fit: cover;
         display: block; 
-        transition: transform 0.5s ease;
+        transition: transform 0.3s ease;
     }
     
     .project-card:hover img {
@@ -494,7 +494,7 @@
     #view-project-detail {
         padding-top: 130px; padding-bottom: 5rem;
         min-height: 80vh; display: none;
-        background: #fff; animation: fadeIn 0.4s ease;
+        background: #fff; animation: none; /* Removed fade animation */
     }
     .project-deep-header { margin-bottom: 3rem; }
     
@@ -653,9 +653,6 @@
         gap: 2.5rem;
       }
     }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
   </style>
 </head>
@@ -958,22 +955,9 @@
     };
 
     function switchView(viewName) {
-        // Hide all
-        Object.values(views).forEach(el => {
-            el.style.opacity = 0;
-            setTimeout(() => {
-                el.style.display = 'none';
-            }, 300); // Wait for transition
-        });
-        
-        // Show target with transition
-        setTimeout(() => {
-            views[viewName].style.display = 'block';
-            setTimeout(() => {
-                views[viewName].style.opacity = 1;
-            }, 50);
-        }, 300);
-        
+        // Instant Switch (No Transition)
+        Object.values(views).forEach(el => el.style.display = 'none');
+        views[viewName].style.display = 'block';
         window.scrollTo(0, 0);
     }
 
