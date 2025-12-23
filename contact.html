@@ -70,6 +70,7 @@
         border: 1px solid #eee;
         margin-top: 0.5rem;
     }
+    
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
@@ -84,6 +85,7 @@
         color: var(--primary-pink);
         font-weight: 700;
     }
+    
 
     .navbar.navbar-scrolled .nav-center { gap: 0.5rem; }
     .portfolio-link a {
@@ -421,6 +423,11 @@
     .nav-toggle.is-active i::before { content: '\f00d'; }
 
     .navbar.mobile-menu-active .logo,
+    .navbar.mobile-menu-active {
+  background-color: var(--bg-dark); /* หรือ #111 */
+  box-shadow: none;
+}
+
     .navbar.mobile-menu-active .nav-toggle {
         color: var(--text-light);
     }
@@ -491,12 +498,13 @@
                         <div class="form-group-fullwidth">
                           <label>Interested in...</label>
                           <div class="interest-options">
-                            <div class="interest-option-item"><input type="checkbox" id="interest_event" name="interest[]" value="Event"><label for="interest_event" class="interest-btn">Event</label></div>
-                            <div class="interest-option-item"><input type="checkbox" id="interest_exhibition" name="interest[]" value="Exhibition"><label for="interest_exhibition" class="interest-btn">Exhibition</label></div>
-                            <div class="interest-option-item"><input type="checkbox" id="interest_sampling" name="interest[]" value="Sampling"><label for="interest_sampling" class="interest-btn">Sampling</label></div>
-                            <div class="interest-option-item"><input type="checkbox" id="interest_branding" name="interest[]" value="Branding"><label for="interest_branding" class="interest-btn">Branding</label></div>
-                            <div class="interest-option-item"><input type="checkbox" id="interest_media" name="interest[]" value="Media"><label for="interest_media" class="interest-btn">Media Planning</label></div>
-                            <div class="interest-option-item"><input type="checkbox" id="interest_other" name="interest[]" value="Other"><label for="interest_other" class="interest-btn">Other</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_corporate" name="interest[]" value="Corporate Event"><label for="interest_corporate" class="interest-btn">Corporate Event</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_staff" name="interest[]" value="Staff party"><label for="interest_staff" class="interest-btn">Staff party</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_grand" name="interest[]" value="Grand Opening"><label for="interest_grand" class="interest-btn">Grand Opening</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_soft" name="interest[]" value="Soft Opening"><label for="interest_soft" class="interest-btn">Soft Opening</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_activation" name="interest[]" value="Activation Booth"><label for="interest_activation" class="interest-btn">Activation Booth</label></div>
+                            <div class="interest-option-item"><input type="checkbox" id="interest_digital" name="interest[]" value="Digital Margeting"><label for="interest_digital" class="interest-btn">Digital Margeting</label></div>
+                             <div class="interest-option-item"><input type="checkbox" id="interest_other" name="interest[]" value="Other"><label for="interest_other" class="interest-btn">Other</label></div>
                           </div>
                         </div>
                         <div class="form-group-fullwidth">
