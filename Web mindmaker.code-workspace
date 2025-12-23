@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"mobile-preview.url": "http://127.0.0.1:5500/index.html",
+		"mobile-preview.device": "iPhone 15 Pro Max"
+	}
+}

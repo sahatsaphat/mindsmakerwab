@@ -7,20 +7,19 @@
   <link rel="icon" href="Logo-mm.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Lexend+Deca:wght@400;700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
-    /* --- Base Variables & Styles (Original Design) --- */
+    /* ================= DESIGN TOKENS (From Index) ================= */
     :root {
-      --primary-blue: #3A53A4;
-      --primary-pink: #E6559E;
-      --primary-yellow: #F9D423;
-      --primary-white: #fff;
+      --primary-blue: #3a53a4;
+      --primary-pink: #e6559e;
+      --primary-yellow: #f9d423;
       --text-dark: #222;
       --text-light: #fff;
       --bg-light: #fff;
       --bg-dark: #111;
-      --bg-medium: #f4f4f4;
+      --bg-medium: #f9f9f9;
       --font-special: "Special Gothic Expanded One", sans-serif;
       --font-body: "Lexend Deca", sans-serif;
       --font-kanit: "Kanit", sans-serif;
@@ -34,68 +33,82 @@
       color: var(--text-dark);
       background-color: var(--bg-light);
       overflow-x: hidden;
+      width: 100%;
+      position: relative;
     }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    h1, h2, h3, h4, h5, h6 { font-weight: 700; }
-    h1 { font-family: var(--font-special); }
-    h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 2rem; text-align: center; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
 
-    /* --- Navbar --- */
+    /* ================= NAVBAR (White Background) ================= */
     .navbar {
-      background-color: transparent;
+      background-color: #fff;
       padding: 1rem 0;
-      position: sticky; top: 0; z-index: 1000;
+      position: fixed; width: 100%; top: 0; z-index: 1000;
       transition: all 0.4s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
     .navbar-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0.5rem 2rem;
-        border-radius: 0;
-        background-color: transparent;
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1200px; margin: 0 auto; padding: 0.5rem 2rem;
+      border-radius: 0; background-color: transparent;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .navbar.navbar-scrolled .navbar-inner {
-        max-width: 900px;
-        background-color: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 999px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        border: 1px solid #eee;
-        margin-top: 0.5rem;
+      max-width: 900px;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+      margin-top: 0.5rem;
     }
     .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      font-family: var(--font-special);
-      transition: all 0.3s ease;
+      font-size: 1.4rem; font-weight: bold; font-family: var(--font-special);
+      transition: all 0.3s ease; white-space: nowrap; color: var(--text-dark);
     }
-    .nav-center { display: flex; gap: 1rem; transition: gap 0.4s ease; }
-    .nav-center a { font-weight: 500; transition: color 0.3s; padding: 0.5rem 1rem; position: relative;}
-    .nav-center a:hover { color: var(--primary-pink); }
-    
-    .nav-center a.active {
-        color: var(--primary-pink);
-        font-weight: 700;
-    }
-
+    .nav-center { display: flex; gap: 1rem; align-items: center; transition: gap 0.4s ease; }
     .navbar.navbar-scrolled .nav-center { gap: 0.5rem; }
+    .nav-center a { font-weight: 500; transition: color 0.3s; padding: 0.5rem 1rem; font-size: 0.95rem; }
+    .nav-center a:hover { color: var(--primary-pink); }
+    .nav-center a.active { color: var(--primary-pink); font-weight: 700; }
+    
     .portfolio-link a {
-      font-weight: bold; padding: 0.6rem 1.5rem;
+      font-weight: bold; padding: 0.5rem 1.4rem;
       border: 2px solid var(--text-dark); border-radius: 999px;
-      transition: all 0.3s;
+      font-size: 0.9rem; transition: all 0.3s; white-space: nowrap;
     }
     .portfolio-link a:hover { background-color: var(--text-dark); color: var(--text-light); }
-    .nav-toggle { display: none; }
     
-    /* --- Page Header (Marquee) --- */
+    .nav-toggle { display: none; cursor: pointer; padding: 0.5rem; font-size: 1.5rem; z-index: 1001; }
+
+    /* Language Toggle */
+    .lang-toggle-container { position: fixed; top: 20px; right: 20px; z-index: 10000; }
+    .lang-toggle { display: flex; align-items: center; gap: 0.2rem; font-size: 0.9rem; }
+    .lang-btn { background: none; border: none; color: #555; cursor: pointer; font-weight: 500; padding: 0.2rem 0.5rem; }
+    .lang-btn.active { color: var(--primary-pink); text-decoration: underline; }
+
+    /* Mobile Menu */
+    .mobile-overlay-menu {
+      position: fixed; inset: 0; background-color: var(--bg-dark); color: var(--text-light);
+      z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .mobile-overlay-menu.active { transform: translateX(0); }
+    .mobile-overlay-menu .menu-items { text-align: center; }
+    .mobile-overlay-menu .menu-items li { margin: 1.5rem 0; }
+    .mobile-overlay-menu .menu-items a { font-size: clamp(1.5rem, 5vw, 2rem); font-family: var(--font-special); transition: color 0.3s ease; }
+    .mobile-overlay-menu .menu-items a:hover { color: var(--primary-pink); }
+    .nav-toggle.is-active { color: var(--text-light); }
+    .nav-toggle.is-active i::before { content: "\f00d"; }
+    
+    .mobile-lang { display: none; margin-top: 2rem; justify-content: center; align-items: center; gap: 1rem; }
+    .mobile-lang .lang-btn { color: rgba(255,255,255,0.6); font-size: 1.2rem; }
+    .mobile-lang .lang-btn.active { color: var(--primary-pink); opacity: 1; }
+
+    /* ================= PAGE HEADER (Marquee) ================= */
     .page-header {
-        padding: 0;
+        padding-top: 100px; /* Padding for fixed navbar */
         background-color: var(--bg-dark);
         color: var(--text-light);
         overflow: hidden;
@@ -124,293 +137,256 @@
         100% { transform: translateX(-100%); }
     }
 
-    /* --- About Content Styles --- */
+    /* ================= MAIN CONTENT LAYOUT ================= */
     .about-section {
-      padding: 6rem 0;
+        padding: 5rem 0;
     }
 
-    .about-intro-wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .about-intro-wrapper h2 {
-      min-height: 1.2em; 
-      margin-bottom: 2rem;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-    }
-     .about-intro-wrapper h2 .typing-cursor {
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink {
-      from, to { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    .about-intro-wrapper p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #555;
-      margin-bottom: 1.5rem;
+    .about-heading-main {
+        text-align: center;
+        margin-bottom: 4rem;
     }
     
-    .mission-vision-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-      margin-top: 5rem;
-      text-align: left;
+    .about-heading-main h2 {
+        font-family: var(--font-kanit);
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+    
+    .about-heading-main p {
+        color: #666;
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+        font-family: var(--font-kanit);
     }
 
-    .mission-vision-item {
-      padding: 2.5rem;
-      border-radius: 20px;
-      background-color: var(--bg-medium);
-      border: 1px solid #e0e0e0;
+    /* --- ZIG-ZAG LAYOUT --- */
+    .content-block {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        margin-bottom: 5rem;
     }
 
-    .mission-vision-item .icon {
-      font-size: 2.5rem;
-      color: var(--primary-pink);
-      margin-bottom: 1.5rem;
+    .content-block:nth-child(even) {
+        flex-direction: row-reverse;
     }
 
-    .mission-vision-item h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-family: var(--font-body);
+    .content-text {
+        flex: 1;
+        padding: 1rem;
     }
 
-    /* --- Achievements Section --- */
+    .content-text h3 {
+        font-family: var(--font-special);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--primary-pink);
+        text-transform: uppercase;
+    }
+
+    .content-text p {
+        font-family: var(--font-kanit);
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 1rem;
+    }
+
+    .content-image {
+        flex: 1;
+        position: relative;
+    }
+
+    .content-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .content-image:hover img {
+        transform: scale(1.02);
+    }
+
+    /* --- Achievements (Counter) --- */
     .achievements-section {
-      background-color: #111; 
-      color: #fff; 
-      padding: 6rem 2rem;
-    }
-
-    .achievements-section h2 {
-        color: #fff; 
-        text-align: center;
-        margin-bottom: 3rem;
-        font-family: "Special Gothic Expanded One", sans-serif; 
-        font-size: clamp(2.5rem, 5vw, 3.5rem);
+      background-color: #f9f9f9; 
+      padding: 5rem 0;
+      text-align: center;
     }
 
     .achievements-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 3rem;
-      text-align: center;
-    }
-
-    @media (min-width: 992px) { 
-        .achievements-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
+      margin-top: 2rem;
     }
 
     .achievement-item .counter {
-      font-family: "Special Gothic Expanded One", sans-serif; 
-      font-size: clamp(3.5rem, 8vw, 5rem);
+      font-family: var(--font-special);
+      font-size: clamp(3rem, 6vw, 4rem);
       line-height: 1;
-      color: #E6559E; 
+      color: var(--primary-pink);
       margin-bottom: 0.5rem;
       display: inline-block;
     }
 
     .achievement-item h4 {
-      font-family: "Lexend Deca", sans-serif; 
-      font-size: 1.1rem;
-      margin-top: 0.5rem;
-      font-weight: 400;
-      color: #ccc;
-    }
-
-    /* --- Animation on Scroll --- */
-    .fade-in {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .fade-in.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* --- Values Section --- */
-    .values-section {
-        background-color: var(--bg-dark);
-        color: var(--text-light);
-        padding: 6rem 0;
-        margin-top: 0;
-    }
-    .values-section h2 {
-        color: var(--text-light);
-    }
-    .values-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2.5rem;
-        margin-top: 3rem;
-    }
-    .value-item {
-        text-align: center;
-        padding: 2rem;
-    }
-    .value-item .icon {
-        font-size: 3rem;
-        color: var(--primary-pink);
-        margin-bottom: 1.5rem;
-        transition: transform 0.3s ease;
-    }
-    .value-item:hover .icon {
-        transform: scale(1.1) rotate(-5deg);
-    }
-    .value-item h4 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-    }
-     .value-item p {
-        font-size: 0.95rem;
-        color: #ccc;
-        line-height: 1.7;
-    }
-
-    /* --- CTA Section --- */
-    .cta-section {
-        padding: 6rem 0;
-        background-color: #eee; /* Fallback */
-        background-image: url("about_footer_img.jpg"); /* You might want to update this path */
-        background-size: cover;
-        background-position: center;
-    }
-
-    .cta-box {
-      background-color: rgba(255, 255, 255, 0.85);
-      color: var(--text-dark);
-      padding: 4rem;
-      border-radius: 20px;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .cta-box h2 {
-        text-align: center;
-        color: var(--text-dark);
-        font-family: var(--font-body);
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-    }
-    .cta-box p {
-        max-width: 600px;
-        margin: 0 auto 2.5rem auto;
-        font-size: 1.1rem;
-    }
-    .cta-button {
       font-family: var(--font-body);
-      background-color: var(--bg-dark);
-      color: var(--primary-pink);
-      padding: 1rem 3rem;
-      border: none;
-      border-radius: 50px;
       font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+      color: #666;
       text-transform: uppercase;
       letter-spacing: 1px;
-      display: inline-block;
-    }
-    .cta-button:hover {
-      background-color: #333;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-
-    /* --- Footer --- */
-    .footer { background-color: var(--bg-dark); color: var(--text-light); padding: 4rem 2rem 2rem; }
-    .footer-container { display: grid; grid-template-columns: 2fr 2fr 2.5fr 1.5fr; gap: 2rem; max-width: 1200px; margin: 0 auto; text-align: left; }
-    .footer-column h3 { font-family: var(--font-special); font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 0.5rem; }
-    .footer-column h4 { font-size: 0.85rem; text-transform: uppercase; margin-bottom: 1.2rem; }
-    .footer-column p, .footer-column a { font-size: 0.85rem; color: #a0a0a0; transition: color 0.3s; }
-    .footer-column a:hover { color: var(--primary-pink); }
-    .social-icons { display: flex; gap: 1.2rem; margin-top: 1rem; }
-    .social-icons a { font-size: 1.3rem; }
-    .footer-bottom { border-top: 1px solid #333; padding-top: 2rem; margin-top: 3rem; color: #777; font-size: 0.9rem; text-align: center; }
-    
-    /* Contact Person in Footer */
-    .contact-person strong { color: #fff; display: block; margin-bottom: 0.2rem; }
+    /* ================= FOOTER (From Index) ================= */
+    .footer { background-color: var(--bg-dark); color: var(--text-light); padding: 5rem 1.5rem 2rem; }
+    .footer-container { display: grid; grid-template-columns: 1.5fr 2fr 2fr 1.5fr; gap: 3rem; max-width: 1200px; margin: 0 auto; text-align: left; }
+    .footer-column h3 { font-family: var(--font-special); font-size: clamp(1.8rem, 4vw, 2rem); margin-bottom: 1rem; }
+    .footer-column h4 { font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 1px; color: #666; }
+    .footer-column p, .footer-column a { font-size: 0.9rem; color: #b0b0b0; transition: color 0.3s; line-height: 1.8; }
+    .footer-column a:hover, .social-icons a:hover { color: var(--primary-pink); }
+    .footer-contact p a:hover, .footer-address p a:hover, .footer-newsletter p a:hover, .contact-person a:hover { color: var(--primary-pink); }
     .contact-person { margin-bottom: 1.2rem; }
+    .contact-person strong { color: #fff; display: block; margin-bottom: 0.2rem; }
+    .contact-person a { display: block; }
+    .social-icons { display: flex; gap: 1.2rem; margin-top: 1rem; }
+    .social-icons a { font-size: 1.2rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #333; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+    .social-icons a:hover { border-color: var(--primary-pink); background: var(--primary-pink); color: #fff; }
+    .footer-bottom { border-top: 1px solid #222; padding-top: 2rem; margin-top: 4rem; color: #555; font-size: 0.85rem; text-align: center; }
 
-    /* --- Responsive & Mobile Menu --- */
-    @media (max-width: 768px) {
-      .navbar-inner { padding: 0.5rem 1rem; }
+    /* ================= FLOATING SOCIAL ================= */
+    .mobile-line-fab {
+      position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px;
+      background-color: #00c300; color: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); z-index: 1000;
+    }
+    .desktop-floating-social { display: none; }
+    
+    @media (min-width: 993px) {
+      .mobile-line-fab { display: none; }
+      .desktop-floating-social {
+        display: flex; position: fixed; bottom: 30px; right: 30px;
+        z-index: 9999; flex-direction: column-reverse; align-items: center; gap: 15px;
+      }
+      .social-trigger {
+        width: 60px; height: 60px; border-radius: 50%; background: var(--text-dark);
+        color: white; border: none; font-size: 24px; cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;
+        transition: transform 0.3s;
+      }
+      .social-trigger:hover { transform: scale(1.1); }
+      .social-menu {
+        display: flex; flex-direction: column-reverse; gap: 12px; opacity: 0; pointer-events: none;
+        transform: translateY(20px); transition: all 0.3s ease; position: absolute; bottom: 70px; right: 0; align-items: center;
+      }
+      .desktop-floating-social.active .social-menu { opacity: 1; transform: translateY(0); pointer-events: auto; }
+      .social-trigger .close-icon { display: none; }
+      .desktop-floating-social.active .social-trigger .main-icon { display: none; }
+      .desktop-floating-social.active .social-trigger .close-icon { display: block; }
+      
+      .social-item {
+        width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 22px; transition: transform 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); background: #333;
+      }
+      .social-item:hover { transform: scale(1.1); }
+      .social-item.line-oa { background: #06C755; }
+      .social-item.fb { background: #1877F2; }
+      .social-item.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+      .social-item.tt { background: #000; }
+      
+      .social-item.highlight {
+        width: 65px; height: 65px; font-size: 30px; border: 3px solid #fff;
+        box-shadow: 0 0 15px rgba(6, 199, 85, 0.6); animation: wiggle 3s infinite; position: relative;
+      }
+      .social-item.highlight .tooltip {
+        position: absolute; right: 75px; background: #333; color: #fff; padding: 4px 8px;
+        border-radius: 4px; font-size: 12px; white-space: nowrap; opacity: 1; font-weight: bold;
+      }
+      .social-item.highlight .tooltip::after {
+          content: ''; position: absolute; right: -4px; top: 50%; transform: translateY(-50%);
+          border-left: 4px solid #333; border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+      }
+      @keyframes wiggle {
+        0%, 100% { transform: rotate(0deg); }
+        10% { transform: rotate(-10deg); }
+        20% { transform: rotate(10deg); }
+        30% { transform: rotate(-10deg); }
+        40% { transform: rotate(0deg); }
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .navbar-inner { padding: 0.5rem 1.5rem; }
       .nav-center, .portfolio-link { display: none; }
-      .nav-toggle { display: flex; cursor: pointer; padding: 0.5rem; font-size: 1.5rem; z-index: 1001;}
-      .footer-container { grid-template-columns: 1fr; text-align: center; }
-      .footer-column { margin-bottom: 2rem; }
-      .social-icons { justify-content: center;}
-      .cta-box { padding: 2rem; }
-    }
-    .mobile-overlay-menu {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-color: var(--bg-dark); color: var(--text-light);
-      z-index: 999; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-    }
-    .mobile-overlay-menu.active { transform: translateX(0); }
-    .mobile-overlay-menu .menu-items { text-align: center; }
-    .mobile-overlay-menu .menu-items li { margin: 1.5rem 0; }
-    .mobile-overlay-menu .menu-items a { 
-        font-size: clamp(1.5rem, 5vw, 2rem); 
-        font-family: var(--font-special); 
-        transition: color 0.3s ease;
-    }
-    .mobile-overlay-menu .menu-items a:hover { color: var(--primary-pink); }
-    .nav-toggle.is-active { color: var(--text-light); }
-    .nav-toggle.is-active i::before { content: '\f00d'; }
-
-    .navbar.mobile-menu-active .logo,
-    .navbar.mobile-menu-active .nav-toggle {
-        color: var(--text-light);
+      .nav-toggle { display: flex; }
+      .lang-toggle-container.desktop-only { display: none !important; }
+      .mobile-lang { display: flex; }
+      
+      .content-block, .content-block:nth-child(even) {
+          flex-direction: column;
+          gap: 2rem;
+      }
+      
+      .footer-container { grid-template-columns: 1fr; gap: 2.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- ================= NAVBAR ================= -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
       <div class="logo"><a href="index.html">Mind Maker</a></div>
       <ul class="nav-center">
         <li><a href="About.html" class="active">About</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="Service.html">Services</a></li>
         <li><a href="index.html#clients">Clients</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="portfolio-link"><a href="work exprerien.html">Portfolio</a></div>
+      <div class="portfolio-link">
+        <a href="portfolio.html">Portfolio</a>
+      </div>
       <div class="nav-toggle" id="nav-toggle">
         <i class="fas fa-bars"></i>
       </div>
     </div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
+  <!-- Desktop Language Toggle -->
+  <div class="lang-toggle-container desktop-only">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLanguage('th', this)">TH</button>
+      <span>|</span>
+      <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
+    </div>
+  </div>
+
+  <!-- Mobile Overlay Menu -->
   <div class="mobile-overlay-menu" id="mobile-overlay-menu">
-      <ul class="menu-items">
-          <li><a href="About.html">About</a></li>
-          <li><a href="Service.html">Services</a></li>
-          <li><a href="index.html#clients">Clients</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="work exprerien.html">Portfolio</a></li>
-      </ul>
+    <ul class="menu-items">
+      <li><a href="About.html">About</a></li>
+      <li><a href="Service.html">Services</a></li>
+      <li><a href="index.html#clients">Clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <div class="lang-toggle mobile-lang">
+        <button class="lang-btn active" onclick="setLanguage('th', this)">TH</button>
+        <span style="color: white;">|</span>
+        <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
+    </div>
   </div>
 
   <main>
-    <!-- Page Header Marquee -->
+    <!-- ================= PAGE HEADER (Marquee) ================= -->
     <header class="page-header">
         <div class="marquee-wrapper">
             <div class="marquee-content">
@@ -421,230 +397,269 @@
             </div>
         </div>
     </header>
-    
-    <!-- Main About Section (UPDATED CONTENT) -->
+
+    <!-- ================= MAIN ABOUT SECTION ================= -->
     <section class="about-section">
-        <div class="container">
+      <div class="container">
+        
+        <div class="about-heading-main">
+            <h2>Get to Know Mind Maker</h2>
+            <p>
+                <span data-lang-show="en" style="display:none">Creating memorable experiences through innovation and passion.</span>
+                <span data-lang-show="th">สร้างสรรค์ประสบการณ์ที่น่าจดจำด้วยนวัตกรรมและความหลงใหล</span>
+            </p>
+        </div>
 
-            <!-- Introduction with Updated Text -->
-            <div class="about-intro-wrapper">
-                <h2 id="about-heading"></h2>
+        <!-- BLOCK 1: Text Left / Image Right -->
+        <div class="content-block">
+            <div class="content-text">
+                <h3>Our Story</h3>
                 
-                <!-- NEW TEXT CONTENT HERE -->
-                <p>We are a passionate team dedicated to crafting events that leave lasting impressions — memorable, captivating, and full of meaningful stories. Every project we create is designed with care and attention to detail, ensuring that every element aligns with our clients’ vision from every angle. Our work reflects lifestyle, brand identity, and human connection seamlessly across both real and digital worlds. We deliver end-to-end experiences that connect people through both on-ground and online engagements.</p>
-                
-                <p>With over 8 years of experience as a full-service event marketing agency, we’ve developed a distinctive approach to bringing brand stories to life — whether through digital events that integrate technology with scale, format, and interaction, or live events that allow audiences to truly see, feel, taste, and experience a brand firsthand. From intimate C-suite gatherings and VIP customer experiences to large-scale conferences, keynotes, and public events, we deliver with flexibility, creativity, personalization, and seamless connectivity.</p>
-                
-                <p>Wherever your event takes place, it will leave a lasting impact — inspiring, engaging, and uniting people through shared experiences and a sense of belonging.</p>
+                <!-- ENGLISH CONTENT -->
+                <div data-lang-show="en" style="display:none">
+                    <p>
+                        We are a passionate team dedicated to crafting events that leave lasting impressions — memorable, captivating, and full of meaningful stories. Every project we create is designed with care and attention to detail, ensuring that every element aligns with our clients’ vision from every angle.
+                    </p>
+                    <p>
+                        Our work reflects lifestyle, brand identity, and human connection seamlessly across both real and digital worlds. We deliver end-to-end experiences that connect people through both on-ground and online engagements.
+                    </p>
+                </div>
+
+                <!-- THAI CONTENT -->
+                <div data-lang-show="th">
+                    <p>
+                        เราคือทีมงานที่มีความมุ่งมั่นและหลงใหลในการสร้างสรรค์อีเวนต์ที่เปี่ยมด้วยความหมาย — น่าจดจำ ดึงดูดใจ และสร้างความประทับใจอย่างยั่งยืน เราใส่ใจในทุกรายละเอียด เพื่อให้ทุกองค์ประกอบของงานสอดคล้องกับวิสัยทัศน์ของลูกค้าอย่างรอบด้าน
+                    </p>
+                    <p>
+                        งานของเราสะท้อนตัวตน ไลฟ์สไตล์ และอัตลักษณ์ของแบรนด์ พร้อมทั้งสร้างการเชื่อมโยงระหว่างผู้คนอย่างไร้รอยต่อ ทั้งในโลกจริงและดิจิทัล เราส่งมอบประสบการณ์แบบครบวงจรที่เชื่อมโยงผู้คนผ่านทั้งกิจกรรม On-ground และ Online
+                    </p>
+                </div>
             </div>
-
-            <!-- Mission and Vision Grid -->
-            <div class="mission-vision-grid">
-                <div class="mission-vision-item">
-                    <div class="icon"><i class="fas fa-rocket"></i></div>
-                    <h3>Our Mission</h3>
-                    <p>To design and execute flawless, innovative, and memorable events that connect brands with their audiences in meaningful ways. We strive to be a strategic partner, delivering measurable results and exceeding expectations on every project.</p>
-                </div>
-                <div class="mission-vision-item">
-                    <div class="icon"><i class="fas fa-bullseye"></i></div>
-                    <h3>Our Vision</h3>
-                    <p>To be Thailand's leading event organizer, recognized for our creative excellence, strategic approach, and unwavering commitment to client success. We aim to set new standards in the industry, one spectacular event at a time.</p>
-                </div>
+            <div class="content-image">
+                <img src="insight mm.jpg" alt="Mind Maker Team">
             </div>
         </div>
-    </section>
-    
-    <!-- Achievements Section -->
-    <section class="section achievements-section">
-        <div class="container">
-            <h2 class="fade-in">Our Achievements</h2>
-            <div class="achievements-grid">
-                <div class="achievement-item fade-in">
-                    <div class="counter" data-target="489">0</div>+
-                    <h4>Projects Completed</h4>
-                </div>
-                <div class="achievement-item fade-in">
-                    <div class="counter" data-target="98">0</div>%
-                    <h4>Happy Clients</h4>
-                </div>
-                <div class="achievement-item fade-in">
-                    <div class="counter" data-target="8">0</div>+
-                    <h4>Years of Experience</h4>
-                </div>
-                <div class="achievement-item fade-in">
-                    <div class="counter" data-target="999">0</div>+
-                    <h4>Cups of Coffee</h4>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Core Values Section -->
-    <section class="values-section">
-        <div class="container">
-            <h2>Our Core Values</h2>
-            <div class="values-grid">
-                <div class="value-item">
-                    <div class="icon"><i class="fas fa-lightbulb"></i></div>
-                    <h4>Creativity</h4>
-                    <p>We infuse imagination and originality into every detail, crafting unique concepts that capture attention and inspire action.</p>
+        <!-- BLOCK 2: Image Left / Text Right -->
+        <div class="content-block">
+            <div class="content-text">
+                <h3>Our Expertise</h3>
+
+                <!-- ENGLISH CONTENT -->
+                <div data-lang-show="en" style="display:none">
+                    <p>
+                        With over 8 years of experience as a full-service event marketing agency, we’ve developed a distinctive approach to bringing brand stories to life — whether through digital events that integrate technology with scale, format, and interaction, or live events that allow audiences to truly see, feel, taste, and experience a brand firsthand.
+                    </p>
+                    <p>
+                        From intimate C-suite gatherings and VIP customer experiences to large-scale conferences, keynotes, and public events, we deliver with flexibility, creativity, personalization, and seamless connectivity.
+                    </p>
                 </div>
-                <div class="value-item">
-                    <div class="icon"><i class="fas fa-handshake"></i></div>
-                    <h4>Partnership</h4>
-                    <p>We work collaboratively with our clients, building strong relationships based on trust, transparency, and shared goals.</p>
-                </div>
-                <div class="value-item">
-                    <div class="icon"><i class="fas fa-star"></i></div>
-                    <h4>Excellence</h4>
-                    <p>We are relentless in our pursuit of perfection, from initial planning to final execution, ensuring quality in everything we do.</p>
-                </div>
-                 <div class="value-item">
-                    <div class="icon"><i class="fas fa-cogs"></i></div>
-                    <h4>Innovation</h4>
-                    <p>We embrace new technologies and forward-thinking ideas to deliver fresh, modern, and impactful event solutions.</p>
+
+                <!-- THAI CONTENT -->
+                <div data-lang-show="th">
+                    <p>
+                        ด้วยประสบการณ์มากกว่า 8 ปีในฐานะเอเจนซี่อีเวนต์การตลาดแบบครบวงจร เราได้พัฒนาแนวทางเฉพาะในการถ่ายทอดเรื่องราวของแบรนด์ให้มีชีวิต — ไม่ว่าจะเป็นผ่านอีเวนต์ดิจิทัลที่ผสานเทคโนโลยี หรืออีเวนต์จริงที่เปิดโอกาสให้ผู้เข้าร่วมได้สัมผัสแบรนด์ด้วยตนเอง
+                    </p>
+                    <p>
+                        ตั้งแต่งานประชุมผู้บริหารระดับสูงและประสบการณ์ลูกค้าวีไอพี ไปจนถึงงานประชุมขนาดใหญ่และกิจกรรมสาธารณะ เราส่งมอบงานด้วยความยืดหยุ่น ความคิดสร้างสรรค์ และการเชื่อมต่อที่ราบรื่น เพื่อสร้างประสบการณ์ที่เป็นส่วนตัวและน่าประทับใจ
+                    </p>
                 </div>
             </div>
+            <div class="content-image">
+                <!-- Placeholder Image -->
+                <img src="https://placehold.co/600x400/ddd/222?text=Event+Production" alt="Event Production">
+            </div>
         </div>
+
+      </div>
     </section>
 
-    <!-- Call to Action Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-box">
-                <h2>Have a Project in Mind?</h2>
-                <p>Let's turn your vision into a remarkable reality. We're ready to listen, strategize, and create an experience that your audience will never forget.</p>
-                <a href="contact.html" class="cta-button">Let's Talk</a>
+    <!-- ================= ACHIEVEMENTS ================= -->
+    <section class="achievements-section">
+      <div class="container">
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="counter" data-target="489">0</div><span style="font-size:2rem;color:var(--primary-pink);">+</span>
+                <h4>Projects Completed</h4>
+            </div>
+            <div class="achievement-item">
+                <div class="counter" data-target="98">0</div><span style="font-size:2rem;color:var(--primary-pink);">%</span>
+                <h4>Happy Clients</h4>
+            </div>
+            <div class="achievement-item">
+                <div class="counter" data-target="8">0</div><span style="font-size:2rem;color:var(--primary-pink);">+</span>
+                <h4>Years Experience</h4>
+            </div>
+            <div class="achievement-item">
+                <div class="counter" data-target="999">0</div><span style="font-size:2rem;color:var(--primary-pink);">+</span>
+                <h4>Cups of Coffee</h4>
             </div>
         </div>
+      </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
+  <!-- ================= FOOTER (From Index) ================= -->
   <footer class="footer">
     <div class="footer-container">
-      <div class="footer-column footer-brand"><h3>MIND MAKER</h3><p>Innovative Event Organizer<br>in Thailand</p></div>
-      <div class="footer-column footer-contact"><h4>CONTACT PERSON</h4><p><strong>Kie</strong><br><a href="tel:0985479142">098-547-9142</a><br><a href="mailto:somprasong.s@mindmakermedia.com">somprasong.s@mindmakermedia.com</a></p><p style="margin-top:10px;"><strong>Tully</strong><br><a href="tel:0624426642">062-442-6642</a><br><a href="mailto:ramitawan.p@mindmakermedia.com">ramitawan.p@mindmakermedia.com</a></p></div>
-      <div class="footer-column footer-address"><h4>OFFICE</h4><p>Nice 2 Bldg., Ratchadaphisek Rd., Huai Khwang, Bangkok 10310</p><p><a href="https://maps.google.com" target="_blank">SEE ON MAP <i class="fas fa-arrow-right"></i></a></p></div>
-      <div class="footer-column footer-social"><h4>FOLLOW US</h4><div class="social-icons"><a href="https://facebook.com/mindmakerproduction" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com/mindmaker.official" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://tiktok.com/@mindmaker.official" target="_blank"><i class="fab fa-tiktok"></i></a><a href="https://line.me/ti/p/@mindmaker" target="_blank"><i class="fab fa-line"></i></a></div></div>
+      <div class="footer-column footer-brand">
+        <h3>MIND MAKER</h3>
+        <p>Innovative Event Organizer<br />in Thailand</p>
+        <div class="social-icons">
+          <a href="https://facebook.com/mindmakerproduction" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/mindmaker.official" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://tiktok.com/@mindmaker.official" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://line.me/ti/p/@mindmaker" target="_blank" title="Line" style="font-size: 1.35rem;"><i class="fab fa-line"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h4>CONTACT PERSON</h4>
+        <div class="contact-person">
+            <strong>Kie</strong>
+            <a href="tel:0985479142">098-547-9142</a>
+            <a href="mailto:somprasong.s@mindmakermedia.com">somprasong.s@mindmakermedia.com</a>
+        </div>
+        <div class="contact-person">
+            <strong>Tully</strong>
+            <a href="tel:0624426642">062-442-6642</a>
+            <a href="mailto:ramitawan.p@mindmakermedia.com">ramitawan.p@mindmakermedia.com</a>
+        </div>
+      </div>
+
+      <div class="footer-column footer-address">
+        <h4>OFFICE</h4>
+        <p>Nice 2 Bldg., Ratchadaphisek Rd., Huai Khwang, Bangkok 10310</p>
+        <p style="margin-top:1rem;"><a href="https://maps.google.com" target="_blank">SEE ON MAP <i class="fas fa-arrow-right"></i></a></p>
+      </div>
+      
+      <div class="footer-column footer-newsletter">
+          <h4>STAY UPDATED</h4>
+          <p><a href="index.html#contact">SIGN UP FOR NEWSLETTER <i class="fas fa-arrow-right"></i></a></p>
+      </div>
     </div>
-    <div class="footer-bottom">© <span id="currentYear"></span> Mind Maker. All rights reserved.</div>
+
+    <div class="footer-bottom">
+      © <span id="currentYear">2025</span> Mind Maker. All rights reserved.
+    </div>
   </footer>
 
+  <!-- ================= FLOATING SOCIAL ================= -->
+  <a href="https://line.me/ti/p/~yourlineid" target="_blank" class="mobile-line-fab" aria-label="Contact via Line">
+    <i class="fab fa-line"></i>
+  </a>
+
+  <div class="desktop-floating-social">
+    <div class="social-menu">
+      <a href="https://line.me/ti/p/~yourlineid" target="_blank" class="social-item line-oa highlight">
+          <i class="fab fa-line"></i>
+          <span class="tooltip">Chat Now!</span>
+      </a>
+      <a href="https://facebook.com/mindmakerproduction" target="_blank" class="social-item fb"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/mindmaker.official" target="_blank" class="social-item ig"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@mindmaker.official" target="_blank" class="social-item tt"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <button class="social-trigger" onclick="toggleDesktopSocial()">
+      <i class="fas fa-comment-dots main-icon"></i>
+      <i class="fas fa-times close-icon"></i>
+    </button>
+  </div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- Set current year in footer ---
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    /* LANGUAGE TOGGLE LOGIC */
+    function setLanguage(lang, btnElement) {
+        // 1. Switch Content
+        document.querySelectorAll('[data-lang-show]').forEach(el => {
+            el.style.display = el.getAttribute('data-lang-show') === lang ? '' : 'none';
+        });
 
-        // --- Navbar Scroll Logic ---
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (!navbar.classList.contains('mobile-menu-active')) {
-                navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
+        // 2. Sync Buttons
+        const targetText = lang.toUpperCase();
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.textContent.trim().toUpperCase() === targetText) {
+                btn.classList.add('active');
             }
         });
-        
-        // --- Mobile Menu Logic ---
-        const navToggle = document.getElementById('nav-toggle');
-        const mobileMenu = document.getElementById('mobile-overlay-menu');
-        if (navToggle && mobileMenu) {
-            function toggleMenu(show) {
-                const isActive = typeof show === 'boolean' ? show : !mobileMenu.classList.contains('active');
-                mobileMenu.classList.toggle('active', isActive);
-                navToggle.classList.toggle('is-active', isActive);
-                navbar.classList.toggle('mobile-menu-active', isActive); 
-                document.body.style.overflow = isActive ? 'hidden' : '';
-                
-                if (isActive) {
-                    navbar.classList.remove('navbar-scrolled');
-                } else {
-                    if (window.scrollY > 50) {
-                        navbar.classList.add('navbar-scrolled');
-                    }
-                }
-            }
+    }
 
-            navToggle.addEventListener('click', () => toggleMenu());
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => toggleMenu(false));
-            });
-        }
-
-        // --- Heading Typing Animation (adapted for About page) ---
-        const aboutHeading = document.getElementById('about-heading');
-        if (aboutHeading) {
-            const phrases = ["We Create Experiences.", "We Build Brands.", "We Are Mind Maker."];
-            aboutHeading.innerHTML = '<span class="typing-text"></span><span class="typing-cursor">|</span>';
-            const textSpan = aboutHeading.querySelector('.typing-text');
-            const typingSpeed = 100, erasingSpeed = 50, delayBetween = 2000;
-            let phraseIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-
-            function typeLoop() {
-                const currentPhrase = phrases[phraseIndex];
-                let timeout = isDeleting ? erasingSpeed : typingSpeed;
-
-                if (isDeleting) {
-                    textSpan.textContent = currentPhrase.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    textSpan.textContent = currentPhrase.substring(0, charIndex + 1);
-                    charIndex++;
-                }
-
-                if (!isDeleting && charIndex === currentPhrase.length) {
-                    isDeleting = true;
-                    timeout = delayBetween; // Wait before erasing
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length; // Move to the next phrase
-                    timeout = 500; // Wait before re-typing
-                }
-                setTimeout(typeLoop, timeout);
-            }
-            typeLoop();
-        }
+    /* DEFAULT LANGUAGE = THAI */
+    window.addEventListener('DOMContentLoaded', () => {
+        setLanguage('th'); // Set default to Thai
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- Intersection Observer for Animations ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    const counter = entry.target.querySelector('.counter');
-                    if (counter && !counter.classList.contains('animated')) {
-                        animateCounter(counter);
-                        counter.classList.add('animated');
-                    }
-                }
-            });
-        }, { threshold: 0.1 });
+    /* NAVBAR & MOBILE MENU */
+    const navbar = document.getElementById("navbar");
+    const navToggle = document.getElementById("nav-toggle");
+    const mobileMenu = document.getElementById("mobile-overlay-menu");
 
-        document.querySelectorAll('.achievement-item').forEach(el => {
-            observer.observe(el);
+    window.addEventListener("scroll", () => {
+      if (!navbar.classList.contains("mobile-menu-active")) {
+        navbar.classList.toggle("navbar-scrolled", window.scrollY > 50);
+      }
+    });
+
+    navToggle.addEventListener("click", () => {
+      const isActive = mobileMenu.classList.toggle("active");
+      navToggle.classList.toggle("is-active", isActive);
+      navbar.classList.toggle("mobile-menu-active", isActive);
+      document.body.style.overflow = isActive ? "hidden" : "";
+      if (isActive) navbar.classList.remove("navbar-scrolled");
+      else if (window.scrollY > 50) navbar.classList.add("navbar-scrolled");
+    });
+    
+    mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+            navToggle.classList.remove("is-active");
+            document.body.style.overflow = "";
         });
-        
-        // --- Counter Animation Function ---
-        function animateCounter(counter) {
-            const target = +counter.getAttribute('data-target');
-            const duration = 2000;
-            let start = 0;
-
-            const step = (timestamp) => {
-                if (!start) start = timestamp;
-                const progress = Math.min((timestamp - start) / duration, 1);
-                counter.textContent = Math.floor(progress * target);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
     });
+
+    /* FLOATING SOCIAL */
+    function toggleDesktopSocial() {
+      const container = document.querySelector('.desktop-floating-social');
+      if(container) container.classList.toggle('active');
+    }
+    document.addEventListener('click', function(event) {
+      const container = document.querySelector('.desktop-floating-social');
+      if (container && container.classList.contains('active')) {
+        if (!container.contains(event.target)) container.classList.remove('active');
+      }
+    });
+    setTimeout(() => {
+        const container = document.querySelector('.desktop-floating-social');
+        if(container && window.innerWidth > 992) container.classList.add('active');
+    }, 5000);
+
+    /* COUNTER ANIMATION */
+    const stats = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                animateCount(entry.target, target);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    stats.forEach(stat => observer.observe(stat));
+
+    function animateCount(el, target) {
+        let current = 0;
+        const inc = target / 50; 
+        const timer = setInterval(() => {
+            current += inc;
+            if(current >= target) {
+                clearInterval(timer);
+                current = target;
+            }
+            el.innerText = Math.floor(current);
+        }, 30);
+    }
+
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
   </script>
 </body>
-
 </html>

@@ -1063,6 +1063,7 @@
       background-color: var(--bg-dark);
       color: var(--text-light);
       overflow: hidden;
+      padding: 4rem 0; /* Add padding */
     }
 
     #clients h2 {
@@ -1080,10 +1081,11 @@
 
     .clients-logos {
       display: flex;
-      gap: 5rem;
+      gap: 4rem; /* Adjusted gap */
       width: fit-content;
-      animation: scroll-loop 30s linear infinite;
-      padding-left: 50%;
+      /* Changed from 60s to 100s for even slower animation */
+      animation: scroll-loop 100s linear infinite; 
+      padding-left: 0; /* Reset padding */
     }
 
     .clients-logos:hover {
@@ -1091,22 +1093,23 @@
     }
 
     .clients-logos img {
-      max-width: 140px;
-      height: 50px;
+      height: 60px; /* Fixed height for consistency */
+      width: auto; /* Maintain aspect ratio */
       object-fit: contain;
       flex-shrink: 0;
-      filter: brightness(0) invert(1);
-      opacity: 0.7;
-      transition: opacity 0.3s;
+      /* filter: brightness(0) invert(1);  REMOVED to show original colors */
+      opacity: 1; /* Changed from 0.8 to 1 for full visibility */
+      transition: opacity 0.3s, transform 0.3s;
     }
 
     .clients-logos img:hover {
-      opacity: 1;
+      opacity: 0.8; /* Slightly fade on hover effect instead */
+      transform: scale(1.1);
     }
 
     @keyframes scroll-loop {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      100% { transform: translateX(-50%); } /* Ensure seamless loop by duplicating content */
     }
 
     /* ================= CONTACT ================= */
@@ -1700,7 +1703,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-01'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-1">
-        <img src="01.jpg" alt="รายละเอียดรูปภาพ">
+        <img src="images/service/01.jpg" alt="รายละเอียดรูปภาพ">
        
       </div>
     </div>
@@ -1728,7 +1731,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-02'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-2">
-        <img src="02.jpg" alt="รายละเอียดรูปภาพ">
+        <img src="images/service/02.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1753,7 +1756,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-03'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-3">
-       <img src="03.jpg" alt="รายละเอียดรูปภาพ">
+       <img src="images/service/03.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1781,7 +1784,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-04'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-4">
-       <img src="04.jpg" alt="รายละเอียดรูปภาพ">
+       <img src="images/service/04.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1806,7 +1809,7 @@
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-05'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-5">
-       <img src="05.jpg" alt="รายละเอียดรูปภาพ">
+       <img src="images/service/05.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -1833,7 +1836,7 @@ Designed to spark engagement, connection, and lasting impressions.
   <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-06'">
     <div class="service-gallery-container">
       <div class="service-gallery" id="gallery-6">
-        <img src="06.jpg" alt="รายละเอียดรูปภาพ">
+        <img src="images/service/06.jpg" alt="รายละเอียดรูปภาพ">
       </div>
     </div>
     <div class="card-header">
@@ -2223,17 +2226,55 @@ document.addEventListener('click', function(event) {
 
     /* =============== CLIENT LOGOS & YEAR =============== */
     const clientsData = [
-      { alt: "Client 1", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+A" },
-      { alt: "Client 2", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+B" },
-      { alt: "Client 3", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+C" },
-      { alt: "Client 4", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+D" },
-      { alt: "Client 5", src: "https://placehold.co/150x60/CCCCCC/777777?text=Client+E" },
+      { alt: "Comfort", src: "images/Logo client/Comfort.png" },
+      { alt: "Earth", src: "images/Logo client/earth_logo.png" },
+      { alt: "DSK", src: "images/Logo client/dsk.jpg" },
+      { alt: "EXIM Bank", src: "images/Logo client/EXIM_Bank_Logo.png" },
+      { alt: "Beiersdorf", src: "images/Logo client/Beiersdorf-Logo.png" },
+      { alt: "BJC", src: "images/Logo client/BJC.png" },
+      { alt: "AIS", src: "images/Logo client/Ais.jpg" },
+      { alt: "Calpis Lacto", src: "images/Logo client/Calpis-Lacto.jpg" },
+      { alt: "Amore Pacific", src: "images/Logo client/Amore Pacific.png" },
+      { alt: "Lazada", src: "images/Logo client/Lazada.jpg" },
+      { alt: "Lemon8", src: "images/Logo client/lemon8.png" },
+      { alt: "Bangkok Bank", src: "images/Logo client/Logo_Bangkok_Bank_Public_Company_Limited.svg" },
+      { alt: "EGAT", src: "images/Logo client/Logo_of_the_Electricity_Generating_Authority_of_Thailand.svg" },
+      { alt: "M-150", src: "images/Logo client/logo-M-150.jpg" },
+      { alt: "Magnum", src: "images/Logo client/Magnum_logo.svg" },
+      { alt: "Mondahmin", src: "images/Logo client/Mondahmin.jpg" },
+      { alt: "Nivea", src: "images/Logo client/Nivea-logo.jpg" },
+      { alt: "Peppo Dopa", src: "images/Logo client/Peppo Dopa.png" },
+      { alt: "Peptein", src: "images/Logo client/Peptein.jpg" },
+      { alt: "Petchyindee", src: "images/Logo client/Petchyindee.jpg" },
+      { alt: "Photo Share", src: "images/Logo client/photo-share.jpg" },
+      { alt: "Plan B (JPG)", src: "images/Logo client/Plan B.jpg" },
+      { alt: "Plan B (PNG)", src: "images/Logo client/Plan B.png" },
+      { alt: "Roctec Global", src: "images/Logo client/Roctec-Global.png" },
+      { alt: "Supalai", src: "images/Logo client/Supalai.jpg" },
+      { alt: "Thai Privilege", src: "images/Logo client/Thai privilege.jpg" },
+      { alt: "Tropicana", src: "images/Logo client/Tropicana.png" },
+      { alt: "Unilever", src: "images/Logo client/Unilever.jpg" },
+      { alt: "UOB", src: "images/Logo client/UOB.jpg" },
+      { alt: "White Line Group", src: "images/Logo client/White Line GROUP.jpg" },
+      { alt: "MEA", src: "images/Logo client/ตราการไฟฟ้านครหลวง.svg" },
+      { alt: "DG", src: "images/Logo client/DG.jpg" },
+      { alt: "Fuji Film", src: "images/Logo client/fuji-film-logo.jpg" },
+      { alt: "Gala Camile", src: "images/Logo client/GalaCamile.jpg" },
+      { alt: "Images", src: "images/Logo client/images.png" },
+      { alt: "Insight", src: "images/Logo client/Insight.jpg" },
+      { alt: "Kidari Studio", src: "images/Logo client/Kidari Studio.webp" },
+      // Duplicate for smoother looping if list is short, but logic handles it below
     ];
+    
     const clientsContainer = document.getElementById("clients-logos-container");
     if (clientsContainer) {
+      // Create HTML for logos
       const clientLogosHTML = clientsData.map((client) => `<img src="${client.src}" alt="${client.alt}" />`).join("");
-      clientsContainer.innerHTML = clientLogosHTML + clientLogosHTML;
+      
+      // Duplicate logos 4 times to ensure smooth scrolling on wide screens
+      clientsContainer.innerHTML = clientLogosHTML + clientLogosHTML + clientLogosHTML + clientLogosHTML;
     }
+    
     const yearSpan = document.getElementById("currentYear");
     if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
@@ -2497,4 +2538,3 @@ document.addEventListener('click', function(event) {
 </script>
 </body>
 </html>
-

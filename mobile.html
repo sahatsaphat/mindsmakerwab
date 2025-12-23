@@ -1,250 +1,122 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infographic: ผลวิเคราะห์ความเข้าใจเรื่องสารละลายอิเล็กโทรไลต์</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Color Palette: Brilliant Blues (#004AAD, #0062D5, #4392F1, #8CB9F8, #C4DFFE) -->
-    <!-- Narrative Plan: 
-        1. Overview: Highlight the percentage of students with misconceptions.
-        2. Student Grouping: Show the ratio of correct vs. incorrect understanding and identify key problem groups.
-        3. Deep Dive into Misconceptions: Analyze the three main error cases with bar charts and explanations.
-        4. Academic Integrity Concern: Visualize the evidence of copying using a flowchart-style diagram.
-        5. Recommendations: Provide actionable steps for the teacher.
-    -->
-    <!-- Visualization Choices:
-        - Overview Stat -> Single Big Number -> Goal: Inform -> Implemented with large text.
-        - Student Grouping -> Donut Chart -> Goal: Compare/Composition -> Implemented with Chart.js. Confirmed NO SVG.
-        - Misconception 1 (Molecular) -> Bar Chart -> Goal: Compare -> Implemented with Chart.js. Confirmed NO SVG.
-        - Misconception 2 (Fluorine) -> Bar Chart -> Goal: Compare -> Implemented with Chart.js. Confirmed NO SVG.
-        - Misconception 3 (Base) -> Single Big Number/Icon -> Goal: Inform -> Implemented with text/Unicode.
-        - Copying Evidence -> Flow Chart -> Goal: Organize/Show Relationships -> Implemented with structured HTML/CSS with Tailwind. Confirmed NO SVG, NO Mermaid JS.
-        - Recommendations -> List -> Goal: Organize -> Implemented with HTML <ul>.
-    -->
-    <!-- NEITHER Mermaid JS NOR SVG were used anywhere in the output. -->
-    <style>
-        body {
-            font-family: 'Sarabun', sans-serif;
-            background-color: #f0f4f8; /* A very light blue-gray from the palette family */
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 450px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 320px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-        .card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            padding: 1.5rem;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
-        }
-    </style>
-</head>
-<body class="text-gray-800">
 
-    <div class="container mx-auto p-4 md:p-8">
+images/Activation Booth/Comfort Activation Booth/01.jpg 
+images/Activation Booth/Comfort Activation Booth/02.jpg 
+images/Activation Booth/Comfort Activation Booth/03.jpg
+images/Activation Booth/Comfort Activation Booth/04.jpg 
 
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#004AAD]">ผลวิเคราะห์ความเข้าใจ</h1>
-            <p class="text-xl md:text-2xl text-[#0062D5] mt-2">เรื่อง: สารละลายอิเล็กโทรไลต์ (นักเรียน ม.4/1)</p>
-        </header>
+images/Activation Booth/Jmee Shop Pop up Booth/06.jpg 
+images/Activation Booth/Jmee Shop Pop up Booth/01.jpg 
+images/Activation Booth/Jmee Shop Pop up Booth/02.jpg 
+images/Activation Booth/Jmee Shop Pop up Booth/03.jpg 
+images/Activation Booth/Jmee Shop Pop up Booth/04.jpg 
+images/Activation Booth/Jmee Shop Pop up Booth/05.jpg
 
-        <section id="overview" class="mb-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="card text-center">
-                    <h2 class="text-2xl font-bold text-[#004AAD] mb-2">ภาพรวมความเข้าใจของนักเรียน</h2>
-                    <p class="text-lg mb-4 text-gray-600">จากกลุ่มตัวอย่างนักเรียนที่วิเคราะห์ พบว่ามีนักเรียนจำนวนมากที่ยังมีความเข้าใจคลาดเคลื่อนในประเด็นสำคัญ</p>
-                    <div class="chart-container">
-                        <canvas id="overviewChart"></canvas>
-                    </div>
-                </div>
-                <div class="card text-center bg-[#004AAD] text-white">
-                    <h2 class="text-2xl font-bold mb-2">ประเด็นสำคัญที่พบ</h2>
-                     <p class="text-6xl md:text-8xl font-bold my-6">45%</p>
-                    <p class="text-xl">ของนักเรียนที่วิเคราะห์ มีความเข้าใจคลาดเคลื่อนอย่างน้อย 1 ประเด็น</p>
-                </div>
-            </div>
-        </section>
+images/Activation Booth/Peptein Plus Activation Booth/03.jpg
+ images/Activation Booth/Peptein Plus Activation Booth/04.jpg 
+ images/Activation Booth/Peptein Plus Activation Booth/01.jpg 
+ images/Activation Booth/Peptein Plus Activation Booth/02.jpg
 
-        <section id="misconceptions" class="mb-12">
-            <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-8">เจาะลึก 3 ความเข้าใจที่คลาดเคลื่อนหลัก</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="card">
-                    <h3 class="text-xl font-bold text-[#0062D5] mb-3">กรณีที่ 1: สารประกอบโมเลกุล</h3>
-                    <div class="chart-container h-64">
-                        <canvas id="molecularChart"></canvas>
-                    </div>
-                    <p class="mt-4 text-gray-700">นักเรียนสับสนระหว่าง **"การละลาย"** กับ **"การแตกตัวเป็นไอออน"** โดยเข้าใจผิดว่าสารโมเลกุลที่ละลายน้ำได้ (เช่น น้ำตาล, แอลกอฮอล์) เป็นสารอิเล็กโทรไลต์</p>
-                    <p class="mt-2 text-sm text-gray-500"><strong>คำอธิบายที่ถูกต้อง:</strong> สารเหล่านี้เมื่อละลายน้ำจะกระจายตัวเป็นโมเลกุล ไม่ได้แตกตัวเป็นไอออน จึงไม่นำไฟฟ้า</p>
-                </div>
 
-                <div class="card">
-                    <h3 class="text-xl font-bold text-[#0062D5] mb-3">กรณีที่ 2: ก๊าซฟลูออรีน ($F_2$)</h3>
-                    <div class="chart-container h-64">
-                        <canvas id="fluorineChart"></canvas>
-                    </div>
-                    <p class="mt-4 text-gray-700">นักเรียนจำนวนหนึ่งตอบผิดว่า $F_2$ เป็นสารอิเล็กโทรไลต์ ซึ่งอาจเกิดจากความสับสนกับฟลูออไรด์ไอออน ($F^−$) หรือกรดไฮโดรฟลูออริก (HF)</p>
-                     <p class="mt-2 text-sm text-gray-500"><strong>คำอธิบายที่ถูกต้อง:</strong> $F_2$ เป็นโมเลกุลไม่มีขั้ว ละลายน้ำได้น้อยมากและไม่แตกตัวเป็นไอออน</p>
-                </div>
 
-                <div class="card">
-                    <h3 class="text-xl font-bold text-[#0062D5] mb-3">กรณีที่ 3: เบสแก่ ($Ca(OH)_2$)</h3>
-                    <div class="flex flex-col items-center justify-center h-full text-center">
-                         <p class="text-7xl font-bold text-[#4392F1]">1</p>
-                         <p class="text-2xl font-bold text-gray-700 mt-2">นักเรียน</p>
-                         <p class="mt-4 text-gray-700">มีความเข้าใจคลาดเคลื่อนว่า $Ca(OH)_2$ ซึ่งเป็นเบสแก่ จัดเป็นสารนอนอิเล็กโทรไลต์</p>
-                         <p class="mt-2 text-sm text-gray-500"><strong>คำอธิบายที่ถูกต้อง:</strong> เบสแก่เป็นสารประกอบไอออนิกที่แตกตัวในน้ำได้ดีมาก จึงเป็นสารอิเล็กโทรไลต์แก่</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+ images/coporate event/Exim Bank - CG DAY/03.jpg 
+ images/coporate event/Exim Bank - CG DAY/04.jpg
+images/coporate event/Exim Bank - CG DAY/01.jpg
+images/coporate event/Exim Bank - CG DAY/02.jpg
 
-        <section id="copying" class="mb-12">
-             <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-8">ประเด็นน่ากังวล: การลอกคำตอบ</h2>
-             <div class="card max-w-4xl mx-auto">
-                <p class="text-center text-gray-600 mb-6">พบหลักฐานที่บ่งชี้ว่าอาจมีการลอกคำตอบกันใน 2 กลุ่ม เนื่องจากมีรูปแบบการตอบที่ผิดพลาดเหมือนกันอย่างมีนัยสำคัญ</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-                    
-                    <div class="border-2 border-[#8CB9F8] rounded-lg p-4">
-                        <h4 class="font-bold text-lg text-[#0062D5]">กลุ่มที่ 1 (2 คน)</h4>
-                        <div class="text-5xl my-3 text-[#4392F1]">↓</div>
-                        <p class="bg-[#C4DFFE] text-[#004AAD] p-3 rounded-md">ตอบผิดว่าสารโมเลกุล ($C_{12}H_{22}O_{11}$, $C_{6}H_{12}O_{6}$, $C_{2}H_{5}OH$) เป็นสารอิเล็กโทรไลต์ทั้งหมด และใช้คำอธิบายที่เหมือนกัน</p>
-                    </div>
+images/coporate event/Krungsri Internal Event/04.jpg
+ images/coporate event/Krungsri Internal Event/01.jpg
+ images/coporate event/Krungsri Internal Event/02.jpg 
+ images/coporate event/Krungsri Internal Event/03.jpg
 
-                    <div class="border-2 border-[#8CB9F8] rounded-lg p-4">
-                        <h4 class="font-bold text-lg text-[#0062D5]">กลุ่มที่ 2 (5 คน)</h4>
-                        <div class="text-5xl my-3 text-[#4392F1]">↓</div>
-                        <p class="bg-[#C4DFFE] text-[#004AAD] p-3 rounded-md">ตอบผิดเหมือนกันว่า $F_2$ เป็นสารอิเล็กโทรไลต์</p>
-                    </div>
-                </div>
-             </div>
-        </section>
-        
-        <section id="recommendations">
-            <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-8">ข้อเสนอแนะเพื่อพัฒนาการเรียนรู้</h2>
-            <div class="max-w-3xl mx-auto">
-                <ul class="space-y-4">
-                    <li class="card flex items-start">
-                        <span class="text-2xl mr-4 text-[#0062D5]">💡</span>
-                        <div>
-                            <h4 class="font-bold text-lg">ทบทวนความแตกต่าง</h4>
-                            <p class="text-gray-600">จัดกิจกรรมเพื่อทบทวนความแตกต่างระหว่าง **"การละลาย"** (โมเลกุลกระจายตัว) และ **"การแตกตัวเป็นไอออน"** (การสร้างประจุ) อย่างชัดเจน</p>
-                        </div>
-                    </li>
-                    <li class="card flex items-start">
-                        <span class="text-2xl mr-4 text-[#0062D5]">🧪</span>
-                        <div>
-                            <h4 class="font-bold text-lg">เน้นการจำแนกประเภทสาร</h4>
-                            <p class="text-gray-600">สอนให้นักเรียนจำแนกประเภทของสารก่อน (ไอออนิก, โคเวเลนต์, กรด, เบส) ซึ่งเป็นพื้นฐานสำคัญในการทำนายการนำไฟฟ้า</p>
-                        </div>
-                    </li>
-                    <li class="card flex items-start">
-                        <span class="text-2xl mr-4 text-[#0062D5]">💻</span>
-                        <div>
-                            <h4 class="font-bold text-lg">ใช้สื่อการสอนที่เห็นภาพ</h4>
-                            <p class="text-gray-600">ใช้การทดลองเสมือนจริง (Virtual Lab) หรือวิดีโอแอนิเมชัน เพื่อแสดงภาพการเคลื่อนที่ของโมเลกุลและไอออนในสารละลาย</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
+ images/coporate event/MEA Internal Event/04.jpg
+ images/coporate event/MEA Internal Event/01.jpg 
+ images/coporate event/MEA Internal Event/02.jpg
+images/coporate event/MEA Internal Event/03.jpg
 
-    </div>
+images/coporate event/Nivea Disributor Seminar/04.jpg
+ images/coporate event/Nivea Disributor Seminar/01.jpg
+ images/coporate event/Nivea Disributor Seminar/02.jpg
+ images/coporate event/Nivea Disributor Seminar/03.jpg
 
-    <script>
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            } else {
-                return label;
-            }
-        };
+images/coporate event/Thailand Privilege  GSSA Award/03.jpg
+images/coporate event/Thailand Privilege  GSSA Award/01.jpg
+images/coporate event/Thailand Privilege  GSSA Award/02.jpg
 
-        const defaultChartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                }
-            }
-        };
 
-        const overviewData = {
-            labels: ['เข้าใจถูกต้อง (55%)', 'มีความเข้าใจคลาดเคลื่อน (45%)'],
-            datasets: [{
-                label: 'จำนวนนักเรียน',
-                data: [11, 9],
-                backgroundColor: ['#4392F1', '#C4DFFE'],
-                borderColor: ['#0062D5', '#8CB9F8'],
-                borderWidth: 1
-            }]
-        };
-        new Chart(document.getElementById('overviewChart'), {
-            type: 'doughnut',
-            data: overviewData,
-            options: defaultChartOptions
-        });
 
-        const molecularData = {
-            labels: ['ตอบผิด', 'ตอบถูก'],
-            datasets: [{
-                label: 'จำนวนนักเรียน',
-                data: [4, 16],
-                backgroundColor: ['#FF6384', '#8CB9F8'],
-                borderColor: ['#FF6384', '#4392F1'],
-                borderWidth: 1
-            }]
-        };
-        new Chart(document.getElementById('molecularChart'), {
-            type: 'bar',
-            data: molecularData,
-            options: { ...defaultChartOptions, indexAxis: 'y' }
-        });
+images/Soft Opening/DV8 - Aroi Tour Long/04.jpg 
+images/Soft Opening/DV8 - Aroi Tour Long/01.jpg 
+images/Soft Opening/DV8 - Aroi Tour Long/02.jpg 
+images/Soft Opening/DV8 - Aroi Tour Long/03.jpg
 
-        const fluorineData = {
-            labels: ['ตอบผิด', 'ตอบถูก'],
-            datasets: [{
-                label: 'จำนวนนักเรียน',
-                data: [5, 15],
-                backgroundColor: ['#FF6384', '#8CB9F8'],
-                borderColor: ['#FF6384', '#4392F1'],
-                borderWidth: 1
-            }]
-        };
-        new Chart(document.getElementById('fluorineChart'), {
-            type: 'bar',
-            data: fluorineData,
-            options: { ...defaultChartOptions, indexAxis: 'y' }
-        });
-    </script>
+images/Soft Opening/Lemon8 - Thank you Creator/03.jpg
+images/Soft Opening/Lemon8 - Thank you Creator/01.jpg
+images/Soft Opening/Lemon8 - Thank you Creator/02.jpg
 
-</body>
-</html>
+images/Soft Opening/Sulwhasoo Activating Serum Soft Launch/04.jpg 
+images/Soft Opening/Sulwhasoo Activating Serum Soft Launch/01.jpg
+images/Soft Opening/Sulwhasoo Activating Serum Soft Launch/02.jpg
+images/Soft Opening/Sulwhasoo Activating Serum Soft Launch/03.jpg
+
+
+
+images/Staff Party Event/Amore Pacific New Year Staff Party/04.jpg
+images/Staff Party Event/Amore Pacific New Year Staff Party/01.jpg
+images/Staff Party Event/Amore Pacific New Year Staff Party/02.jpg
+images/Staff Party Event/Amore Pacific New Year Staff Party/03.jpg
+
+images/Staff Party Event/Magnum Awayday/05.jpg
+images/Staff Party Event/Magnum Awayday/01.jpg
+images/Staff Party Event/Magnum Awayday/02.jpg
+images/Staff Party Event/Magnum Awayday/03.jpg 
+images/Staff Party Event/Magnum Awayday/04.jpg
+
+images/Staff Party Event/STIC Staff Party/02.jpg 
+images/Staff Party Event/STIC Staff Party/03.jpg
+images/Staff Party Event/STIC Staff Party/04.jpg
+images/Staff Party Event/STIC Staff Party/01.jpg
+
+images/Logo client/Ais.jpg
+
+
+
+
+
+
+
+
+
+images/Logo client/Magnum_logo.svg 
+images/Logo client/Nivea-logo.jpg 
+images/Logo client/Peptein.jpg 
+images/Logo client/Petchyindee.jpg 
+images/Logo client/photo-share.jpg 
+images/Logo client/Plan B.jpg 
+images/Logo client/Roctec-Global.png 
+images/Logo client/sec01_img_01.jpg 
+images/Logo client/Supalai.jpg 
+images/Logo client/Thai privilege.jpg 
+images/Logo client/Tropicana.png 
+images/Logo client/Unilever.jpg 
+images/Logo client/UOB.jpg 
+images/Logo client/White Line GROUP.jpg 
+images/Logo client/ตราการไฟฟ้านครหลวง.svg 
+images/Logo client/fuji-film-logo.jpg 
+images/Logo client/images.png 
+images/Logo client/images-2.png 
+images/Logo client/images-3.jpg 
+images/Logo client/images-3.png 
+images/Logo client/Insight.jpg 
+images/Logo client/Kidari Studio.webp 
+images/Logo client/Lazada.jpg 
+images/Logo client/lemon8.png 
+images/Logo client/Logo_Bangkok_Bank_Public_Company_Limited.svg 
+images/Logo client/Logo_of_the_Electricity_Generating_Authority_of_Thailand.svg 
+images/Logo client/DG.jpg 
+images/Logo client/logo-M-150.jpg
+
+
+
+
+
+images/Logo client/Lazada.jpg images/Logo client/lemon8.png images/Logo client/Logo_Bangkok_Bank_Public_Company_Limited.svg images/Logo client/Logo_of_the_Electricity_Generating_Authority_of_Thailand.svg images/Logo client/logo-M-150.jpg images/Logo client/Magnum_logo.svg images/Logo client/Mondahmin.jpg images/Logo client/Nivea-logo.jpg images/Logo client/Peppo Dopa.png images/Logo client/Peptein.jpg images/Logo client/Petchyindee.jpg images/Logo client/photo-share.jpg images/Logo client/Plan B.jpg images/Logo client/Plan B.png images/Logo client/Roctec-Global.png images/Logo client/Supalai.jpg images/Logo client/Thai privilege.jpg images/Logo client/Tropicana.png images/Logo client/Unilever.jpg images/Logo client/UOB.jpg images/Logo client/White Line GROUP.jpg images/Logo client/ตราการไฟฟ้านครหลวง.svg images/Logo client/Ais.jpg images/Logo client/Amore Pacific.png images/Logo client/Beiersdorf-Logo.png images/Logo client/BJC.png images/Logo client/Calpis-Lacto.jpg images/Logo client/Comfort.png images/Logo client/DG.jpg images/Logo client/dsk.jpg images/Logo client/earth_logo.png images/Logo client/EXIM_Bank_Logo.png images/Logo client/fuji-film-logo.jpg images/Logo client/GalaCamile.jpg images/Logo client/images.png images/Logo client/Insight.jpg images/Logo client/Kidari Studio.webp
