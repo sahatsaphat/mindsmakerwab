@@ -255,7 +255,7 @@
     .hero-section { 
         background-color: #ffffff; 
         background-color: #ffffff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.09'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
- background-repeat: repeat; background-position: center center; background-size: clamp(60px, 8vw, 100px); color: #000; min-height: 100vh; padding: 6rem 1rem 4rem; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
+  background-repeat: repeat; background-position: center center; background-size: clamp(60px, 8vw, 100px); color: #000; min-height: 100vh; padding: 6rem 1rem 4rem; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
          background-repeat: repeat; 
         background-position: center center; 
         background-size: clamp(60px, 8vw, 100px); 
@@ -655,15 +655,15 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.04);
       border: 1px solid rgba(0,0,0,0.03);
       transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
+      /* removed cursor: pointer here because it will be handled inline for clickable cards */
     }
 
     .expertise-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 25px 50px rgba(0,0,0,0.08);
     }
-    
-    /* When card is hovered, target the arrow link inside it */
+
+    /* Only target arrow-link inside clickable cards (if any) or generally */
     .expertise-card:hover .arrow-link {
       background-color: var(--text-dark);
       border-color: var(--text-dark);
@@ -769,11 +769,7 @@
       align-self: flex-end;
       color: #aaa;
       cursor: pointer;
-      /* Remove pointer-events: none if it was there, to keep it clickable if needed, 
-         but since the whole card is clickable via JS, this is fine */
     }
-
-    /* Removed standalone .arrow-link:hover as it is handled by card hover now */
 
     /* ================= ABOUT (UPDATED WITH AUTO-SLIDER) ================= */
     #about {
@@ -1060,8 +1056,8 @@
 
     /* ================= CLIENTS MARQUEE ================= */
     #clients {
-      background-color: var(--bg-dark);
-      color: var(--text-light);
+      background-color: #ffffff; /* White background */
+      color: var(--text-dark); /* Dark text */
       overflow: hidden;
       padding: 4rem 0; /* Add padding */
     }
@@ -1075,14 +1071,14 @@
       overflow: hidden;
       position: relative;
       width: 100%;
-      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      /* Removed masks to show full logos clearly on white bg */
     }
 
     .clients-logos {
       display: flex;
-      gap: 4rem; /* Adjusted gap */
+      gap: 5rem; /* Increased gap for better spacing with larger logos */
       width: fit-content;
+      align-items: center; /* Center align vertically */
       /* Changed from 60s to 100s for even slower animation */
       animation: scroll-loop 100s linear infinite; 
       padding-left: 0; /* Reset padding */
@@ -1093,7 +1089,7 @@
     }
 
     .clients-logos img {
-      height: 60px; /* Fixed height for consistency */
+      height: 70px; /* Increased default height */
       width: auto; /* Maintain aspect ratio */
       object-fit: contain;
       flex-shrink: 0;
@@ -1101,6 +1097,11 @@
       opacity: 1; /* Changed from 0.8 to 1 for full visibility */
       transition: opacity 0.3s, transform 0.3s;
     }
+
+    /* Specific sizing for logos that might look too small/large */
+    .clients-logos img.logo-large { height: 90px; }
+    .clients-logos img.logo-medium { height: 80px; }
+    .clients-logos img.logo-small { height: 50px; } /* For naturally tall logos */
 
     .clients-logos img:hover {
       opacity: 0.8; /* Slightly fade on hover effect instead */
@@ -1471,119 +1472,6 @@
   }
 }
 
-/* ================= MODAL STYLES (NEW) ================= */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  background-color: rgba(0,0,0,0.9);
-  padding: 40px 20px;
-  backdrop-filter: blur(5px);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 20px auto;
-  padding: 2rem;
-  border-radius: 16px;
-  max-width: 1000px;
-  position: relative;
-  animation: fadeIn 0.4s ease-in-out;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.modal-title {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.8rem;
-  color: var(--text-dark);
-  font-family: var(--font-kanit);
-  border-bottom: 1px solid #eee;
-  padding-bottom: 1rem;
-}
-
-/* --- UPDATE: Change .modal-gallery to be a wrapper --- */
-.modal-gallery {
-  display: block; /* Changed from grid to block to stack sections */
-}
-
-/* --- NEW: Inner Grid for Images --- */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
-  margin-bottom: 2.5rem; /* Space after each project grid */
-}
-
-.gallery-grid img {
-  width: 100%;
-  height: 250px; /* Fixed height for consistency */
-  border-radius: 8px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  background: #f0f0f0;
-}
-
-.gallery-grid img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* --- NEW: Project Subtitle Style --- */
-.project-subtitle {
-  font-family: var(--font-kanit);
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: #333;
-  border-left: 5px solid var(--primary-pink);
-  padding-left: 10px;
-  line-height: 1.2;
-}
-
-
-.close-btn {
-  color: #888;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #f5f5f5;
-  font-size: 24px;
-  font-weight: bold;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.close-btn:hover {
-  background: var(--primary-pink);
-  color: #fff;
-  transform: rotate(90deg);
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-@media (max-width: 768px) {
-  .modal { padding: 10px; }
-  .modal-content { padding: 1.5rem 1rem; margin: 10px auto; }
-  .modal-title { font-size: 1.4rem; }
-  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-  .gallery-grid img { height: 150px; }
-}
-
   </style>
 </head>
 <body>
@@ -1595,7 +1483,7 @@
 
       <ul class="nav-center">
         <li><a href="About.html">About</a></li>
-        <li><a href="#Service">Services</a></li>
+        <li><a href="Service.html">Services</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -1623,7 +1511,7 @@
  <div class="mobile-overlay-menu" id="mobile-overlay-menu">
     <ul class="menu-items">
       <li><a href="About.html">About</a></li>
-      <li><a href="#Service">Services</a></li>
+      <li><a href="Service.html">Services</a></li>
       <li><a href="#clients">Clients</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
@@ -1832,22 +1720,22 @@ Designed to spark engagement, connection, and lasting impressions.
     <a href="portfolio.html?cat=service-05" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Card 6: Digital Margeting -->
-  <div class="expertise-card" style="cursor: pointer;" onclick="window.location.href='portfolio.html?cat=service-06'">
-    <div class="service-gallery-container">
-      <div class="service-gallery" id="gallery-6">
+  <!-- Card 6: Digital Marketing -->
+  <div class="expertise-card"> <!-- Removed onclick and cursor style -->
+      <div class="service-gallery-container">
+        <div class="service-gallery" id="gallery-6">
         <img src="images/service/06.jpg" alt="รายละเอียดรูปภาพ">
       </div>
-    </div>
-    <div class="card-header">
-      <div class="card-title-group">
+      </div>
+      <div class="card-header">
+        <div class="card-title-group">
         <span>Service 06</span>
         <h3>Digital Marketing</h3>
       </div>
       <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-    </div>
-    <p>
-      <span data-lang-show="en" style="display:none">Your brand deserves digital marketing that truly works—not noise, not guesswork.
+      </div>
+      <p>
+        <span data-lang-show="en" style="display:none">Your brand deserves digital marketing that truly works—not noise, not guesswork.
 We build strategy-backed content and thoughtful KOL planning that drive real engagement and meaningful results.</span>
       <span data-lang-show="th" >
         แบรนด์ของคุณควรได้รับการทำการตลาดออนไลน์ที่ได้ผลจริง
@@ -1855,10 +1743,10 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
 เพื่อให้คนอยากมีส่วนร่วม และสร้างผลลัพธ์ที่จับต้องได้จริง
 
       </span>
-    </p>
-    <!-- Updated Link to Trigger Modal -->
-    <a href="portfolio.html?cat=service-06" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
-  </div>
+      </p>
+      <!-- Removed arrow link or hidden it -->
+      <!-- <a href="#" class="arrow-link" style="opacity: 0; pointer-events: none;"><i class="fas fa-arrow-right"></i></a> -->
+    </div>
 </div>
 </div>
           </div>
@@ -2133,17 +2021,7 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
     </div>
   </footer>
 
-  <!-- ================= MODAL TEMPLATE (Added) ================= -->
-  <div id="portfolio-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <h3 class="modal-title" id="modalTitle">Service Name</h3>
-      <div class="modal-gallery" id="modalGallery">
-        <!-- Dynamic Images will be injected here via Javascript -->
-      </div>
-    </div>
-  </div>
-
+  
 
  <script>
   /* =============== LANGUAGE TOGGLE & SYNC =============== */
@@ -2226,50 +2104,52 @@ document.addEventListener('click', function(event) {
 
     /* =============== CLIENT LOGOS & YEAR =============== */
     const clientsData = [
-      { alt: "Comfort", src: "images/Logo client/Comfort.png" },
-      { alt: "Earth", src: "images/Logo client/earth_logo.png" },
-      { alt: "DSK", src: "images/Logo client/dsk.jpg" },
-      { alt: "EXIM Bank", src: "images/Logo client/EXIM_Bank_Logo.png" },
-      { alt: "Beiersdorf", src: "images/Logo client/Beiersdorf-Logo.png" },
-      { alt: "BJC", src: "images/Logo client/BJC.png" },
-      { alt: "AIS", src: "images/Logo client/Ais.jpg" },
-      { alt: "Calpis Lacto", src: "images/Logo client/Calpis-Lacto.jpg" },
-      { alt: "Amore Pacific", src: "images/Logo client/Amore Pacific.png" },
-      { alt: "Lazada", src: "images/Logo client/Lazada.jpg" },
-      { alt: "Lemon8", src: "images/Logo client/lemon8.png" },
-      { alt: "Bangkok Bank", src: "images/Logo client/Logo_Bangkok_Bank_Public_Company_Limited.svg" },
-      { alt: "EGAT", src: "images/Logo client/Logo_of_the_Electricity_Generating_Authority_of_Thailand.svg" },
-      { alt: "M-150", src: "images/Logo client/logo-M-150.jpg" },
-      { alt: "Magnum", src: "images/Logo client/Magnum_logo.svg" },
-      { alt: "Mondahmin", src: "images/Logo client/Mondahmin.jpg" },
-      { alt: "Nivea", src: "images/Logo client/Nivea-logo.jpg" },
-      { alt: "Peppo Dopa", src: "images/Logo client/Peppo Dopa.png" },
-      { alt: "Peptein", src: "images/Logo client/Peptein.jpg" },
-      { alt: "Petchyindee", src: "images/Logo client/Petchyindee.jpg" },
-      { alt: "Photo Share", src: "images/Logo client/photo-share.jpg" },
-      { alt: "Plan B (JPG)", src: "images/Logo client/Plan B.jpg" },
-      { alt: "Plan B (PNG)", src: "images/Logo client/Plan B.png" },
-      { alt: "Roctec Global", src: "images/Logo client/Roctec-Global.png" },
-      { alt: "Supalai", src: "images/Logo client/Supalai.jpg" },
-      { alt: "Thai Privilege", src: "images/Logo client/Thai privilege.jpg" },
-      { alt: "Tropicana", src: "images/Logo client/Tropicana.png" },
-      { alt: "Unilever", src: "images/Logo client/Unilever.jpg" },
-      { alt: "UOB", src: "images/Logo client/UOB.jpg" },
-      { alt: "White Line Group", src: "images/Logo client/White Line GROUP.jpg" },
-      { alt: "MEA", src: "images/Logo client/ตราการไฟฟ้านครหลวง.svg" },
-      { alt: "DG", src: "images/Logo client/DG.jpg" },
-      { alt: "Fuji Film", src: "images/Logo client/fuji-film-logo.jpg" },
-      { alt: "Gala Camile", src: "images/Logo client/GalaCamile.jpg" },
-      { alt: "Images", src: "images/Logo client/images.png" },
-      { alt: "Insight", src: "images/Logo client/Insight.jpg" },
-      { alt: "Kidari Studio", src: "images/Logo client/Kidari Studio.webp" },
-      // Duplicate for smoother looping if list is short, but logic handles it below
+      // Adjusted sizes using classes based on logo orientation
+      { alt: "Comfort", src: "images/Logo client/Comfort.png", class: "logo-medium" },
+      { alt: "Earth", src: "images/Logo client/earth_logo.png", class: "logo-large" },
+      { alt: "DSK", src: "images/Logo client/dsk.jpg", class: "logo-medium" },
+      { alt: "EXIM Bank", src: "images/Logo client/EXIM_Bank_Logo.png", class: "logo-medium" },
+      { alt: "Beiersdorf", src: "images/Logo client/Beiersdorf-Logo.png", class: "logo-medium" },
+      { alt: "BJC", src: "images/Logo client/BJC.png", class: "logo-small" },
+      { alt: "AIS", src: "images/Logo client/Ais.jpg", class: "logo-medium" },
+      { alt: "Calpis Lacto", src: "images/Logo client/Calpis-Lacto.jpg", class: "logo-medium" },
+      { alt: "Amore Pacific", src: "images/Logo client/Amore Pacific.png", class: "logo-medium" },
+      { alt: "Lazada", src: "images/Logo client/Lazada.jpg", class: "logo-medium" },
+      { alt: "Lemon8", src: "images/Logo client/lemon8.png", class: "logo-medium" },
+      { alt: "Bangkok Bank", src: "images/Logo client/Logo_Bangkok_Bank_Public_Company_Limited.svg", class: "logo-small" },
+      { alt: "EGAT", src: "images/Logo client/Logo_of_the_Electricity_Generating_Authority_of_Thailand.svg", class: "logo-medium" },
+      { alt: "M-150", src: "images/Logo client/logo-M-150.jpg", class: "logo-small" }, /* Tall logo */
+      { alt: "Magnum", src: "images/Logo client/Magnum_logo.svg", class: "logo-small" },
+      { alt: "Mondahmin", src: "images/Logo client/Mondahmin.jpg", class: "logo-medium" },
+      { alt: "Nivea", src: "images/Logo client/Nivea-logo.jpg", class: "logo-medium" },
+      { alt: "Peppo Dopa", src: "images/Logo client/Peppo Dopa.png", class: "logo-large" },
+      { alt: "Peptein", src: "images/Logo client/Peptein.jpg", class: "logo-medium" },
+      { alt: "Petchyindee", src: "images/Logo client/Petchyindee.jpg", class: "logo-medium" },
+      { alt: "Photo Share", src: "images/Logo client/photo-share.jpg", class: "logo-medium" },
+    
+      { alt: "Plan B (PNG)", src: "images/Logo client/Plan B.png", class: "logo-medium" },
+      { alt: "Roctec Global", src: "images/Logo client/Roctec-Global.png", class: "logo-small" },
+      { alt: "Supalai", src: "images/Logo client/Supalai.jpg", class: "logo-medium" },
+      { alt: "Thai Privilege", src: "images/Logo client/Thai privilege.jpg", class: "logo-medium" },
+      { alt: "Tropicana", src: "images/Logo client/Tropicana.png", class: "logo-large" },
+      { alt: "Unilever", src: "images/Logo client/Unilever.jpg", class: "logo-medium" },
+      { alt: "UOB", src: "images/Logo client/UOB.jpg", class: "logo-medium" },
+      { alt: "White Line Group", src: "images/Logo client/White Line GROUP.jpg", class: "logo-medium" },
+      { alt: "MEA", src: "images/Logo client/ตราการไฟฟ้านครหลวง.svg", class: "logo-medium" },
+      { alt: "DG", src: "images/Logo client/DG.jpg", class: "logo-medium" },
+      { alt: "Fuji Film", src: "images/Logo client/fuji-film-logo.jpg", class: "logo-medium" },
+      { alt: "Gala Camile", src: "images/Logo client/GalaCamile.jpg", class: "logo-medium" },
+      
+      { alt: "Insight", src: "images/Logo client/Insight.jpg", class: "logo-medium" },
+      { alt: "Kidari Studio", src: "images/Logo client/Kidari Studio.webp", class: "logo-small" },
     ];
     
     const clientsContainer = document.getElementById("clients-logos-container");
     if (clientsContainer) {
-      // Create HTML for logos
-      const clientLogosHTML = clientsData.map((client) => `<img src="${client.src}" alt="${client.alt}" />`).join("");
+      // Create HTML for logos with specific classes if available
+      const clientLogosHTML = clientsData.map((client) => 
+        `<img src="${client.src}" alt="${client.alt}" class="${client.class || ''}" />`
+      ).join("");
       
       // Duplicate logos 4 times to ensure smooth scrolling on wide screens
       clientsContainer.innerHTML = clientLogosHTML + clientLogosHTML + clientLogosHTML + clientLogosHTML;
