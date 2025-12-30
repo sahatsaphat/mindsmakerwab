@@ -34,21 +34,27 @@
       background-color: var(--bg-light);
       overflow-x: hidden;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; width: 100%; }
     h1, h2, h3, h4, h5, h6 { font-weight: 700; }
     h1 { font-family: var(--font-special); }
     h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 2rem; text-align: center; }
 
     /* --- Navbar --- */
     .navbar {
-      background-color: #fff;
+      background-color: #ffffff; /* เปลี่ยนเป็นสีขาว */
       padding: 1rem 0;
-      position: sticky; top: 0; z-index: 1000;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
       transition: all 0.4s ease;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* เพิ่มเงาเล็กน้อยให้ดูมิติ */
     }
     .navbar-inner {
         display: flex;
@@ -63,11 +69,11 @@
     }
     .navbar.navbar-scrolled .navbar-inner {
         max-width: 900px;
-        background-color: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
         border-radius: 999px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        border: 1px solid #eee;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0,0,0,0.05);
         margin-top: 0.5rem;
     }
     
@@ -77,20 +83,20 @@
       font-family: var(--font-special);
       transition: all 0.3s ease;
     }
-    .nav-center { display: flex; gap: 1rem; transition: gap 0.4s ease; }
-    .nav-center a { font-weight: 500; transition: color 0.3s; padding: 0.5rem 1rem; position: relative;}
+    .nav-center { display: flex; gap: 1rem; transition: gap 0.4s ease; align-items: center; }
+    .nav-center a { font-weight: 500; transition: color 0.3s; padding: 0.5rem 1rem; font-size: 0.95rem; }
     .nav-center a:hover { color: var(--primary-pink); }
     
     .nav-center a.active {
         color: var(--primary-pink);
         font-weight: 700;
     }
-    
 
     .navbar.navbar-scrolled .nav-center { gap: 0.5rem; }
     .portfolio-link a {
-      font-weight: bold; padding: 0.6rem 1.5rem;
+      font-weight: bold; padding: 0.5rem 1.4rem;
       border: 2px solid var(--text-dark); border-radius: 999px;
+      font-size: 0.9rem;
       transition: all 0.3s;
     }
     .portfolio-link a:hover { background-color: var(--text-dark); color: var(--text-light); }
@@ -99,6 +105,7 @@
     /* --- Main Contact Page Header (Marquee) --- */
     .contact-page-header {
         padding: 0;
+        padding-top: 100px; /* Space for fixed navbar */
         background-color: var(--bg-dark);
         color: var(--text-light);
         overflow: hidden;
@@ -295,86 +302,81 @@
         color: var(--primary-pink);
     }
 
+    /* --- LINE CAPSULE BUTTON --- */
+    .line-capsule-container {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
 
-    /* ================= FOOTER (Synced with other pages) ================= */
-    .footer { background-color: var(--bg-dark); color: var(--text-light); padding: 5rem 1.5rem 2rem; }
-    .footer-container { display: grid; grid-template-columns: 1.5fr 2fr 2fr 1.5fr; gap: 3rem; max-width: 1200px; margin: 0 auto; text-align: left; }
+    .line-capsule-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        background-color: #06C755; /* Line Green */
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-family: var(--font-body);
+        font-size: 1.1rem;
+        box-shadow: 0 4px 15px rgba(6, 199, 85, 0.3);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        text-transform: uppercase;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .line-capsule-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(6, 199, 85, 0.5);
+        background-color: #05b54c;
+    }
+
+    .line-capsule-btn i {
+        font-size: 1.5rem;
+    }
+
+    /* ================= FOOTER (Synced with other pages but Simplified) ================= */
+    .footer { 
+        background-color: var(--bg-dark); 
+        color: var(--text-light); 
+        padding: 4rem 1.5rem 2rem; 
+        margin-top: auto;
+    }
+    .footer-container { 
+        display: flex; 
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px; 
+        margin: 0 auto; 
+        flex-wrap: wrap;
+        gap: 3rem;
+    }
+    .footer-column { flex: 1; min-width: 280px; }
+    .footer-column.footer-newsletter { text-align: right; }
+
     .footer-column h3 { font-family: var(--font-special); font-size: clamp(1.8rem, 4vw, 2rem); margin-bottom: 1rem; }
     .footer-column h4 { font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 1px; color: #666; }
-    .footer-column p, .footer-column a { font-size: 0.9rem; color: #b0b0b0; transition: color 0.3s; line-height: 1.8; }
-    .footer-column a:hover, .social-icons a:hover { color: var(--primary-pink); }
-    .footer-contact p a:hover, .footer-address p a:hover, .footer-newsletter p a:hover, .contact-person a:hover { color: var(--primary-pink); }
-    .contact-person { margin-bottom: 1.2rem; }
-    .contact-person strong { color: #fff; display: block; margin-bottom: 0.2rem; }
-    .contact-person a { display: block; }
+    .footer-column p a { color: #b0b0b0; transition: color 0.3s; }
+    .footer-column p a:hover { color: var(--primary-pink); }
+    
     .social-icons { display: flex; gap: 1.2rem; margin-top: 1rem; }
     .social-icons a { font-size: 1.2rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #333; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
     .social-icons a:hover { border-color: var(--primary-pink); background: var(--primary-pink); color: #fff; }
+    
     .footer-bottom { border-top: 1px solid #222; padding-top: 2rem; margin-top: 4rem; color: #555; font-size: 0.85rem; text-align: center; }
 
-    /* ================= FLOATING SOCIAL ================= */
-    .mobile-line-fab {
-      position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px;
-      background-color: #00c300; color: white; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); z-index: 1000;
-    }
-    .desktop-floating-social { display: none; }
-    
-    @media (min-width: 993px) {
-      .mobile-line-fab { display: none; }
-      .desktop-floating-social {
-        display: flex; position: fixed; bottom: 30px; right: 30px;
-        z-index: 9999; flex-direction: column-reverse; align-items: center; gap: 15px;
-      }
-      .social-trigger {
-        width: 60px; height: 60px; border-radius: 50%; background: var(--text-dark);
-        color: white; border: none; font-size: 24px; cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;
-        transition: transform 0.3s;
-      }
-      .social-trigger:hover { transform: scale(1.1); }
-      .social-menu {
-        display: flex; flex-direction: column-reverse; gap: 12px; opacity: 0; pointer-events: none;
-        transform: translateY(20px); transition: all 0.3s ease; position: absolute; bottom: 70px; right: 0; align-items: center;
-      }
-      .desktop-floating-social.active .social-menu { opacity: 1; transform: translateY(0); pointer-events: auto; }
-      .social-trigger .close-icon { display: none; }
-      .desktop-floating-social.active .social-trigger .main-icon { display: none; }
-      .desktop-floating-social.active .social-trigger .close-icon { display: block; }
-      
-      .social-item {
-        width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        color: white; font-size: 22px; transition: transform 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); background: #333;
-      }
-      .social-item:hover { transform: scale(1.1); }
-      .social-item.line-oa { background: #06C755; }
-      .social-item.fb { background: #1877F2; }
-      .social-item.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-      .social-item.tt { background: #000; }
-      
-      .social-item.highlight {
-        width: 65px; height: 65px; font-size: 30px; border: 3px solid #fff;
-        box-shadow: 0 0 15px rgba(6, 199, 85, 0.6); animation: wiggle 3s infinite; position: relative;
-      }
-      .social-item.highlight .tooltip {
-        position: absolute; right: 75px; background: #333; color: #fff; padding: 4px 8px;
-        border-radius: 4px; font-size: 12px; white-space: nowrap; opacity: 1; font-weight: bold;
-      }
-      .social-item.highlight .tooltip::after {
-          content: ''; position: absolute; right: -4px; top: 50%; transform: translateY(-50%);
-          border-left: 4px solid #333; border-top: 4px solid transparent; border-bottom: 4px solid transparent;
-      }
-      @keyframes wiggle {
-        0%, 100% { transform: rotate(0deg); }
-        10% { transform: rotate(-10deg); }
-        20% { transform: rotate(10deg); }
-        30% { transform: rotate(-10deg); }
-        40% { transform: rotate(0deg); }
-      }
-    }
+    /* ================= RESPONSIVE ================= */
+    /* Lang Toggle */
+    .lang-toggle-container { position: fixed; top: 20px; right: 20px; z-index: 10000; }
+    .lang-toggle { display: flex; align-items: center; gap: 0.2rem; font-size: 0.9rem; }
+    .lang-btn { background: none; border: none; color: #555; cursor: pointer; font-weight: 500; }
+    .lang-btn.active { color: var(--primary-pink); text-decoration: underline; }
+    .mobile-lang { display: none; margin-top: 2rem; gap: 1rem; }
+    .mobile-lang .lang-btn { color: rgba(255,255,255,0.6); font-size: 1.2rem; }
+    .mobile-lang .lang-btn.active { color: var(--primary-pink); opacity: 1; }
 
-    /* --- Responsive & Mobile Menu --- */
     @media (max-width: 992px) {
         .contact-grid {
             grid-template-columns: 1fr;
@@ -394,7 +396,11 @@
         .social-icons-main {
             justify-content: center;
         }
-        .footer-container { grid-template-columns: 1fr; gap: 2.5rem; }
+        .footer-container { flex-direction: column; text-align: left; }
+        .footer-column.footer-newsletter { text-align: left; }
+        
+        .lang-toggle-container.desktop-only { display: none !important; }
+        .mobile-lang { display: flex; }
     }
     @media (max-width: 768px) {
       .navbar-inner { padding: 0.5rem 1rem; }
@@ -402,6 +408,8 @@
       .nav-toggle { display: flex; cursor: pointer; padding: 0.5rem; font-size: 1.5rem; z-index: 1001;}
       #contact-form .form-row { flex-direction: column; gap: 1.5rem; }
     }
+    
+    /* Mobile Menu */
     .mobile-overlay-menu {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background-color: var(--bg-dark); color: var(--text-light);
@@ -424,10 +432,9 @@
 
     .navbar.mobile-menu-active .logo,
     .navbar.mobile-menu-active {
-  background-color: var(--bg-dark); /* หรือ #111 */
-  box-shadow: none;
-}
-
+        background-color: var(--bg-dark);
+        box-shadow: none;
+    }
     .navbar.mobile-menu-active .nav-toggle {
         color: var(--text-light);
     }
@@ -440,10 +447,10 @@
     <div class="navbar-inner">
       <div class="logo"><a href="index.html">Mind Maker</a></div>
       <ul class="nav-center">
-        <li><a href="About.html">About</a></li>
+        <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#services">Services</a></li>
         <li><a href="index.html#clients">Clients</a></li>
-        <li><a href="Contact.html" class="active">Contact</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
       <div class="portfolio-link"><a href="portfolio.html">Portfolio</a></div>
       <div class="nav-toggle" id="nav-toggle">
@@ -452,15 +459,29 @@
     </div>
   </nav>
 
+  <!-- Desktop Language Toggle -->
+  <div class="lang-toggle-container desktop-only">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLanguage('th', this)">TH</button>
+      <span>|</span>
+      <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
+    </div>
+  </div>
+
   <!-- Mobile Menu Overlay -->
   <div class="mobile-overlay-menu" id="mobile-overlay-menu">
       <ul class="menu-items">
-          <li><a href="About.html">About</a></li>
+          <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#clients">Clients</a></li>
-          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
       </ul>
+      <div class="lang-toggle mobile-lang">
+        <button class="lang-btn active" onclick="setLanguage('th', this)">TH</button>
+        <span style="color: white;">|</span>
+        <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
+    </div>
   </div>
 
   <main>
@@ -485,6 +506,13 @@
 
                 <!-- Left Column: Contact Form -->
                 <div class="contact-form-wrapper">
+                    <!-- LINE CAPSULE BUTTON (BEFORE FORM) -->
+                    <div class="line-capsule-container">
+                        <a href="https://lin.ee/pDQVArr" target="_blank" class="line-capsule-btn">
+                            <i class="fab fa-line"></i> Chat with Line
+                        </a>
+                    </div>
+
                     <h2 id="form-heading"></h2>
                     <form id="contact-form" action="#" method="POST">
                         <div class="form-row">
@@ -525,27 +553,37 @@
                 <!-- Right Column: Contact Info & Map -->
                 <div class="contact-info-wrapper">
                     <h3>Contact Details</h3>
+                    
+                    <!-- Contact Persons Section (Updated from Footer) -->
+                    <div class="contact-info-item">
+                        <div class="icon"><i class="fas fa-user-friends"></i></div>
+                        <div class="text">
+                            <h4>Contact Person</h4>
+                            
+                            <!-- Person 1: Kie -->
+                            <div style="margin-bottom: 1.2rem;">
+                                <strong style="display:block; color:var(--text-dark); font-size:1.1rem;">Kie</strong>
+                                <a href="tel:0985479142" style="display:block; color:var(--primary-pink); font-weight:600;">098-547-9142</a>
+                                <a href="mailto:somprasong.s@mindmakermedia.com" style="font-size:0.95rem;">somprasong.s@mindmakermedia.com</a>
+                            </div>
+
+                            <!-- Person 2: Tully -->
+                            <div>
+                                <strong style="display:block; color:var(--text-dark); font-size:1.1rem;">Tully</strong>
+                                <a href="tel:0624426642" style="display:block; color:var(--primary-pink); font-weight:600;">062-442-6642</a>
+                                <a href="mailto:ramitawan.p@mindmakermedia.com" style="font-size:0.95rem;">ramitawan.p@mindmakermedia.com</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="contact-info-item">
                         <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="text">
                             <h4>Our Office</h4>
-                            <p>18 ซอย ประชาราษฎร์บำเพ็ญ 26 แยก 12<br>สามเสนนอก, ห้วยขวาง, กรุงเทพมหานคร 10310</p>
+                            <p>Nice 2 Bldg., Ratchadaphisek Rd.,<br>Huai Khwang, Bangkok 10310</p>
                         </div>
                     </div>
-                     <div class="contact-info-item">
-                        <div class="icon"><i class="fas fa-envelope"></i></div>
-                        <div class="text">
-                            <h4>Email Us</h4>
-                            <p><a href="mailto:contact@mindmakerevent.com">contact@mindmakerevent.com</a></p>
-                        </div>
-                    </div>
-                     <div class="contact-info-item">
-                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
-                        <div class="text">
-                            <h4>Call Us</h4>
-                            <p><a href="tel:+6621234567">+66 2 123 4567</a></p>
-                        </div>
-                    </div>
+                    
                     <div class="contact-info-item">
                         <div class="icon"><i class="fas fa-users"></i></div>
                         <div class="text">
@@ -568,43 +606,24 @@
 
   </main>
 
-  <!-- ================= FOOTER (From Index/About) ================= -->
+  <!-- ================= FOOTER (REDUNDANCY REMOVED) ================= -->
+  <!-- Removed Contact Info & Address columns to prevent redundancy -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-column footer-brand">
+  <!-- ================= FOOTER (SIMPLIFIED FOR CONTACT PAGE) ================= -->
+  <!-- Removed Contact Info & Address columns to prevent redundancy -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column footer-brand" style="flex: 0 0 100%; text-align: center;">
         <h3>MIND MAKER</h3>
         <p>Innovative Event Organizer<br />in Thailand</p>
-        <div class="social-icons">
+        <div class="social-icons" style="justify-content: center;">
           <a href="https://facebook.com/mindmakerproduction" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://instagram.com/mindmaker.official" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://tiktok.com/@mindmaker.official" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
           <a href="https://line.me/ti/p/@mindmaker" target="_blank" title="Line" style="font-size: 1.35rem;"><i class="fab fa-line"></i></a>
         </div>
-      </div>
-
-      <div class="footer-column footer-contact">
-        <h4>CONTACT PERSON</h4>
-        <div class="contact-person">
-            <strong>Kie</strong>
-            <a href="tel:0985479142">098-547-9142</a>
-            <a href="mailto:somprasong.s@mindmakermedia.com">somprasong.s@mindmakermedia.com</a>
-        </div>
-        <div class="contact-person">
-            <strong>Tully</strong>
-            <a href="tel:0624426642">062-442-6642</a>
-            <a href="mailto:ramitawan.p@mindmakermedia.com">ramitawan.p@mindmakermedia.com</a>
-        </div>
-      </div>
-
-      <div class="footer-column footer-address">
-        <h4>OFFICE</h4>
-        <p>Nice 2 Bldg., Ratchadaphisek Rd., Huai Khwang, Bangkok 10310</p>
-        <p style="margin-top:1rem;"><a href="https://maps.google.com" target="_blank">SEE ON MAP <i class="fas fa-arrow-right"></i></a></p>
-      </div>
-      
-      <div class="footer-column footer-newsletter">
-          <h4>STAY UPDATED</h4>
-          <p><a href="index.html#contact">SIGN UP FOR NEWSLETTER <i class="fas fa-arrow-right"></i></a></p>
       </div>
     </div>
 
@@ -613,26 +632,7 @@
     </div>
   </footer>
 
-  <!-- ================= FLOATING SOCIAL ================= -->
-  <a href="https://line.me/ti/p/~yourlineid" target="_blank" class="mobile-line-fab" aria-label="Contact via Line">
-    <i class="fab fa-line"></i>
-  </a>
-
-  <div class="desktop-floating-social">
-    <div class="social-menu">
-      <a href="https://line.me/ti/p/~yourlineid" target="_blank" class="social-item line-oa highlight">
-          <i class="fab fa-line"></i>
-          <span class="tooltip">Chat Now!</span>
-      </a>
-      <a href="https://facebook.com/mindmakerproduction" target="_blank" class="social-item fb"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://instagram.com/mindmaker.official" target="_blank" class="social-item ig"><i class="fab fa-instagram"></i></a>
-      <a href="https://tiktok.com/@mindmaker.official" target="_blank" class="social-item tt"><i class="fab fa-tiktok"></i></a>
-    </div>
-    <button class="social-trigger" onclick="toggleDesktopSocial()">
-      <i class="fas fa-comment-dots main-icon"></i>
-      <i class="fas fa-times close-icon"></i>
-    </button>
-  </div>
+  <!-- NOTE: No Floating Social Buttons here as requested -->
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -726,22 +726,15 @@
         }
     });
 
-    /* FLOATING SOCIAL LOGIC */
-    function toggleDesktopSocial() {
-      const container = document.querySelector('.desktop-floating-social');
-      if(container) container.classList.toggle('active');
+    /* ================= LANGUAGE TOGGLE LOGIC ================= */
+    function setLanguage(lang, btnElement) {
+       document.querySelectorAll('.lang-btn').forEach(btn => {
+           btn.classList.remove('active');
+           if(btn.textContent.trim().toLowerCase() === lang) {
+               btn.classList.add('active');
+           }
+       });
     }
-    document.addEventListener('click', function(event) {
-      const container = document.querySelector('.desktop-floating-social');
-      if (container && container.classList.contains('active')) {
-        if (!container.contains(event.target)) container.classList.remove('active');
-      }
-    });
-    // Auto show after 5s for engagement
-    setTimeout(() => {
-        const container = document.querySelector('.desktop-floating-social');
-        if(container && window.innerWidth > 992) container.classList.add('active');
-    }, 5000);
   </script>
 </body>
 </html>
