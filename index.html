@@ -292,24 +292,19 @@
     }
 
    .hero-hand.left {
-  left: 6%;
+  left: 3.5%;
   top: 37%;
   transform: translateY(-50%) scale(1.10); /* ขยาย ~10% */
   width: clamp(150px, 20vw, 250px); }
 
     .hero-hand.right {
-      right: 3%; /* ขยับให้ตรงกับวงสีแดงที่ชี้ (ตรงตัว E) */
+      right: 2.5%; /* ขยับให้ตรงกับวงสีแดงที่ชี้ (ตรงตัว E) */
       top: 33%; 
-      transform: translateY(-50%);
+      transform: translateY(-50%)scale(1.10); /* ขยาย ~10% */
       width: clamp(150px, 20vw, 250px);
     }
 
-    .hero-hand.top {
-      top: -120px; /* ขยับขึ้นไปอีกนิดตามที่วงมา */
-      left: 50%; 
-      transform: translateX(-50%) scale(1.10); /* ขยาย ~10% */
-      width: clamp(120px, 15vw, 220px);
-    }
+   
 
     /* Hide Hero Hands on Mobile & Tablet (iPad all types) - Show only on Desktop */
     @media (max-width: 1024px) {
