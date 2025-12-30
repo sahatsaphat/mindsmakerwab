@@ -255,7 +255,7 @@
     .hero-section { 
         background-color: #ffffff; 
         background-color: #ffffff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.09'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat; background-position: center center; background-size: clamp(60px, 8vw, 100px); color: #000; min-height: 100vh; padding: 6rem 1rem 4rem; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
+ background-repeat: repeat; background-position: center center; background-size: clamp(60px, 8vw, 100px); color: #000; min-height: 100vh; padding: 6rem 1rem 4rem; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
          background-repeat: repeat; 
         background-position: center center; 
         background-size: clamp(60px, 8vw, 100px); 
@@ -396,6 +396,40 @@
       background: var(--primary-pink);
       transform: translateY(-2px);
     }
+    
+    /* ================= MARQUEE SECTION (Inserted) ================= */
+    .marquee-section {
+        padding: 0;
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .marquee-wrapper {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        padding: 1.5rem 0; 
+    }
+    .marquee-content {
+        display: inline-block;
+        animation: marquee 25s linear infinite;
+    }
+    .marquee-content h1 {
+        font-size: clamp(1.5rem, 3.75vw, 1.875rem);
+        display: inline-block;
+        margin: 0 1.5rem;
+        color: var(--text-light);
+        font-family: var(--font-special);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+
+
     /* --- Floating Social General --- */
 /* --- Floating Social (Left Bottom & Premium Animation) --- */
 
@@ -1472,18 +1506,131 @@
   }
 }
 
+/* ================= MODAL STYLES (NEW) ================= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,0.9);
+  padding: 40px 20px;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 20px auto;
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 1000px;
+  position: relative;
+  animation: fadeIn 0.4s ease-in-out;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modal-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  font-family: var(--font-kanit);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+/* --- UPDATE: Change .modal-gallery to be a wrapper --- */
+.modal-gallery {
+  display: block; /* Changed from grid to block to stack sections */
+}
+
+/* --- NEW: Inner Grid for Images --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 2.5rem; /* Space after each project grid */
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 250px; /* Fixed height for consistency */
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  background: #f0f0f0;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* --- NEW: Project Subtitle Style --- */
+.project-subtitle {
+  font-family: var(--font-kanit);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #333;
+  border-left: 5px solid var(--primary-pink);
+  padding-left: 10px;
+  line-height: 1.2;
+}
+
+
+.close-btn {
+  color: #888;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f5f5f5;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.close-btn:hover {
+  background: var(--primary-pink);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 768px) {
+  .modal { padding: 10px; }
+  .modal-content { padding: 1.5rem 1rem; margin: 10px auto; }
+  .modal-title { font-size: 1.4rem; }
+  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .gallery-grid img { height: 150px; }
+}
+
   </style>
 </head>
 <body>
   <!-- ================= NAVBAR ================= -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <div class="logo"><a href="#hero" class="logo">Mind Maker</a>
+      <div class="logo"><a href="index.html">Mind Maker</a>
 </div>
 
       <ul class="nav-center">
-        <li><a href="About.html">About</a></li>
-        <li><a href="Service.html">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -1510,8 +1657,8 @@
 
  <div class="mobile-overlay-menu" id="mobile-overlay-menu">
     <ul class="menu-items">
-      <li><a href="About.html">About</a></li>
-      <li><a href="Service.html">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#clients">Clients</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
@@ -1546,11 +1693,25 @@
           </p>
 
           <div class="hero-cta">
-            <a href="#contact" class="cta-button">Get Started <span>➜</span></a>
+            <a href="#services" class="cta-button">Get Started <span>➜</span></a>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ================= MARQUEE SECTION ================= -->
+    <section class="marquee-section">
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <h1>LET'S CREATE・LET'S CREATE・LET'S CREATE・LET'S CREATE・LET'S CREATE・LET'S CREATE・</h1>
+            </div>
+            <!-- Duplicate content for seamless loop -->
+            <div class="marquee-content">
+                <h1>LET'S CREATE・LET'S CREATE・LET'S CREATE・LET'S CREATE・LET'S CREATE・LET'S CREATE・</h1>
+            </div>
+        </div>
+    </section>
+    
     <!-- Floating Social Icons -->
 <a href="https://lin.ee/pDQVArr" target="_blank" class="mobile-line-fab">
 
@@ -1762,17 +1923,7 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
       <div class="container">
         <div class="about-layout">
             <!-- Sticky Image Column with Story Slider -->
-            <div class="about-visual-col">
-                <div class="about-image-card">
-                     <div class="about-slider-container" id="about-story-slider">
-                         <!-- Multiple images for storytelling effect -->
-                         <img src="insight mm.jpg" class="active" alt="Team Collaboration">
-                         <img src="https://placehold.co/600x800/ddd/333?text=Event+Production" alt="Event Production">
-                         <img src="https://placehold.co/600x800/ccc/333?text=On-Site+Energy" alt="On-Site Energy">
-                         <img src="https://placehold.co/600x800/bbb/333?text=Success+Moment" alt="Success Moment">
-                     </div>
-                </div>
-            </div>
+            <!-- Removed image column -->
 
             <!-- Text Content Column -->
             <div class="about-content-col">  
@@ -1785,7 +1936,8 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
       <span data-lang-show="en" style="display:none">
         We are a passionate team dedicated to crafting events that leave lasting impressions — memorable, captivating, and full of meaningful stories. Every project we create is designed with care and attention to detail, ensuring that every element aligns with our clients’ vision from every angle. Our work reflects lifestyle, brand identity, and human connection seamlessly across both real and digital worlds. We deliver end-to-end experiences that connect people through both on-ground and online engagements.</span>
       <span data-lang-show="th" >
-        เราคือทีมงานที่มีความมุ่งมั่นและหลงใหลในการสร้างสรรค์อีเวนต์ที่เปี่ยมด้วยความหมาย — น่าจดจำ ดึงดูดใจ และสร้างความประทับใจอย่างยั่งยืน เราใส่ใจในทุกรายละเอียด เพื่อให้ทุกองค์ประกอบของงานสอดคล้องกับวิสัยทัศน์ของลูกค้าอย่างรอบด้าน งานของเราสะท้อนตัวตน ไลฟ์สไตล์ และอัตลักษณ์ของแบรนด์ พร้อมทั้งสร้างการเชื่อมโยงระหว่างผู้คนอย่างไร้รอยต่อ ทั้งในโลกจริงและดิจิทัล </span>
+        เรา คือ ทีมที่มีความหลงใหลในการสร้างสรรค์งานอีเวนต์  เราใส่ใจในทุกรายละเอียด ทุกองค์ประกอบ เราออกแบบทุก ๆ งานเพื่อสะท้อนถึงตัวตนของแบรนด์ หรือ ทีมผู้จัดงานให้ชัดเจนมากที่สุด อีเวนต์ที่ที่ดี จะช่วยสะท้อน ไลฟ์สไตล์ และอัตลักษณ์ของแบรนด์ ให้ผู้ร่วมงานเกิดความเชื่อมโยง และมีประสบการณ์ร่วมกันไปกับแบรนด์
+      </span>
     </p>
 
     <!-- Paragraph 2 -->
@@ -1793,7 +1945,7 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
       <span data-lang-show="en" style="display:none">
        With over 8 years of experience as a full-service event marketing agency, we’ve developed a distinctive approach to bringing brand stories to life — whether through digital events that integrate technology with scale, format, and interaction, or live events that allow audiences to truly see, feel, taste, and experience a brand firsthand. From intimate C-suite gatherings and VIP customer experiences to large-scale conferences, keynotes, and public events, we deliver with flexibility, creativity, personalization, and seamless connectivity.</span>
       <span data-lang-show="th" >
-       ด้วยประสบการณ์มากกว่า 8 ปีในฐานะเอเจนซี่อีเวนต์แบบครบวงจร เราได้พัฒนาแนวทางเฉพาะในการถ่ายทอดเรื่องราวของแบรนด์ผ่านประสบการณ์ที่เข้าถึงได้จริง ทั้งในรูปแบบอีเวนต์ดิจิทัลที่ผสานเทคโนโลยีเข้ากับสเกล อินเทอร์แอคชัน และรูปแบบอันทันสมัย ไปจนถึงอีเวนต์จริงที่เปิดโอกาสให้ผู้เข้าร่วมได้สัมผัสแบรนด์ผ่านประสาทสัมผัสทั้งหมด ทั้งการมองเห็น รู้สึก ลิ้มรส และมีส่วนร่วมอย่างแท้จริง
+       ด้วยประสบการณ์มากกว่า 7 ปีในฐานะ Event Agency เราได้พัฒนาแนวทางเฉพาะในการถ่ายทอดเรื่องราวของแบรนด์ผ่านประสบการณ์ที่เข้าถึงได้จริง ทั้งในรูปแบบอีเวนต์ดิจิทัลที่ผสานเทคโนโลยีเข้ากับ On-groud Event ไปจนถึงรูปแบบงาน ที่เปิดโอกาสให้ผู้เข้าร่วมได้สัมผัสแบรนด์ผ่านประสาทสัมผัสทั้งหมด ทั้งการมองเห็น รู้สึก ลิ้มรส และมีส่วนร่วมอย่างแท้จริง
       </span>
     </p>
 
@@ -1802,7 +1954,8 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
       <span data-lang-show="en" style="display:none">
        Wherever your event takes place, it will leave a lasting impact — inspiring, engaging, and uniting people through shared experiences and a sense of belonging.</span>
       <span data-lang-show="th">
-       ไม่ว่าจะเป็นงานพบปะผู้บริหารระดับสูง งานสำหรับลูกค้าคนสำคัญ งานสัมมนา ไปจนถึงอีเวนต์ขนาดใหญ่หรือกิจกรรมสาธารณะ เราส่งมอบด้วยความยืดหยุ่น ความคิดสร้างสรรค์ และการวางแผนที่ราบรื่น เพื่อให้งานทุกชิ้นสร้างผลกระทบที่ยั่งยืน — เป็นประสบการณ์ที่สร้างแรงบันดาลใจ สร้างการมีส่วนร่วม และทำให้ผู้คนรู้สึกถึงการเป็นส่วนหนึ่งของสิ่งที่มีความหมาย
+       ไม่ว่าจะเป็นงานประชุม งานเลี้ยงรับรอง งานประกาศรางวัล ไปจนถึง งานสำหรับลูกค้าคนสำคัญ งานสัมมนาต่าง ๆ รวมถึงอีเวนต์เปิดตัวแบบ Grand Opening เราก็พร้อม ส่งมอบด้วยความตั้งใจ ความคิดสร้างสรรค์ และการวางแผนอย่างมีระบบระเบียบ เพื่อให้งานทุกชิ้น เป็นประสบการณ์ที่สร้างแรงบันดาลใจ สร้างการมีส่วนร่วม และทำให้ผู้คนรู้สึกถึงการเป็นส่วนหนึ่งของสิ่งที่มีความหมายให้ได้ในที่สุด
+      </span>
     </p>
 
   </div>
@@ -1827,17 +1980,14 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
                         <div class="counter" data-target="8">0</div><span class="suffix">+</span>
                         <p>Years of Experience</p>
                     </div>
-                    <div class="achievement-item">
-                        <div class="counter" data-target="999">0</div><span class="suffix">+</span>
-                        <p>Cups of Coffee</p>
-                    </div>  </div>
+                      </div>
             </div>
         </div>
       </div>
     </section>
 
     <!-- ================= RECENT CLIENTS SLIDER ================= -->
-    <section id="recent-clients" class="mm-slider-section">
+     <!--<section id="recent-clients" class="mm-slider-section">
       <div class="container">
         <div class="mm-slider-header">
           <h2 class="mm-slider-heading">Latest Our Work</h2>
@@ -1869,7 +2019,7 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- ================= CLIENTS MARQUEE ================= -->
     <section id="clients">
@@ -1984,23 +2134,17 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
           <a href="https://facebook.com/mindmakerproduction" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://instagram.com/mindmaker.official" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://tiktok.com/@mindmaker.official" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-         <a href="https://lin.ee/pDQVArr" target="_blank" aria-label="Chat on LINE">
-  <i class="fab fa-line"></i>
-</a>
-
+          <a href="https://line.me/ti/p/@mindmaker" target="_blank" title="Line" style="font-size: 1.35rem;"><i class="fab fa-line"></i></a>
         </div>
       </div>
 
-      <!-- Updated Contact Info Column -->
       <div class="footer-column footer-contact">
         <h4>CONTACT PERSON</h4>
-        
         <div class="contact-person">
             <strong>Kie</strong>
             <a href="tel:0985479142">098-547-9142</a>
             <a href="mailto:somprasong.s@mindmakermedia.com" style="font-size:0.85rem;">somprasong.s@mindmakermedia.com</a>
         </div>
-        
         <div class="contact-person">
             <strong>Tully</strong>
             <a href="tel:0624426642">062-442-6642</a>
@@ -2018,7 +2162,7 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
       
       <div class="footer-column footer-newsletter">
           <h4>STAY UPDATED</h4>
-          <p><a href="#contact">SIGN UP FOR NEWSLETTER <i class="fas fa-arrow-right"></i></a></p>
+          <p><a href="index.html#contact">SIGN UP FOR NEWSLETTER <i class="fas fa-arrow-right"></i></a></p>
       </div>
     </div>
 
@@ -2027,7 +2171,17 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
     </div>
   </footer>
 
-  
+  <!-- ================= MODAL TEMPLATE (Added) ================= -->
+  <div id="portfolio-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h3 class="modal-title" id="modalTitle">Service Name</h3>
+      <div class="modal-gallery" id="modalGallery">
+        <!-- Dynamic Images will be injected here via Javascript -->
+      </div>
+    </div>
+  </div>
+
 
  <script>
   /* =============== LANGUAGE TOGGLE & SYNC =============== */
@@ -2106,11 +2260,23 @@ document.addEventListener('click', function(event) {
     }
 
     /* =============== SERVICE GALLERY SCROLL LISTENER =============== */
-    /* REMOVED DOTS NAVIGATION LISTENER */
+    const serviceGalleries = document.querySelectorAll('.service-gallery-container');
+    serviceGalleries.forEach(container => {
+        const gallery = container.querySelector('.service-gallery');
+        const dots = container.querySelectorAll('.gallery-dot');
+        if (gallery && dots.length) {
+            gallery.addEventListener('scroll', () => {
+                const scrollLeft = gallery.scrollLeft;
+                const width = gallery.offsetWidth;
+                const index = Math.round(scrollLeft / width);
+                dots.forEach(d => d.classList.remove('active'));
+                if (dots[index]) dots[index].classList.add('active');
+            });
+        }
+    });
 
     /* =============== CLIENT LOGOS & YEAR =============== */
     const clientsData = [
-      // Adjusted sizes using classes based on logo orientation
       { alt: "Comfort", src: "images/Logo client/Comfort.png", class: "logo-medium" },
       { alt: "Earth", src: "images/Logo client/earth_logo.png", class: "logo-large" },
       { alt: "DSK", src: "images/Logo client/dsk.jpg", class: "logo-medium" },
@@ -2149,18 +2315,12 @@ document.addEventListener('click', function(event) {
       { alt: "Insight", src: "images/Logo client/Insight.jpg", class: "logo-medium" },
       { alt: "Kidari Studio", src: "images/Logo client/Kidari Studio.webp", class: "logo-small" },
     ];
-    
     const clientsContainer = document.getElementById("clients-logos-container");
     if (clientsContainer) {
       // Create HTML for logos with specific classes if available
-      const clientLogosHTML = clientsData.map((client) => 
-        `<img src="${client.src}" alt="${client.alt}" class="${client.class || ''}" />`
-      ).join("");
-      
-      // Duplicate logos 4 times to ensure smooth scrolling on wide screens
+      const clientLogosHTML = clientsData.map((client) => `<img src="${client.src}" alt="${client.alt}" class="${client.class || ''}" />`).join("");
       clientsContainer.innerHTML = clientLogosHTML + clientLogosHTML + clientLogosHTML + clientLogosHTML;
     }
-    
     const yearSpan = document.getElementById("currentYear");
     if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
