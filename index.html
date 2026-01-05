@@ -253,9 +253,9 @@
 
     /* ================= HERO ================= */
     .hero-section { 
-        background-color: #ffffff; 
+       background-color: #ffffff; 
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.09'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");    background-repeat: repeat; 
-              background-repeat: repeat; 
+        background-repeat: repeat; 
         background-position: center center; 
         background-size: clamp(60px, 8vw, 100px); 
         color: #000; 
@@ -304,7 +304,12 @@
       width: clamp(150px, 20vw, 250px);
     }
 
-   
+    .hero-hand.top {
+      top: -120px; /* ขยับขึ้นไปอีกนิดตามที่วงมา */
+      left: 50%; 
+      transform: translateX(-50%) scale(1.10); /* ขยาย ~10% */
+      width: clamp(120px, 15vw, 220px);
+    }
 
     /* Hide Hero Hands on Mobile & Tablet (iPad all types) - Show only on Desktop */
     @media (max-width: 1024px) {
@@ -935,6 +940,7 @@
         margin-top: 2rem;
         padding-top: 2rem;
         border-top: 1px solid #eee;
+        width: 100%;
     }
 
     .about-achievements-grid {
@@ -943,10 +949,35 @@
         gap: 2rem;
     }
 
+    /* Counter Style */
+    .achievement-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center horizontally */
+        text-align: center;
+    }
+
+    .counter-wrapper {
+        display: flex;
+        align-items: baseline; /* Align numbers with + sign perfectly */
+        justify-content: center;
+        width: 100%;
+    }
+
     .achievement-item .counter {
         font-family: var(--font-special);
         font-size: 2rem;
         color: var(--primary-pink);
+        display: inline-block;
+        line-height: 1;
+    }
+    
+    .achievement-item .suffix {
+        font-size: 1.5rem;
+        color: var(--primary-pink);
+        font-weight: 700;
+        margin-left: 2px;
+        line-height: 1;
     }
     
     .achievement-item p {
@@ -954,32 +985,28 @@
         color: #888;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        margin-top: 0.2rem;
+        margin-top: 0.5rem;
     }
-    .about-achievements {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-  padding: 0 1rem;
-  text-align: center;
-}
 
-.achievement-item h3 {
-  font-size: 2rem;
-  color: var(--primary-pink);
-}
+    /* ===== Fix Achievement Center on Mobile (Pyramid Layout) ===== */
+    @media (max-width: 768px) {
+      .about-achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        gap: 2rem 1rem; 
+        justify-items: center;
+      }
+      
+      .achievement-item {
+        width: 100%;
+        margin-bottom: 0;
+      }
 
-.achievement-item span {
-  font-size: 1.5rem;
-  color: var(--primary-pink);
-}
-
-.achievement-item p {
-  color: #666;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-}
+      /* Make the 3rd item (Years of Experience) span full width to center it */
+      .achievement-item:nth-child(3) {
+        grid-column: 1 / -1; 
+      }
+    }
 
 
     /* ================= RECENT CLIENTS SLIDER ================= */
@@ -1711,7 +1738,7 @@
       <div class="hero-inner">
         <img src="images/hero section/left-hand.png" alt="Left Hand" class="hero-hand left" />
         <img src="images/hero section/right-hand.png" alt="Right Hand" class="hero-hand right" />
-       
+         <!--<img src="images/hero section/top-hand.png" alt="Top Hand" class="hero-hand top" />-->
 
         <div class="hero-content">
           <h1 class="hero-title">
@@ -2007,15 +2034,21 @@ We build strategy-backed content and thoughtful KOL planning that drive real eng
                 <div class="about-achievements">
                     <div class="about-achievements-grid">
                     <div class="achievement-item">
-                        <div class="counter" data-target="489">0</div><span class="suffix">+</span>
+                        <div class="counter-wrapper">
+                            <div class="counter" data-target="489">0</div><span class="suffix">+</span>
+                        </div>
                         <p>Projects Completed</p>
                     </div>
                     <div class="achievement-item">
-                        <div class="counter" data-target="98.5">0</div><span class="suffix">%</span>
+                        <div class="counter-wrapper">
+                            <div class="counter" data-target="98.5">0</div><span class="suffix">%</span>
+                        </div>
                         <p>Happy Clients</p>
                     </div>
                     <div class="achievement-item">
-                        <div class="counter" data-target="7">0</div><span class="suffix">+</span>
+                        <div class="counter-wrapper">
+                            <div class="counter" data-target="7">0</div><span class="suffix">+</span>
+                        </div>
                         <p>Years of Experience</p>
                     </div>
                       </div>
